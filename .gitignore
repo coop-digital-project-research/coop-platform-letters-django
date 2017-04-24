@@ -1,6 +1,10 @@
 .apt-cache/*
 .tmp-download-cache/*
 .vagrant/*
+collected_static/*
+
+almanac/static/css/site.css*
 
 *__pycache__*
 *.log
+.sass-cache/*

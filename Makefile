@@ -1,14 +1,15 @@
-SASS_DIR = almanac/assets/sass
-SASS_FILES = $(shell find almanac/assets -iname '*.scss')
+SASS_DIR = almanac/assets/stylesheets
+SITE_SCSS = $(SASS_DIR)/site.css.scss
+SITE_CSS = almanac/static/css/site.css
 
-APP_CSS = almanac/static/css/app.css
+SASS_FILES = $(shell find almanac/assets -iname '*.scss')
 
 .PHONY: all
 all: css
 
 .PHONY: clean
 clean:
-	rm -rf $(APP_CSS)
+	rm -rf $(SITE_CSS)
 
 .PHONY: test
 test:
@@ -19,13 +20,13 @@ run:
 	./manage.py runserver 0.0.0.0:8009
 
 .PHONY: css
-css: $(APP_CSS)
+css: $(SITE_CSS)
 
-$(APP_CSS): $(SASS_FILES)
+$(SITE_CSS): $(SASS_FILES)
 	@mkdir -p almanac/static/css
-	sass $(SASS_DIR)/app.scss $(APP_CSS)
+	sass $(SITE_SCSS) $(SITE_CSS)
 
 .PHONY: watch
 watch:
 	@mkdir -p almanac/static/css
-	sass --watch --poll $(SASS_DIR)/app.scss:$(APP_CSS)
+	sass --watch --poll $(SITE_SCSS):$(SITE_CSS)
