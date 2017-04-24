@@ -108,3 +108,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     pjoin(PROJECT_BASE_DIR, 'static'),
 ]
+
+# https://github.com/stefanfoulis/django-phonenumber-field
+PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'gb'
