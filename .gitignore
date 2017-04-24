@@ -2,5 +2,8 @@
 .tmp-download-cache/*
 .vagrant/*
 
+almanac/static/css/site.css*
+
 *__pycache__*
 *.log
+.sass-cache/*
