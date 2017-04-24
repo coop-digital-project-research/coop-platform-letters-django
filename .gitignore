@@ -1,0 +1,6 @@
+.apt-cache/*
+.tmp-download-cache/*
+.vagrant/*
+
+*__pycache__*
+*.log
