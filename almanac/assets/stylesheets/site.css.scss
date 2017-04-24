@@ -1,0 +1,379 @@
+@import 'normalize';
+@import 'simple-grid';
+
+$green : #5DF35C;
+$blue : #22ADC2;
+$pink : #F35C9F;
+$light-grey: #F3F3F3;
+$dark-grey: #736F66;
+$white: #FFFFFF;
+
+nav.main-nav {
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+      a {
+        color: $white;
+        text-decoration: none;
+        padding: 0.4rem 0.6rem;
+        background: darken($blue, 10);
+        border-radius: 0.2rem;
+        &:hover {
+          background: darken($blue, 20);
+        }
+      }
+    }
+  }
+  margin-top: 1rem;
+  @media screen and (min-width: 980px) {
+    margin-top: 0;
+    float: right;
+    height: 4.5rem;
+    ul {
+      line-height: 4.5;
+    }
+  }
+}
+
+h1, h2 {
+  line-height: 1.2;
+}
+
+
+label {
+  display: block;
+  font-size: 1.4rem;
+}
+input {
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  font-family: $font-family;
+  border-radius: 0.2rem;
+  outline: 0;
+  border: 1px solid $blue;
+  @media screen and (min-width: 768px) {
+    font-size: 2rem;
+    width: 50%;
+  }
+  &[name="MMERGE3"] {
+    width: auto;
+    text-transform: uppercase;
+  }
+}
+input[type='submit'] {
+  width: auto;
+  background: $pink;
+  border: none;
+  outline: 0;
+  padding: 1rem 2rem;
+  border-radius: 0.4rem;
+  color: $white;
+  cursor: pointer;
+  &:hover {
+    background: darken($pink, 10);
+  }
+}
+
+
+.header {
+  background: $blue;
+  padding: 1rem 0;
+  @media screen and (min-width: 768px) {
+    padding: 2rem 0;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+.power-pack-logo {
+  vertical-align: bottom;
+  width: 220px;
+  @media screen and (min-width: 768px) {
+    width: auto;
+    height: 4rem;
+    margin-right: 0.6rem;
+  }
+}
+
+.pack-name {
+  color: $white;
+  display: inline;
+  font-size: 1.6rem;
+  @media screen and (min-width: 768px) {
+    font-size: 2.6rem;
+  }
+}
+
+.strapline {
+  background: darken($blue, 10);
+  padding: 1rem 0;
+  @media screen and (min-width: 768px) {
+    padding: 2rem 0;
+  }
+  h2 {
+    color: $white;
+    font-size: 4em;
+    font-weight: normal;
+    margin: 0;
+    max-width: 800px;
+    @media screen and (max-width: 767px) {
+      font-size: 2em;
+      margin-bottom: 0.6rem;
+    }
+  }
+  p {
+    color: $white;
+    font-size: 2.4em;
+    @media screen and (max-width: 767px) {
+      font-size: 1.2em;
+    }
+    margin: 0;
+  }
+}
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+#map {
+  width: 100%;
+  height: 200px;
+  @media screen and (min-width: 768px) {
+    height: 300px;
+  }
+  &.map-large {
+    height: 500px;
+  }
+}
+
+.map-find {
+  box-sizing: border-box;
+  height: 200px;
+  margin-top: -200px;
+  @media screen and (min-width: 768px) {
+    height: 300px;
+    margin-top: -300px;
+  }
+  margin-top: 0;
+  &.map-large {
+    height: 500px;
+    margin-top: -500px;
+  }
+  input#place-input {
+    text-transform: uppercase;
+  }
+  > div > div > div {
+    h1 {
+      color: $dark-grey;
+      
+    }
+    margin-top: 50px;
+    background: $white;
+    border-radius: 0.2rem;
+    padding: 1rem;
+    @media screen and (min-width: 768px) {
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+  }
+}
+
+#place-form {
+
+}
+
+.callout {
+  border: 2px solid $light-grey;
+  border-radius: 1em;
+  padding: 1em;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    margin: 2rem 0;
+  }
+  h3 {
+    font-size: 1.8em;
+    color: $dark-grey;
+    margin: 0 0 0.8em 0;
+    padding: 0.2em 0;
+    &.first {
+      border-bottom: 3px solid $pink;
+    }
+    &.second {
+      border-bottom: 3px solid $green;
+    }
+    &.third {
+      border-bottom: 3px solid $blue;
+    }
+  }
+  img {
+    width: 75%;
+    height: 130px;
+  }
+  p {
+    font-size: 1.25em;
+  }
+  background: $white;
+}
+
+p, li, ul {
+  margin: 0;
+}
+
+p {
+  font-size: 1.5em;
+  @media screen and (max-width: 767px) {
+    font-size: 1.25em;
+  }
+  margin-bottom: 1em;
+}
+
+p, h2, h3, h4, strong {
+  color: $dark-grey;
+}
+
+.event {
+  display: block;
+  border: 2px solid $light-grey;
+  border-radius: 1em;
+  padding: 1em;
+  h3 {
+    color: $pink;
+    font-size: 1.9em;
+    margin: 0;
+    @media screen and (max-width: 767px) {
+      font-size: 1.5em;
+    }
+  }
+  h3.date {
+    color: $blue;
+  }
+  p.time {
+    font-size: 1.8em;
+    margin-bottom: 0;
+    @media screen and (max-width: 767px) {
+      font-size: 1.5em;
+    }
+  }
+  &:hover {
+    background: $light-grey;
+  }
+  p.link {
+    text-decoration: underline;
+    color: $blue;
+  }
+}
+
+div.cta {
+  p {
+    max-width: 520px;
+    margin-bottom: 0.8rem;
+  }
+}
+
+.signup {
+  .indicates-required {
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    span {
+    }
+  }
+  .input-group {
+    margin-bottom: 2rem;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        list-style: none;
+        input {
+          display: inline;
+          width: auto;
+          margin-right: 1rem;
+        }
+        label {
+          display: inline;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  h1, h2, span, label, .indicates-required, .indicates-required span {
+  }
+  h1, h2 {
+    margin-top: 0;
+  }
+  
+  .container {
+    padding: 4rem 0;
+    @media screen and (min-width: 768px) {
+      background: $white no-repeat url(../images/turbine.svg);
+      background-position: right bottom;
+      background-size: 35%;
+    }
+  }
+}
+
+.footer {
+  background: darken($dark-grey, 20);
+  height: 12em;
+  padding: 4rem 0;
+  p {
+    color: $light-grey;
+    a {
+      color: inherit;
+    }
+  }
+  img {
+    width: 48px;
+    @media screen and (min-width: 768px) {
+      float: right;
+    }
+  }
+}
+
+div.about {
+  @media screen and (min-width: 768px) {
+    margin-top: 4rem;
+  }
+}
+
+.transactional {
+  margin-bottom: 4rem;
+}
+
+img.team-face-image {
+  min-width: 150px;
+  max-width: 150px;
+  border-radius: 50%;
+}
+
+.team-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  padding: 1em;
+  display: block;
+  text-decoration: none;
+  &:hover {
+    background: $light-grey;
+  }
+}
