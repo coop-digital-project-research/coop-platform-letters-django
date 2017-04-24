@@ -1,6 +1,7 @@
 .apt-cache/*
 .tmp-download-cache/*
 .vagrant/*
+collected_static/*
 
 almanac/static/css/site.css*
 

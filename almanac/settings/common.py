@@ -17,6 +17,8 @@ from os.path import abspath, dirname, join as pjoin
 # BASE_DIR should be the directory where `manage.py` is located.
 BASE_DIR = abspath(pjoin(dirname(__file__), '..', '..'))
 
+# This is the almanac/ directory
+PROJECT_BASE_DIR = abspath(pjoin(dirname(__file__), '..'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -103,3 +105,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    pjoin(PROJECT_BASE_DIR, 'static'),
+]
