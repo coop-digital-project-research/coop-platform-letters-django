@@ -5,8 +5,8 @@ To get up and running you will first need to:
 * Get VirtualBox installed
 
 Then:
-* Clone the repo and do `vagrant provision`
 * Do `vagrant up`
+* Clone the repo and do `vagrant provision`
 
 There may be a problem with your VirtualBox that means when you `vagrant up` it hangs and eventually gives an error message.
 A fix in the meantime is to do this:
