@@ -35,6 +35,14 @@ class CommunityEnergyGroup(models.Model):
         max_length=10
     )
 
+    latitude = models.FloatField(
+        blank=True, null=True
+    )
+
+    longitude = models.FloatField(
+        blank=True, null=True
+    )
+
     website = models.URLField(
         blank=True, null=True
     )
