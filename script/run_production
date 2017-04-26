@@ -20,6 +20,12 @@ install_requirements() {
   pip install -r ${REPO_DIR}/requirements.txt
 }
 
+build_css() {
+  cd ${REPO_DIR}
+  make css
+  cd -
+}
+
 collect_static_files() {
   ${REPO_DIR}/manage.py collectstatic --no-input --clear
 }
@@ -33,6 +39,7 @@ setup_django_environment
 load_secrets_environment_variables
 activate_virtualenv
 install_requirements
+build_css
 collect_static_files
 migrate_database
 
