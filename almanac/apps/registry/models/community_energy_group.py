@@ -79,3 +79,6 @@ class CommunityEnergyGroup(DirtyFieldsMixin, models.Model):
         except ValueError:
             self.latitude, self.longitude = [None, None]
             super(CommunityEnergyGroup, self).save(*args, **kwargs) # Call the "real" save() method.
+
+    def __str__(self):
+        return '{}'.format(self.name)
