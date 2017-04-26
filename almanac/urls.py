@@ -22,7 +22,9 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^', include('almanac.apps.registry.urls'))
+    url(r'^', include('almanac.apps.registry.urls')),
+
+    url(r'^apiv1/', include('almanac.apps.apiv1.urls')),
 ]
 
 if settings.SERVE_STATIC_FILES:
