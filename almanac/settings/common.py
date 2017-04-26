@@ -113,7 +113,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     pjoin(PROJECT_BASE_DIR, 'static'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static', 'static')
 
 # https://github.com/stefanfoulis/django-phonenumber-field
 PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
