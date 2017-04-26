@@ -6,6 +6,10 @@ from almanac.libs.postcode_look_up import PostcodeLookUp
 
 
 class CommunityEnergyGroup(DirtyFieldsMixin, models.Model):
+    class Meta:
+        ordering = (
+            'name',
+        )
 
     name = models.CharField(
         help_text=(
