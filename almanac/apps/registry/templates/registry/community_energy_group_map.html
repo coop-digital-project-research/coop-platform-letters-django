@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block head_inner %}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+   integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+   crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+   integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+   crossorigin=""></script>
+
+{% endblock %}
+
+{% block body_inner %}
+
+<div id="mapid" style="height: 100%;"></div>
+
+<script>
+
+  var map = L.map('mapid').setView([51.505, -0.09], 13);
+
+  function fetchJSONFile(path, callback) {
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState === 4) {
+            if (httpRequest.status === 200) {
+                var data = JSON.parse(httpRequest.responseText);
+                if (callback) callback(data);
+            }
+        }
+    };
+    httpRequest.open('GET', path);
+    httpRequest.send();
+  }
+
+  fetchJSONFile('/apiv1/community-energy-groups/', function(data){
+    var groups = new L.FeatureGroup();
+
+    for (var i = 0, l = data.length; i < l; i++) {
+      var obj = data[i]
+      if(obj["latitude"] && obj["longitude"]) {
+        L.marker([obj["latitude"], obj["longitude"]]).bindPopup(obj["name"]).addTo(groups);
+      }
+    };
+
+    groups.addTo(map);
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+      maxZoom: 18
+    }).addTo(map);
+
+    map.fitBounds(groups.getBounds());
+  });
+
+
+
+</script>
+
+
+{% endblock %}
