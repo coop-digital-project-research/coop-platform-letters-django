@@ -3,6 +3,7 @@
 .vagrant/*
 collected_static/*
 
+secrets.sh
 almanac/static/css/site.css*
 
 *__pycache__*
