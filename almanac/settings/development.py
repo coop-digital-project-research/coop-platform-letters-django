@@ -15,5 +15,4 @@ DATABASES = {
     }
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 SERVE_STATIC_FILES = True
