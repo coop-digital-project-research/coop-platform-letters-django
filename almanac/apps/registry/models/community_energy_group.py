@@ -80,7 +80,7 @@ class CommunityEnergyGroup(DirtyFieldsMixin, models.Model):
             if 'postcode' in self.get_dirty_fields():
                 self.latitude, self.longitude = PostcodeLookUp.look_up(self.postcode)
             super(CommunityEnergyGroup, self).save(*args, **kwargs) # Call the "real" save() method.
-        except ValueError:
+        except (ValueError, TypeError):
             self.latitude, self.longitude = [None, None]
             super(CommunityEnergyGroup, self).save(*args, **kwargs) # Call the "real" save() method.
 
