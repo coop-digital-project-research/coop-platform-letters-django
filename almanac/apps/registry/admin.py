@@ -14,6 +14,8 @@ class CommunityEnergyGroupAdmin(admin.ModelAdmin):
     )
 
     readonly_fields = (
+        'latitude',
+        'longitude',
     )
 
     search_fields = (
