@@ -9,6 +9,8 @@ class CommunityEnergyGroupAdmin(admin.ModelAdmin):
         'name',
         'website',
         'contact_email',
+        'contact_telephone',
+        'postcode',
     )
 
     readonly_fields = (
