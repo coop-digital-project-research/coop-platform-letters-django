@@ -19,6 +19,10 @@ test:
 run:
 	./manage.py runserver 0.0.0.0:8009
 
+.PHONY: run_production
+run_production:
+	script/run_production
+
 .PHONY: css
 css: $(SITE_CSS)
 
