@@ -10,12 +10,17 @@ Class-based views
 """
 from django.conf.urls import url
 
-from .views import CommunityEnergyGroupDetail
+from .views import CommunityEnergyGroupDetail, CommunityEnergyGroupMap
 
 urlpatterns = [
     url(
         r'^group/(?P<slug>.*)/$',
         CommunityEnergyGroupDetail.as_view(),
         name='community-energy-group-detail'
+    ),
+    url(
+        r'^$',
+        CommunityEnergyGroupMap.as_view(),
+        name='community-energy-group-map'
     )
 ]
