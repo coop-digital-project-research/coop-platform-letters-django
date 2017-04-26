@@ -1,9 +1,11 @@
 from django.db import models
+from dirtyfields import DirtyFieldsMixin
 
 from phonenumber_field.modelfields import PhoneNumberField
+from almanac.libs.postcode_look_up import PostcodeLookUp
 
 
-class CommunityEnergyGroup(models.Model):
+class CommunityEnergyGroup(DirtyFieldsMixin, models.Model):
 
     name = models.CharField(
         help_text=(
@@ -35,6 +37,14 @@ class CommunityEnergyGroup(models.Model):
         max_length=10
     )
 
+    latitude = models.FloatField(
+        blank=True, null=True
+    )
+
+    longitude = models.FloatField(
+        blank=True, null=True
+    )
+
     website = models.URLField(
         blank=True, null=True
     )
@@ -60,3 +70,12 @@ class CommunityEnergyGroup(models.Model):
         ),
         blank=True, null=True
     )
+
+    def save(self, *args, **kwargs):
+        try:
+            if 'postcode' in self.get_dirty_fields():
+                self.latitude, self.longitude = PostcodeLookUp.look_up(self.postcode)
+            super(CommunityEnergyGroup, self).save(*args, **kwargs) # Call the "real" save() method.
+        except ValueError:
+            self.latitude, self.longitude = [None, None]
+            super(CommunityEnergyGroup, self).save(*args, **kwargs) # Call the "real" save() method.
