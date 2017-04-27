@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block head_inner %}
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
@@ -26,6 +28,15 @@
 
 <div id="mapid"></div>
 
+<section id="group-details">
+  <h1 id="group-name">groupName</h1>
+  <ul>
+    <li id="group-website"><a target="_blank">groupWebsite</a></li>
+    <li id="group-phone"><a>groupPhone</a></li>
+    <li id="group-email"><a>groupEmail</a></li>
+  </ul>
+</section>
+
 <script>
 
   var map = L.map('mapid').setView([51.505, -0.09], 13);
@@ -44,13 +55,51 @@
     httpRequest.send();
   }
 
-  fetchJSONFile('/apiv1/community-energy-groups/', function(data){
-    var groups = new L.FeatureGroup();
+  var defaultIcon = L.icon({
+    iconUrl: '{% static "/images/marker-icon.png" %}',
+    shadowUrl: '{% static "/images/marker-shadow.png" %}'
+  })
 
+  var highlightIcon = L.icon({
+    iconUrl: '{% static "/images/marker-icon-highlighted.png" %}',
+    shadowUrl: '{% static "/images/marker-shadow.png" %}'
+  })
+
+  var groups = new L.FeatureGroup();
+
+  var groupDetails = document.getElementById('group-details');
+
+  var deselectAllMarkers = function() {
+    groupDetails.classList.remove("show-group-detail");
+    groups.eachLayer(function(layer) {
+      layer.setIcon(defaultIcon);
+    });
+  }
+
+  map.on('click', deselectAllMarkers);
+
+  fetchJSONFile('/apiv1/community-energy-groups/', function(data){
     for (var i = 0, l = data.length; i < l; i++) {
-      var obj = data[i]
+      var obj = data[i];
       if(obj["latitude"] && obj["longitude"]) {
-        L.marker([obj["latitude"], obj["longitude"]]).bindPopup(obj["name"]).addTo(groups);
+        L.marker([obj["latitude"], obj["longitude"]], {
+          name: obj["name"],
+          website: obj["website"],
+          phone: obj["contact_telephone"],
+          email: obj["contact_email"],
+          icon: defaultIcon,
+        }).on('click', function(e) {
+          deselectAllMarkers();
+          this.setIcon(highlightIcon);
+          groupDetails.classList.add("show-group-detail");
+          document.getElementById("group-name").innerHTML = this.options.name;
+          document.getElementById("group-website").firstChild.innerHTML = this.options.website;
+          document.getElementById("group-website").firstChild.href = this.options.website;
+          document.getElementById("group-phone").firstChild.innerHTML = this.options.phone;
+          document.getElementById("group-phone").firstChild.href = "tel:" + this.options.phone;
+          document.getElementById("group-email").firstChild.innerHTML = this.options.email;
+          document.getElementById("group-email").firstChild.href = "mailto:" + this.options.email;
+        }).addTo(groups);
       }
     };
 
