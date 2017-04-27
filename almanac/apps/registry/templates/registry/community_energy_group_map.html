@@ -46,22 +46,42 @@
     httpRequest.send();
   }
 
+  var defaultIcon = L.icon({
+    iconUrl: '{% static "/images/marker-icon.png" %}',
+    shadowUrl: '{% static "/images/marker-shadow.png" %}'
+  })
+
+  var highlightIcon = L.icon({
+    iconUrl: '{% static "/images/marker-icon-highlighted.png" %}',
+    shadowUrl: '{% static "/images/marker-shadow.png" %}'
+  })
+
+  var groups = new L.FeatureGroup();
+
+  var deselectAllMarkers = function() {
+    groups.eachLayer(function(layer) {
+      layer.setIcon(defaultIcon);
+    });
+  }
+
   fetchJSONFile('/apiv1/community-energy-groups/', function(data){
-    var groups = new L.FeatureGroup();
-
-    var defaultIcon = L.icon({
-      iconUrl: '{% static "/images/marker-icon.png" %}',
-      shadowUrl: '{% static "/images/marker-shadow.png" %}'
-    })
-
     for (var i = 0, l = data.length; i < l; i++) {
-      var obj = data[i]
+      var obj = data[i];
       if(obj["latitude"] && obj["longitude"]) {
         L.marker([obj["latitude"], obj["longitude"]], {
           icon: defaultIcon,
+        }).on('click', function(e) {
+          deselectAllMarkers();
+          this.setIcon(highlightIcon);
         }).addTo(groups);
       }
     };
+
+    map.on('click', function() {
+      groups.eachLayer(function(layer) {
+        layer.setIcon(defaultIcon);
+      });
+    });
 
     groups.addTo(map);
 
