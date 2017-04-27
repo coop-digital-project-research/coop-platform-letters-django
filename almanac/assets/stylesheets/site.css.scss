@@ -120,6 +120,16 @@ header {
   }
 }
 
+section {
+  &#group-details {
+    display: none;
+    &.show-group-detail {
+      display: block;
+    }
+  }
+}
+
+
 .power-pack-logo {
   vertical-align: bottom;
   width: 220px;

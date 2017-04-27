@@ -28,6 +28,10 @@
 
 <div id="mapid"></div>
 
+<section id="group-details">
+  This is marker info
+</section>
+
 <script>
 
   var map = L.map('mapid').setView([51.505, -0.09], 13);
@@ -58,30 +62,31 @@
 
   var groups = new L.FeatureGroup();
 
+  var groupDetails = document.getElementById('group-details');
+
   var deselectAllMarkers = function() {
+    groupDetails.classList.remove("show-group-detail");
     groups.eachLayer(function(layer) {
       layer.setIcon(defaultIcon);
     });
   }
+
+  map.on('click', deselectAllMarkers);
 
   fetchJSONFile('/apiv1/community-energy-groups/', function(data){
     for (var i = 0, l = data.length; i < l; i++) {
       var obj = data[i];
       if(obj["latitude"] && obj["longitude"]) {
         L.marker([obj["latitude"], obj["longitude"]], {
+          name: obj["name"],
           icon: defaultIcon,
         }).on('click', function(e) {
           deselectAllMarkers();
           this.setIcon(highlightIcon);
+          groupDetails.classList.add("show-group-detail");
         }).addTo(groups);
       }
     };
-
-    map.on('click', function() {
-      groups.eachLayer(function(layer) {
-        layer.setIcon(defaultIcon);
-      });
-    });
 
     groups.addTo(map);
 
