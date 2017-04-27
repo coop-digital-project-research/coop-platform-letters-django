@@ -11,9 +11,20 @@
 
 {% endblock %}
 
+{% block body_class %}almanac-map{% endblock %}
+
 {% block body_inner %}
 
-<div id="mapid" style="height: 100%;"></div>
+<header class="almanac">
+  <h1>Endless Energy Almanac</h1>
+  <section id="about-almanac">
+    <p>
+      An open source, collaborative map of every active, generating renewable energy co-operative.
+    </p>
+  </section>
+</header>
+
+<div id="mapid"></div>
 
 <script>
 

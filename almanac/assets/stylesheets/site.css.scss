@@ -8,6 +8,20 @@ $light-grey: #F3F3F3;
 $dark-grey: #736F66;
 $white: #FFFFFF;
 
+body {
+  &.almanac-map {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    header.almanac {
+      flex: 0 1 auto;
+    }
+    #mapid {
+      flex: 1 1 auto;
+    }
+  }
+}
+
 nav.main-nav {
   ul {
     padding: 0;
@@ -80,7 +94,7 @@ input[type='submit'] {
 }
 
 
-.header {
+.header, header {
   background: $blue;
   padding: 1rem 0;
   @media screen and (min-width: 768px) {
@@ -90,6 +104,22 @@ input[type='submit'] {
     text-decoration: none;
   }
 }
+
+header {
+  &.almanac {
+    padding: 1rem;
+    h1, p {
+      color: $white;
+    }
+    h1 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
 .power-pack-logo {
   vertical-align: bottom;
   width: 220px;
