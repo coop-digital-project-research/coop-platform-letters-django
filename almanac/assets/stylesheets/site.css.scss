@@ -8,6 +8,20 @@ $light-grey: #F3F3F3;
 $dark-grey: #736F66;
 $white: #FFFFFF;
 
+body {
+  &.almanac-map {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    header.almanac {
+      flex: 0 1 auto;
+    }
+    #mapid {
+      flex: 1 1 auto;
+    }
+  }
+}
+
 nav.main-nav {
   ul {
     padding: 0;
