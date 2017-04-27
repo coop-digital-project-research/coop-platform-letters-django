@@ -29,7 +29,12 @@
 <div id="mapid"></div>
 
 <section id="group-details">
-  This is marker info
+  <h1 id="group-name">groupName</h1>
+  <ul>
+    <li id="group-website">groupWebsite</li>
+    <li id="group-phone">groupPhone</li>
+    <li id="group-email">groupEmail</li>
+  </ul>
 </section>
 
 <script>
@@ -79,11 +84,18 @@
       if(obj["latitude"] && obj["longitude"]) {
         L.marker([obj["latitude"], obj["longitude"]], {
           name: obj["name"],
+          website: obj["website"],
+          phone: obj["contact_telephone"],
+          email: obj["contact_email"],
           icon: defaultIcon,
         }).on('click', function(e) {
           deselectAllMarkers();
           this.setIcon(highlightIcon);
           groupDetails.classList.add("show-group-detail");
+          document.getElementById("group-name").innerHTML = this.options.name;
+          document.getElementById("group-website").innerHTML = this.options.website;
+          document.getElementById("group-phone").innerHTML = this.options.phone;
+          document.getElementById("group-email").innerHTML = this.options.email;
         }).addTo(groups);
       }
     };
