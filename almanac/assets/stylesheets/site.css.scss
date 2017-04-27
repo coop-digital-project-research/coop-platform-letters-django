@@ -129,6 +129,18 @@ header {
         margin-left: -1rem;
       }
     }
+    input {
+      &#extended-toggle {
+        ~ p.extended-about {
+          display: none;
+        }
+        &:checked {
+          ~ p.extended-about {
+            display: block;
+          }
+        }
+      }
+    }
   }
 }
 
