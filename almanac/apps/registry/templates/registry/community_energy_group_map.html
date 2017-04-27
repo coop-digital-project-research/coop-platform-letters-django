@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block head_inner %}
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
@@ -47,10 +49,17 @@
   fetchJSONFile('/apiv1/community-energy-groups/', function(data){
     var groups = new L.FeatureGroup();
 
+    var defaultIcon = L.icon({
+      iconUrl: '{% static "/images/marker-icon.png" %}',
+      shadowUrl: '{% static "/images/marker-shadow.png" %}'
+    })
+
     for (var i = 0, l = data.length; i < l; i++) {
       var obj = data[i]
       if(obj["latitude"] && obj["longitude"]) {
-        L.marker([obj["latitude"], obj["longitude"]]).bindPopup(obj["name"]).addTo(groups);
+        L.marker([obj["latitude"], obj["longitude"]], {
+          icon: defaultIcon,
+        }).addTo(groups);
       }
     };
 
