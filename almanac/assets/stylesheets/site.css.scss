@@ -107,8 +107,10 @@ input[type='submit'] {
 
 header {
   &.almanac {
+    position: relative;
+    overflow-y: visible;
     padding: 1rem;
-    h1, p {
+    h1, p.headline {
       color: $white;
     }
     h1 {
@@ -116,6 +118,66 @@ header {
     }
     p {
       font-size: 14px;
+    }
+    div {
+      &.extended-about {
+        position: absolute;
+        z-index: 1;
+        background: $white;
+        padding: 1rem;
+        margin: 1rem 0 0 -1rem;
+        p {
+          color: $dark-grey;
+        }
+        a {
+          text-decoration: underline;
+        }
+        ul {
+          list-style-type: circle;
+          margin-bottom: 1em;
+          li {
+            padding-left: 0;
+            margin-left: 24px;
+            margin-bottom: 3px;
+          }
+        }
+      }
+    }
+    input {
+      &#extended-toggle {
+        display: none;
+        ~ label span {
+          &:nth-of-type(1) {
+            display: block;
+          }
+          &:nth-of-type(2) {
+            display: none;
+          }
+        }
+        ~ div.extended-about {
+          display: none;
+        }
+        &:checked {
+          ~ div.extended-about {
+            display: block;
+          }
+          ~ label span {
+            &:nth-of-type(1) {
+              display: none;
+            }
+            &:nth-of-type(2) {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+    label {
+      cursor: pointer;
+      font-size: inherit;
+      span {
+        color: $white;
+      }
     }
   }
 }
@@ -210,6 +272,10 @@ section {
   }
 }
 
+#mapid {
+  z-index: 0;
+}
+
 .map-find {
   box-sizing: border-box;
   height: 200px;
@@ -229,7 +295,7 @@ section {
   > div > div > div {
     h1 {
       color: $dark-grey;
-      
+
     }
     margin-top: 50px;
     background: $white;
@@ -370,7 +436,7 @@ div.cta {
   h1, h2 {
     margin-top: 0;
   }
-  
+
   .container {
     padding: 4rem 0;
     @media screen and (min-width: 768px) {
