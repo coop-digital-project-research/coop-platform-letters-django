@@ -87,12 +87,11 @@ nav#global-nav {
     display: block;
     font-size: 24px;
     @media screen and (min-width: 1030px) {
-      display: inline;
       font-size: 36px;
       margin-left: 1rem;
-      line-height: 49px;
+      line-height: 13px;
       vertical-align: middle;
-      height: 78px;
+      height: 120px;
       display: inline-block;
     }
   }
@@ -252,25 +251,6 @@ section {
   }
 }
 
-
-.power-pack-logo {
-  vertical-align: bottom;
-  width: 220px;
-  @media screen and (min-width: 768px) {
-    width: auto;
-    height: 4rem;
-    margin-right: 0.6rem;
-  }
-}
-
-.pack-name {
-  color: $white;
-  display: inline;
-  font-size: 1.6rem;
-  @media screen and (min-width: 768px) {
-    font-size: 2.6rem;
-  }
-}
 
 .strapline {
   background: darken($blue, 10);
