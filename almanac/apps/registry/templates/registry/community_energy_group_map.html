@@ -22,45 +22,42 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <a href="/">
-          <img src="http://www.powerpack.org.uk/images/power-pack-logo.svg" >
-        </a>
+        <img src="http://www.powerpack.org.uk/images/power-pack-logo.svg" class="power-pack-logo"/>
         <span class="global-title">Almanac</span>
+        <nav class="main-nav">
+
+        <input type="checkbox" id="extended-toggle">
+        <label for="extended-toggle"><span>More</span><span>Less</span></label>
+        <div class="extended-about">
+          <p class="headline">
+            An open source, collaborative map of every active, generating renewable energy co-operative.
+          </p>
+          <p><strong>We made the almanac for us.</strong> We are building Power Pack so that people can buy their energy from local producers. But to do that, we need to understand the state of community renewable energy at a national level.</p>
+          <p>We think other people will find the almanac useful. We want the almanac to be able to answer questions about:
+          <ul>
+            <li>how much energy is produced by groups in total across the UK</li>
+            <li>what a successful community energy group looks like</li>
+            <li>where there are lots of community energy groups</li>
+            <li>where community energy groups are needed</li>
+          </ul>
+          <h2>Collaborative</h2>
+          <p>Although we are building the almanac, we don't own the data we are using. We've used data from uk.coop and communityenergyengland.org. We want to include information from sharenergy.coop and ofgem.gov.uk. And we have made the almanac so that people from community energy groups can log on and update information about their groups. If you are from a community energy group and want to get involved - we'd love to hear from you.</p>
+          <h2>Open source</h2>
+          <p>We're building the almanac, and Power Pack, in the open. This means you can:</p>
+          <ul>
+            <li><a href="https://github.com/coopdigital/endless-energy-almanac-django">view and download the files on GitHub</a> (a shared repository for software)</li>
+            <li><a href="/apiv1/community-energy-groups/">access the API</a> (application programming interface) - the data feed that shows all the groups on the map</li>
+            <li><a href="http://blog.powerpack.org.uk">read our blog</a> about our research and the way we work</li>
+          </ul>
+          <p>If you use this resource for a project of your own that will make us very happy, so please let us know: <a href=="mailto:sophy@powerpack.org.uk">sophy@powerpack.org.uk</a></p>
+        </div>
+
+
+        </nav>
       </div>
     </div>
   </div>
 </div>
-
-<header class="almanac">
-  <h1>Endless Energy Almanac</h1>
-  <section id="about-almanac">
-    <p class="headline">
-      An open source, collaborative map of every active, generating renewable energy co-operative.
-    </p>
-    <input type="checkbox" id="extended-toggle">
-    <label for="extended-toggle"><span>More</span><span>Less</span></label>
-    <div class="extended-about">
-      <p><strong>We made the almanac for us.</strong> We are building Power Pack so that people can buy their energy from local producers. But to do that, we need to understand the state of community renewable energy at a national level.</p>
-      <p>We think other people will find the almanac useful. We want the almanac to be able to answer questions about:
-      <ul>
-        <li>how much energy is produced by groups in total across the UK</li>
-        <li>what a successful community energy group looks like</li>
-        <li>where there are lots of community energy groups</li>
-        <li>where community energy groups are needed</li>
-      </ul>
-      <h2>Collaborative</h2>
-      <p>Although we are building the almanac, we don't own the data we are using. We've used data from uk.coop and communityenergyengland.org. We want to include information from sharenergy.coop and ofgem.gov.uk. And we have made the almanac so that people from community energy groups can log on and update information about their groups. If you are from a community energy group and want to get involved - we'd love to hear from you.</p>
-      <h2>Open source</h2>
-      <p>We're building the almanac, and Power Pack, in the open. This means you can:</p>
-      <ul>
-        <li><a href="https://github.com/coopdigital/endless-energy-almanac-django">view and download the files on GitHub</a> (a shared repository for software)</li>
-        <li><a href="/apiv1/community-energy-groups/">access the API</a> (application programming interface) - the data feed that shows all the groups on the map</li>
-        <li><a href="http://blog.powerpack.org.uk">read our blog</a> about our research and the way we work</li>
-      </ul>
-      <p>If you use this resource for a project of your own that will make us very happy, so please let us know: <a href=="mailto:sophy@powerpack.org.uk">sophy@powerpack.org.uk</a></p>
-    </div>
-  </section>
-</header>
 
 <div id="mapid"></div>
 
