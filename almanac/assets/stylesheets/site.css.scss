@@ -22,6 +22,32 @@ body {
   }
 }
 
+nav#global-nav {
+  background: $dark-grey;
+  height: 40px;
+  ul {
+    list-style: none;
+    margin: 0 2%;
+    padding: 0;
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: inline-block;
+      color: $white;
+      height: 40px;
+      line-height: 40px;
+      font-size: 14px;
+      margin-right: 1rem;
+      font-weight: 500;
+      a {
+        color: rgba($white,0.8);
+        font-weight: 400;
+      }
+    }
+  }
+}
+
 nav.main-nav {
   ul {
     padding: 0;
