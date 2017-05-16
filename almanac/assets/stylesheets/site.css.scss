@@ -263,14 +263,31 @@ label {
 
 section {
   &#group-details {
-    padding: 1rem;
     display: none;
+    padding: 0.2rem 0 1rem 0;
     &.show-group-detail {
       display: block;
+    }
+    @media screen and (min-width: 1030px) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      .col-12 {
+        min-width: 420px;
+        width: auto;
+        background: #FFFFFF;
+        pointer-events: auto;
+        padding: 18px 24px 24px 24px;
+        box-sizing: border-box;
+        margin-left: -6px;
+      }
     }
   }
   h1 {
     font-size: 16px;
+    color: $pink;
   }
   ul {
     list-style: none;
