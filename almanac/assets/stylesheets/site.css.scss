@@ -22,40 +22,114 @@ body {
   }
 }
 
-nav.main-nav {
+h1, h2 {
+  line-height: 1.2;
+}
+
+
+nav#global-nav {
+  background: $dark-grey;
+  height: 40px;
   ul {
+    list-style: none;
+    margin: 0 2%;
     padding: 0;
-    margin: 0;
     li {
-      list-style: none;
-      padding: 0;
       margin: 0;
+      padding: 0;
+      list-style: none;
       display: inline-block;
+      color: $white;
+      height: 40px;
+      line-height: 40px;
+      font-size: 14px;
+      margin-right: 1rem;
+      font-weight: 500;
       a {
-        color: $white;
-        text-decoration: none;
-        padding: 0.4rem 0.6rem;
-        background: darken($blue, 10);
-        border-radius: 0.2rem;
-        &:hover {
-          background: darken($blue, 20);
-        }
+        color: rgba($white,0.8);
+        font-weight: 400;
       }
-    }
-  }
-  margin-top: 1rem;
-  @media screen and (min-width: 980px) {
-    margin-top: 0;
-    float: right;
-    height: 4.5rem;
-    ul {
-      line-height: 4.5;
     }
   }
 }
 
-h1, h2 {
-  line-height: 1.2;
+.header {
+  background: $blue;
+  position: relative;
+  .row {
+    position: inherit;
+  }
+  .row > .col-12 {
+    margin: 1rem 2%;
+    @media screen and (min-width: 1030px) {
+      margin: 0 2%;
+      height: 120px;
+      line-height: 137px;
+    }
+    > a {
+      @media screen and (min-width: 1030px) {
+        vertical-align: middle;
+        display: inline-block;
+        text-decoration: none;
+        line-height: 138px;
+      }
+    }
+  }
+
+
+  img.power-pack-logo {
+    width: 158px;
+    @media screen and (min-width: 1030px) {
+      width: 221px;
+      height: 114px;
+    }
+  }
+
+  .global-title {
+    color: rgba($white,0.8);
+    display: block;
+    font-size: 24px;
+    @media screen and (min-width: 1030px) {
+      font-size: 36px;
+      margin-left: 1rem;
+      line-height: 13px;
+      vertical-align: middle;
+      height: 120px;
+      display: inline-block;
+    }
+  }
+
+  nav.main-nav {
+    height: 100%;
+    > ul {
+      padding: 0;
+      margin: 0;
+      > li {
+        list-style: none;
+        padding: 0;
+        margin: 0 1rem 0 0;
+        display: inline-block;
+        > a {
+          color: $white;
+          font-size: 18px;
+          text-decoration: underline;
+        }
+      }
+    }
+    @media screen and (min-width: 1030px) {
+      float: right;
+      ul {
+        line-height: 120px;
+        li {
+          margin: 0 0 0 1.2rem;
+          a {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+  
 }
 
 
@@ -94,104 +168,126 @@ input[type='submit'] {
 }
 
 
-.header, header {
-  background: $blue;
-  padding: 1rem 0;
-  @media screen and (min-width: 768px) {
-    padding: 2rem 0;
+
+
+div {
+  &.extended-about {
+    position: absolute;
+    z-index: 1;
+    background: $white;
+    top: 120px;
+    left: 0;
+    right: 0;
+
+
+    > .container > .row > .col-10 {
+      height: auto;
+      @media screen and (min-width: 768px) {
+        padding: 4rem 0;
+      }
+    }
+
+    h1 {
+      @media screen and (max-width: 1030px) {
+        font-size: 1.6rem;
+      }
+    }
+
+    p {
+      color: $dark-grey;
+    }
+    a {
+      text-decoration: underline;
+      color: inherit;
+    }
+    ul {
+      list-style-type: circle;
+      margin-bottom: 1em;
+      font-size: inherit;
+      li {
+        padding-left: 0;
+        margin-bottom: 3px;
+        @media screen and (min-width: 1030px) {
+          font-size: 24px;
+        }
+      }
+    }
   }
-  a {
-    text-decoration: none;
+}
+input {
+  &#extended-toggle {
+    display: none;
+    ~ ul li label span {
+      &:nth-of-type(1) {
+        display: block;
+      }
+      &:nth-of-type(2) {
+        display: none;
+      }
+    }
+    ~ div.extended-about {
+      display: none;
+    }
+    &:checked {
+      ~ div.extended-about {
+        display: block;
+      }
+      ~ ul li label span {
+        &:nth-of-type(1) {
+          display: none;
+        }
+        &:nth-of-type(2) {
+          display: block;
+        }
+      }
+    }
+  }
+}
+label {
+  cursor: pointer;
+  font-size: 18px;
+  text-decoration: underline;
+  color: $white;
+  @media screen and (min-width: 1030px) {
+    height: 120px;
+    font-size: 24px;
+  }
+  span {
+    color: $white;
+    @media screen and (min-width: 1030px) {
+      line-height: 116px;
+    }
   }
 }
 
-header {
-  &.almanac {
-    position: relative;
-    overflow-y: visible;
-    padding: 1rem;
-    h1, p.headline {
-      color: $white;
-    }
-    h1 {
-      font-size: 16px;
-    }
-    p {
-      font-size: 14px;
-    }
-    div {
-      &.extended-about {
-        position: absolute;
-        z-index: 1;
-        background: $white;
-        padding: 1rem;
-        margin: 1rem 0 0 -1rem;
-        p {
-          color: $dark-grey;
-        }
-        a {
-          text-decoration: underline;
-        }
-        ul {
-          list-style-type: circle;
-          margin-bottom: 1em;
-          li {
-            padding-left: 0;
-            margin-left: 24px;
-            margin-bottom: 3px;
-          }
-        }
-      }
-    }
-    input {
-      &#extended-toggle {
-        display: none;
-        ~ label span {
-          &:nth-of-type(1) {
-            display: block;
-          }
-          &:nth-of-type(2) {
-            display: none;
-          }
-        }
-        ~ div.extended-about {
-          display: none;
-        }
-        &:checked {
-          ~ div.extended-about {
-            display: block;
-          }
-          ~ label span {
-            &:nth-of-type(1) {
-              display: none;
-            }
-            &:nth-of-type(2) {
-              display: block;
-            }
-          }
-        }
-      }
-    }
-    label {
-      cursor: pointer;
-      font-size: inherit;
-      span {
-        color: $white;
-      }
-    }
-  }
-}
 
 section {
   &#group-details {
-    padding: 1rem;
     display: none;
+    padding: 0.2rem 0 1rem 0;
     &.show-group-detail {
       display: block;
+    }
+    @media screen and (min-width: 1030px) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      .col-12 {
+        min-width: 420px;
+        width: auto;
+        background: #FFFFFF;
+        pointer-events: auto;
+        padding: 18px 24px 24px 24px;
+        box-sizing: border-box;
+        margin-left: -6px;
+      }
     }
   }
   h1 {
     font-size: 16px;
+    color: $pink;
   }
   ul {
     list-style: none;
@@ -203,25 +299,6 @@ section {
   }
 }
 
-
-.power-pack-logo {
-  vertical-align: bottom;
-  width: 220px;
-  @media screen and (min-width: 768px) {
-    width: auto;
-    height: 4rem;
-    margin-right: 0.6rem;
-  }
-}
-
-.pack-name {
-  color: $white;
-  display: inline;
-  font-size: 1.6rem;
-  @media screen and (min-width: 768px) {
-    font-size: 2.6rem;
-  }
-}
 
 .strapline {
   background: darken($blue, 10);
