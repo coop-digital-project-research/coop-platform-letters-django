@@ -22,9 +22,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^', include('letters.apps.registry.urls')),
-
-    url(r'^apiv1/', include('letters.apps.apiv1.urls')),
+    url(r'^', include('letters.apps.matchmaker.urls')),
 ]
 
 if settings.SERVE_STATIC_FILES:

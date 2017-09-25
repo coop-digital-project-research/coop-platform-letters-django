@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'letters.apps.matchmaker',
+
     'rest_framework',
     'django_extensions',
 ]
