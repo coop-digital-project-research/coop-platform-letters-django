@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from almanac.apps.registry.models import CommunityEnergyGroup
+from letters.apps.registry.models import CommunityEnergyGroup
 
 
 class CommunityEnergyGroupSerializer(serializers.ModelSerializer):

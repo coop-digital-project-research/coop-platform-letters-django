@@ -2,7 +2,7 @@ from django.db import models
 from dirtyfields import DirtyFieldsMixin
 
 from phonenumber_field.modelfields import PhoneNumberField
-from almanac.libs.postcode_look_up import PostcodeLookUp
+from letters.libs.postcode_look_up import PostcodeLookUp
 
 
 class CommunityEnergyGroup(DirtyFieldsMixin, models.Model):

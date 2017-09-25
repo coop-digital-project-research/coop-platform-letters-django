@@ -15,14 +15,14 @@ run_pep8_style_checks() {
 
     flake8 \
         --ignore=F401,F403,F405 \
-        --exclude='almanac/*/*/migrations/*.py' \
+        --exclude='letters/*/*/migrations/*.py' \
     .
 
     # Now re-check for F403 & F405 everywhere *except* settings
 
     flake8 \
         --select=F403,405 \
-        --exclude='almanac/settings/*.py' \
+        --exclude='letters/settings/*.py' \
     .
 }
 
@@ -34,7 +34,7 @@ run_more_pep8_checks() {
     # F401: don't allow `imported but unused` except in __init__.py, settings
     flake8 \
         --select=F401 \
-        --exclude='*/__init__.py,almanac/settings/*.py' \
+        --exclude='*/__init__.py,letters/settings/*.py' \
     .
 }
 

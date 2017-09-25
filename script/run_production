@@ -4,7 +4,7 @@ THIS_SCRIPT=$0
 REPO_DIR=$(dirname ${THIS_SCRIPT})/..
 
 setup_django_environment() {
-  export DJANGO_SETTINGS_MODULE=almanac.settings.production
+  export DJANGO_SETTINGS_MODULE=letters.settings.production
 }
 
 load_secrets_environment_variables() {
@@ -44,4 +44,4 @@ collect_static_files
 migrate_database
 
 # Replace current script with gunicorn
-exec gunicorn almanac.wsgi
+exec gunicorn letters.wsgi

@@ -11,7 +11,7 @@ from collections import OrderedDict
 
 from django.utils.text import slugify
 
-from almanac.apps.registry.models import CommunityEnergyGroup
+from letters.apps.registry.models import CommunityEnergyGroup
 
 
 def run(*args):

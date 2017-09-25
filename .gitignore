@@ -4,7 +4,7 @@
 collected_static/*
 
 secrets.sh
-almanac/static/css/site.css*
+letters/static/css/site.css*
 
 *__pycache__*
 *.log

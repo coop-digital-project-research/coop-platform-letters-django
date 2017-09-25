@@ -1,5 +1,5 @@
 """
-WSGI config for almanac project.
+WSGI config for letters project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "almanac.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "letters.settings.production")
 
 application = get_wsgi_application()

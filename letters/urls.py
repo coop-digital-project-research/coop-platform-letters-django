@@ -1,4 +1,4 @@
-"""almanac URL Configuration
+"""letters URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -22,9 +22,9 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^', include('almanac.apps.registry.urls')),
+    url(r'^', include('letters.apps.registry.urls')),
 
-    url(r'^apiv1/', include('almanac.apps.apiv1.urls')),
+    url(r'^apiv1/', include('letters.apps.apiv1.urls')),
 ]
 
 if settings.SERVE_STATIC_FILES:

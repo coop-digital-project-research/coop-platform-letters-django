@@ -1,8 +1,8 @@
-SASS_DIR = almanac/assets/stylesheets
+SASS_DIR = letters/assets/stylesheets
 SITE_SCSS = $(SASS_DIR)/site.css.scss
-SITE_CSS = almanac/static/css/site.css
+SITE_CSS = letters/static/css/site.css
 
-SASS_FILES = $(shell find almanac/assets -iname '*.scss')
+SASS_FILES = $(shell find letters/assets -iname '*.scss')
 
 .PHONY: all
 all: css
@@ -27,10 +27,10 @@ run_production:
 css: $(SITE_CSS)
 
 $(SITE_CSS): $(SASS_FILES)
-	@mkdir -p almanac/static/css
+	@mkdir -p letters/static/css
 	sass $(SITE_SCSS) $(SITE_CSS)
 
 .PHONY: watch
 watch:
-	@mkdir -p almanac/static/css
+	@mkdir -p letters/static/css
 	sass --watch --poll $(SITE_SCSS):$(SITE_CSS)

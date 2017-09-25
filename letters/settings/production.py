@@ -17,7 +17,7 @@ assert len(SECRET_KEY) > 20, "Bad (short) secret key: {}".format(SECRET_KEY)
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['almanac.powerpack.org.uk']
+ALLOWED_HOSTS = ['letters.powerpack.org.uk']
 
 SERVE_STATIC_FILES = False
 

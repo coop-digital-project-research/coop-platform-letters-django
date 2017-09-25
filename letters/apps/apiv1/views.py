@@ -1,4 +1,4 @@
-from almanac.apps.registry.models import CommunityEnergyGroup
+from letters.apps.registry.models import CommunityEnergyGroup
 
 from rest_framework.generics import ListAPIView
 
