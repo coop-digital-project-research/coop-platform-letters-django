@@ -1,1 +1,0 @@
-from .community_energy_group import CommunityEnergyGroup
