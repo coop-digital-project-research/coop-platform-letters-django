@@ -1,0 +1,7 @@
+<h1>{{ sender.first_name }}, {{ sender.age }}</h1>
+
+<p>
+ {{ sender.profile_story }}
+</p>
+
+<a href="{% url 'update-sender-profile' json_web_token=json_web_token %}">Edit</a>
