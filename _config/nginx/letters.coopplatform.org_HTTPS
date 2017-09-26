@@ -53,7 +53,7 @@ server {
     # }
 
     # path for static files
-    root /home/letters/app/collected_static;
+    root /home/letters/website-repo/collected_static;
 
     location / {
       # checks for static file, if not found proxy to app
