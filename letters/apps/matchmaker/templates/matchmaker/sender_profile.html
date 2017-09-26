@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
 <h1>{{ sender.first_name }}, {{ sender.age }}</h1>
 
 <p>
@@ -5,3 +8,5 @@
 </p>
 
 <a href="{% url 'update-sender-profile' json_web_token=json_web_token %}">Edit</a>
+
+{% endblock %}
