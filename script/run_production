@@ -44,4 +44,4 @@ collect_static_files
 migrate_database
 
 # Replace current script with gunicorn
-exec gunicorn letters.wsgi
+exec gunicorn letters.wsgi -b 127.0.0.1:8001
