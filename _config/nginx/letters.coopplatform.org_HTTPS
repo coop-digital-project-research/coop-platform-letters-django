@@ -1,12 +1,4 @@
-server {
-  listen 80;
-  server_name letters.powerpack.org.uk;
 
-  location = / {
-    # Redirect (almost) anything on HTTP to HTTPS
-    return 301 https://$host$request_uri;
-  } 
-}
 
 upstream letters_gunicorn {
   # fail_timeout=0 means we always retry an upstream even if it failed
@@ -17,10 +9,10 @@ upstream letters_gunicorn {
 
 server {
     listen 443;
-    server_name letters.powerpack.org.uk;
+    server_name letters.coopplatform.org;
 
-    ssl_certificate           /etc/letsencrypt/live/letters.powerpack.org.uk/fullchain.pem;
-    ssl_certificate_key       /etc/letsencrypt/live/letters.powerpack.org.uk/privkey.pem;
+    ssl_certificate           /etc/letsencrypt/live/letters.coopplatform.org/fullchain.pem;
+    ssl_certificate_key       /etc/letsencrypt/live/letters.coopplatform.org/privkey.pem;
 
     ssl on;
 
