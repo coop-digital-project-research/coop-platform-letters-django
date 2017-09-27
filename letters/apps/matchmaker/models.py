@@ -1,3 +1,4 @@
+import datetime
 import uuid
 
 import jwt
@@ -24,6 +25,7 @@ class Sender(models.Model):
 
     def make_json_web_token(self):
         data = {
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30),
             'sender_uuid': str(self.uuid),
         }
 
