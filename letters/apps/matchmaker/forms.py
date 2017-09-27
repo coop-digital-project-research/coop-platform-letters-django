@@ -47,7 +47,7 @@ class SenderForm(ExtraAttrsMixin, OverrideRequiredMixin, ModelForm):
             'private_story': HiddenInput(),
         }
 
-    override_fields_required = ['age']
+    override_fields_required = ['age', 'profile_story']
 
     extra_attrs = {
         'profile_story': {'rows': '6'},
