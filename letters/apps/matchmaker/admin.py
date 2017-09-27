@@ -7,6 +7,7 @@ from .models import Sender
 class SenderAdmin(admin.ModelAdmin):
     list_display = (
         'first_name',
+        'age',
         'uuid',
         'edit_url',
     )
