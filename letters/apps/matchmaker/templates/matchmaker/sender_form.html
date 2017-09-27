@@ -4,24 +4,34 @@
 
     {{ form.non_field_errors }}
 
-    {% for field in form.visible_fields %}
       <div class="form-row">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+        <p class="hint">{{ form.first_name.help_text }}</p>
+				{{ form.first_name }}
+        {{ form.first_name.errors }}
+      </div>
 
-        {% if field.id_for_label == 'id_profile_story' %}
+      <div class="form-row">
+        <label for="{{ form.age.id_for_label }}">{{ form.age.label }}</label>
+        <p class="hint">{{ form.age.help_text }}</p>
+				{{ form.age }}
+        {{ form.age.errors }}
+      </div>
 
-          <p class="hint">This is what you told us about your debt situation - we're showing it to you here to help you write a couple of sentences about how you got into debt.</p>
+      <div class="form-row">
+        <label for="{{ form.profile_story.id_for_label }}">{{ form.profile_story.label }}</label>
+
+          <p class="hint">{{ form.private_story.help_text }}</p>
 
           <div class="writer-profile-preview">
             <p>{{ form.private_story.value }}</p>
+            {{ form.private_story }}
           </div>
 
-        {% endif %}
-        <p class="hint">{{ field.help_text }}</p>
-        {{ field }}
-        {{ field.errors }}
+        <p class="hint">{{ form.profile_story.help_text }}</p>
+				{{ form.profile_story }}
+        {{ form.profile_story.errors }}
       </div>
-    {% endfor %}
 
     <hr>
 
