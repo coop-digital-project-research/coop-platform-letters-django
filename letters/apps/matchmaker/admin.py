@@ -12,6 +12,10 @@ class SenderAdmin(admin.ModelAdmin):
         'edit_url',
     )
 
+    readonly_fields = (
+        'uuid',
+    )
+
     def edit_url(self, instance):
         return '<a href="{}">[Link to update page]</a>'.format(
             instance.make_authenticated_sender_profile_url()
