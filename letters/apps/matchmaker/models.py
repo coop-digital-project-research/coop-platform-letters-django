@@ -23,6 +23,7 @@ class Sender(models.Model):
     private_story = models.TextField(blank=True)
 
     profile_story = models.TextField(
+        blank=True,
         help_text="A short summary will help people who need support find a letter writer they can relate to."
     )
 
