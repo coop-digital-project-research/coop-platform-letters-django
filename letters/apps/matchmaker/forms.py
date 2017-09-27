@@ -19,14 +19,18 @@ class SenderForm(ExtraAttrsMixin, ModelForm):
         model = Sender
         fields = (
             'first_name',
-            'profile_story',
             'age',
+            'profile_story',
         )
 
-    extra_attrs = {
-        'profile_story': {'rows': '2'},
-    }
+        labels = {
+            'age': 'Your age',
+            'profile_story': 'What was your debt situation?',
+        }
 
+    extra_attrs = {
+        'profile_story': {'rows': '6'},
+    }
         # widgets = {
         #     'ticket_type': RadioSelect(),
         #     'journey_date': HTML5DateInput(),

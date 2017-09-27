@@ -16,7 +16,45 @@
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
-    {% block body_inner %}
-    {% endblock %}
+    <nav class="skip-nav">
+      <ul>
+        <li><a href="#main" title="Skip to main content">Skip to content</a></li>
+      </ul>
+    </nav>
+
+    <div class="app-content">
+      <div class="content-wrapper">
+
+        <header class="wrap header-main header-design-manual">
+          <a class="coop-logo" aria-label="Homepage" href="index.html">
+            <img src="/static/images/logos/coop-logo.svg" alt="Co-op">
+          </a>
+        </header>
+
+        <main id="main" class="main">
+          <article class="wrap">
+
+            <div class="row">
+              <div class="column large-12 cta-area">
+
+                {% block body_inner %}
+                {% endblock %}
+
+              </div>
+            </div>
+          </article>
+
+          <footer>
+            <div class="wrap">
+              <div class="row">
+                <div class="column">
+                  <p class="copyright">© Co-operative Group Limited. All rights reserved.</p>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
   </body>
 </html>

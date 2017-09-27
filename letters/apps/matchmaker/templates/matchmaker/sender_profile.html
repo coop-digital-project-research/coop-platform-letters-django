@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 
 {% block body_inner %}
-<h1>{{ sender.first_name }}, {{ sender.age }}</h1>
 
-<p>
- {{ sender.profile_story }}
-</p>
+<section>
+  <h1>Your profile</h1>
+  <p>Your profile will appear to readers like this:</p>
 
-<a href="{% url 'update-sender-profile' json_web_token=json_web_token %}">Edit</a>
+  <div class="writer-profile-preview">
+    <h2>{{ sender.first_name }}, {{ sender.age }}</h2>
+    <p>{{ sender.profile_story }}</p>
+  </div>
+
+  <a href="{% url 'update-sender-profile' json_web_token=json_web_token %}" class="btn btn-primary">Change profile</a>
+</section>
 
 {% endblock %}
