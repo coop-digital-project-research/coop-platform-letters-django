@@ -1,16 +1,24 @@
 <form action="" method="post">{% csrf_token %}
 
-  {{ form.non_field_errors }}
+  <fieldset>
 
-  {% for field in form %}
-    <div class="form-group">
-      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+    {{ form.non_field_errors }}
+
+    {% for field in form %}
+      <div class="form-row">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <p class="hint">{{ field.help_text }}</p>
         {{ field }}
         {{ field.errors }}
-      <p class="help-block">{{ field.help_text }}</p>
-    </div>
-  {% endfor %}
+      </div>
+    {% endfor %}
 
-  <input type="submit"></input>
+    <hr>
+
+    <p>That's it for now. We'll let people that need support choose who writes to them based on their profile. If you're chosen, we'll be in touch by email to help you through the process of writing a letter to&nbsp;them.</p>
+
+    <button type="submit" class="btn btn-primary">Submit profile</button>
+
+  </fieldset>
 
 </form>

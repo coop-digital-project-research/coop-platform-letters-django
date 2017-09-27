@@ -3,15 +3,34 @@ from django.forms import ModelForm
 from .models import Sender
 
 
-class SenderForm(ModelForm):
+class ExtraAttrsMixin(object):
+    extra_attrs = {}
+
+    def __init__(self, *args, **kwargs):
+        super(ExtraAttrsMixin, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            attrs = self.extra_attrs.get(field_name, {})
+
+            field.widget.attrs.update(attrs)
+
+
+class SenderForm(ExtraAttrsMixin, ModelForm):
     class Meta:
         model = Sender
         fields = (
             'first_name',
-            'profile_story',
             'age',
+            'profile_story',
         )
 
+        labels = {
+            'age': 'Your age',
+            'profile_story': 'What was your debt situation?',
+        }
+
+    extra_attrs = {
+        'profile_story': {'rows': '6'},
+    }
         # widgets = {
         #     'ticket_type': RadioSelect(),
         #     'journey_date': HTML5DateInput(),
@@ -24,12 +43,3 @@ class SenderForm(ModelForm):
     #     'journey_date',
     #     'journey_departure_time',
     # )
-
-    # extra_attrs = {
-    #     'ticket_type': {'autofocus': ''},
-    #     'journey_date': {'placeholder': 'e.g. {}'.format(pretty_date())},
-    #     'journey_departure_time': {
-    #         'placeholder': 'e.g. 14:08',
-    #         'pattern': "^[0-9]{1,2}[.:]?[0-9]{2}$"
-    #     }
-    # }
