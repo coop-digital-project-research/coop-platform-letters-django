@@ -13,7 +13,19 @@ from .forms import SenderForm
 class GetSenderObjectFromJWTMixin:
     def get_object(self, *args, **kwargs):
         json_web_token = self.kwargs['json_web_token']
-        result = jwt.decode(json_web_token, settings.SECRET_KEY)
+
+        try:
+            result = jwt.decode(json_web_token, settings.SECRET_KEY)
+
+        except jwt.exceptions.ExpiredSignatureError:
+            # TODO: handle this
+            raise
+
+        except jwt.exceptions.InvalidTokenError:
+            # TODO: handle more general types of token error
+            # https://github.com/jpadilla/pyjwt/blob/master/jwt/exceptions.py
+            raise
+
         return Sender.objects.get(uuid=result['sender_uuid'])
 
 
