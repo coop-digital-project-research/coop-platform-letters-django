@@ -27,6 +27,8 @@ class Sender(models.Model):
     )
 
     age = models.IntegerField(
+        blank=True,
+        null=True,
         help_text="This will help people who want to receive a letter make a decision about who writes to them."
     )
 

@@ -14,7 +14,21 @@ class ExtraAttrsMixin(object):
             field.widget.attrs.update(attrs)
 
 
-class SenderForm(ExtraAttrsMixin, ModelForm):
+class OverrideRequiredMixin(object):
+    override_fields_required = []
+    override_fields_not_required = []
+
+    def __init__(self, *args, **kwargs):
+        super(OverrideRequiredMixin, self).__init__(*args, **kwargs)
+        for key in self.fields:
+            if key in self.override_fields_not_required:
+                self.fields[key].required = False
+
+            elif key in self.override_fields_required:
+                self.fields[key].required = True
+
+
+class SenderForm(ExtraAttrsMixin, OverrideRequiredMixin, ModelForm):
     class Meta:
         model = Sender
         fields = (
@@ -33,6 +47,7 @@ class SenderForm(ExtraAttrsMixin, ModelForm):
             'private_story': HiddenInput(),
         }
 
+    override_fields_required = ['age']
 
     extra_attrs = {
         'profile_story': {'rows': '6'},
