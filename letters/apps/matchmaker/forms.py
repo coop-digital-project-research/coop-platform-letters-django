@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, HiddenInput
 
 from .models import Sender
 
@@ -21,6 +21,7 @@ class SenderForm(ExtraAttrsMixin, ModelForm):
             'first_name',
             'age',
             'profile_story',
+            'private_story'
         )
 
         labels = {
@@ -28,14 +29,14 @@ class SenderForm(ExtraAttrsMixin, ModelForm):
             'profile_story': 'What was your debt situation?',
         }
 
+        widgets = {
+            'private_story': HiddenInput(),
+        }
+
+
     extra_attrs = {
         'profile_story': {'rows': '6'},
     }
-        # widgets = {
-        #     'ticket_type': RadioSelect(),
-        #     'journey_date': HTML5DateInput(),
-        #     'journey_departure_time': TimeInput(),
-        # }
 
     # override_fields_required = (
     #     'ticket_type',

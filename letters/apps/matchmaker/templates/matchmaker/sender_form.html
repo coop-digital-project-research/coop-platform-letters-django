@@ -4,9 +4,19 @@
 
     {{ form.non_field_errors }}
 
-    {% for field in form %}
+    {% for field in form.visible_fields %}
       <div class="form-row">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+
+        {% if field.id_for_label == 'id_profile_story' %}
+
+          <p class="hint">This is what you told us about your debt situation - we're showing it to you here to help you write a couple of sentences about how you got into debt.</p>
+
+          <div class="writer-profile-preview">
+            <p>{{ form.private_story.value }}</p>
+          </div>
+
+        {% endif %}
         <p class="hint">{{ field.help_text }}</p>
         {{ field }}
         {{ field.errors }}

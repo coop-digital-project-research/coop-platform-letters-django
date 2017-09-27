@@ -19,8 +19,10 @@ class Sender(models.Model):
         help_text="We only ask for your first name so that your identity is protected."
     )
 
+    private_story = models.TextField()
+
     profile_story = models.TextField(
-        help_text="Write a couple of sentences to help readers understand how you got into debt. This will help them pick somebody they can relate to."
+        help_text="A short summary will help people who need support find a letter writer they can relate to."
     )
 
     age = models.IntegerField(
