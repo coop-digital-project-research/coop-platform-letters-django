@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import Sender
-
+from .models import Sender, Receiver
 
 @admin.register(Sender)
 class SenderAdmin(admin.ModelAdmin):
@@ -18,3 +17,9 @@ class SenderAdmin(admin.ModelAdmin):
         )
 
     edit_url.allow_tags = True
+
+@admin.register(Receiver)
+class SenderAdmin(admin.ModelAdmin):
+    list_display = (
+        'uuid',
+    )
