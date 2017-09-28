@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import UpdateSenderProfileView, SenderProfileDetailView
+from .views import UpdateSenderProfileView, SenderProfileDetailView, ReaderPickWritersView
 
 JWT_PATTERN = "[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*"
 
@@ -15,6 +15,12 @@ urlpatterns = [
         r'^sender/profile/(?P<json_web_token>' + JWT_PATTERN + ')/$',
         SenderProfileDetailView.as_view(),
         name='sender-profile-detail'
+    ),
+
+    url(
+        r'^reader/pick_writers/(?P<json_web_token>' + JWT_PATTERN + ')/$',
+        ReaderPickWritersView.as_view(),
+        name='reader-pick-writers'
     ),
 
 ]

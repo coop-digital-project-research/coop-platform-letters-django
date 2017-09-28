@@ -57,3 +57,19 @@ class SenderProfileDetailView(GetSenderObjectFromJWTMixin, DetailView):
         )
         # raise RuntimeError('{} {}'.format(self.kwargs, kwargs))
         return existing_context
+
+class ReaderPickWritersView(GetReaderObjectFromJWTMixin, DetailView):
+    template_name = 'matchmaker/pick_writers.html'
+    model = Sender
+    context_object_name = 'sender'
+
+    def get_context_data(self, **kwargs):
+        existing_context = super(
+            SenderProfileDetailView, self
+        ).get_context_data(**kwargs)
+
+        existing_context.update(
+            {'json_web_token': self.kwargs['json_web_token']}
+        )
+        # raise RuntimeError('{} {}'.format(self.kwargs, kwargs))
+        return existing_context
