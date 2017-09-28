@@ -54,3 +54,19 @@ class Sender(models.Model):
             'update-sender-profile',
             kwargs={'json_web_token': self.make_json_web_token()}
         )
+
+class Receiver(models.Model):
+
+    uuid = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4
+    )
+
+    def make_json_web_token(self):
+        data = {
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30),
+            'receiver_uuid': str(self.uuid),
+        }
+
+        result = jwt.encode(data, settings.SECRET_KEY)
+        return result
