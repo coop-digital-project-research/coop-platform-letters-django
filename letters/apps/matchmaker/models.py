@@ -77,3 +77,12 @@ class Receiver(models.Model):
             'receiver-choose-senders',
             kwargs={'json_web_token': self.make_json_web_token()}
         )
+
+
+class SenderReceiverPairing(models.Model):
+
+    class Meta:
+        unique_together = (('sender', 'receiver'))
+
+    sender = models.ForeignKey(Sender)
+    receiver = models.ForeignKey(Receiver)
