@@ -40,6 +40,9 @@ class Sender(models.Model):
         help_text="This will help people who want to receive a letter make a decision about who writes to them."
     )
 
+    def __str__(self):
+        return '{} {}'.format(self.first_name, self.uuid)
+
     def make_json_web_token(self):
         data = {
             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30),
@@ -62,6 +65,9 @@ class Receiver(models.Model):
         primary_key=True,
         default=uuid.uuid4
     )
+
+    def __str__(self):
+        return str(self.uuid)
 
     def make_json_web_token(self):
         data = {
@@ -86,3 +92,6 @@ class SenderReceiverPairing(models.Model):
 
     sender = models.ForeignKey(Sender)
     receiver = models.ForeignKey(Receiver)
+
+    def __str__(self):
+        return '{} --> {}'.format(self.receiver, self.sender)
