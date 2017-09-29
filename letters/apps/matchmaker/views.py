@@ -6,7 +6,7 @@ from django.views.generic import DetailView, ListView
 from django.urls import reverse
 
 
-from .models import Sender, Receiver
+from .models import Sender, Receiver, SenderReceiverPairing
 from .forms import SenderForm
 
 
@@ -74,3 +74,25 @@ class ReceiverChooseSendersView(GetReceiverObjectFromJWTMixin, ListView):
     template_name = 'matchmaker/receiver_choose_senders.html'
     model = Sender
     context_object_name = 'senders'
+
+    def post(self, request, **kwargs):
+        receiver = self.get_object()
+        sender_uuids = request.POST.getlist('senders')
+
+        self._clear_existing_senders(receiver)
+        self._create_pairings(
+            receiver,
+            (Sender.objects.get(uuid=u) for u in sender_uuids)
+        )
+
+    @staticmethod
+    def _clear_existing_senders(for_receiver):
+        SenderReceiverPairing.objects.filter(receiver=for_receiver).delete()
+
+    @staticmethod
+    def _create_pairings(receiver, senders):
+        for sender in senders:
+            (pairing, created) = SenderReceiverPairing.objects.get_or_create(
+                sender=sender,
+                receiver=receiver
+            )
