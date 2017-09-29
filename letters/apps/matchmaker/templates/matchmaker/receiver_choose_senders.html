@@ -5,14 +5,33 @@
 <section>
   <h1>Who would you like to get a letter from?</h1>
 
-  <ul>
-  {% for sender in senders %}
-    <li>{{ sender.first_name }}</li>
-  {% endfor %}
-  </ul>
+  <form action="" method="post">{% csrf_token %}
 
+    <fieldset>
+      <legend>Pick up to three people you’d like to hear from:</legend>
 
+      {% for sender in senders %}
+        <label class="block-label">
+          <input type="checkbox" value="{{ sender.uuid }}" name="senders">
+          <span class="writer-name">
+            {{ sender.first_name }}
+          </span>,
+          <span class="writer-age">
+            {{ sender.age }}
+          </span>
+          <p class="writer-story">
+            {{ sender.profile_story }}
+          </p>
+        </label>
+      {% endfor %}
 
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary">Confirm your choice</button>
+
+  </form>
+
+  <p class="privacy-statement">Your letter writers will only see your name — they won’t know anything else about your or your situation.</p>
 </section>
 
 {% endblock %}
