@@ -2,15 +2,16 @@ import jwt
 
 from django.conf import settings
 from django.views.generic.edit import UpdateView
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from django.urls import reverse
 
 
-from .models import Sender
+from .models import Sender, Receiver
 from .forms import SenderForm
 
 
-class GetSenderObjectFromJWTMixin:
+class GetObjectFromJWT:
+
     def get_object(self, *args, **kwargs):
         json_web_token = self.kwargs['json_web_token']
 
@@ -26,7 +27,17 @@ class GetSenderObjectFromJWTMixin:
             # https://github.com/jpadilla/pyjwt/blob/master/jwt/exceptions.py
             raise
 
-        return Sender.objects.get(uuid=result['sender_uuid'])
+        return self.object_class.objects.get(uuid=result[self.uuid_key])
+
+
+class GetSenderObjectFromJWTMixin(GetObjectFromJWT):
+    object_class = Sender
+    uuid_key = 'sender_uuid'
+
+
+class GetReceiverObjectFromJWTMixin(GetObjectFromJWT):
+    object_class = Receiver
+    uuid_key = 'receiver_uuid'
 
 
 class UpdateSenderProfileView(GetSenderObjectFromJWTMixin, UpdateView):
@@ -57,3 +68,9 @@ class SenderProfileDetailView(GetSenderObjectFromJWTMixin, DetailView):
         )
         # raise RuntimeError('{} {}'.format(self.kwargs, kwargs))
         return existing_context
+
+
+class ReceiverChooseSendersView(GetReceiverObjectFromJWTMixin, ListView):
+    template_name = 'matchmaker/receiver_choose_senders.html'
+    model = Sender
+    context_object_name = 'senders'
