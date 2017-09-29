@@ -1,7 +1,8 @@
 from django.conf.urls import url
 
 from .views import (
-    UpdateSenderProfileView, SenderProfileDetailView, ReceiverChooseSendersView
+    UpdateSenderProfileView, SenderProfileDetailView,
+    ReceiverChooseSendersView, ReceiverConfirmationView
 )
 
 JWT_PATTERN = "[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*"
@@ -23,6 +24,12 @@ urlpatterns = [
         r'^receiver/choose-senders/(?P<json_web_token>' + JWT_PATTERN + ')/$',
         ReceiverChooseSendersView.as_view(),
         name='receiver-choose-senders'
+    ),
+
+    url(
+        r'^receiver/confirmation/$',
+        ReceiverConfirmationView.as_view(),
+        name='receiver-confirmation'
     ),
 
 ]
