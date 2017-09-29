@@ -1,12 +1,13 @@
 import jwt
 
 from django.conf import settings
+from django.shortcuts import redirect
 from django.views.generic.edit import UpdateView
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.urls import reverse
 
 
-from .models import Sender, Receiver
+from .models import Sender, Receiver, SenderReceiverPairing
 from .forms import SenderForm
 
 
@@ -74,3 +75,33 @@ class ReceiverChooseSendersView(GetReceiverObjectFromJWTMixin, ListView):
     template_name = 'matchmaker/receiver_choose_senders.html'
     model = Sender
     context_object_name = 'senders'
+
+    def post(self, request, **kwargs):
+        receiver = self.get_object()
+        sender_uuids = request.POST.getlist('senders')
+
+        self._clear_existing_senders(receiver)
+        self._create_pairings(
+            receiver,
+            (Sender.objects.get(uuid=u) for u in sender_uuids)
+        )
+
+        return redirect(
+            reverse('receiver-confirmation')
+        )
+
+    @staticmethod
+    def _clear_existing_senders(for_receiver):
+        SenderReceiverPairing.objects.filter(receiver=for_receiver).delete()
+
+    @staticmethod
+    def _create_pairings(receiver, senders):
+        for sender in senders:
+            (pairing, created) = SenderReceiverPairing.objects.get_or_create(
+                sender=sender,
+                receiver=receiver
+            )
+
+
+class ReceiverConfirmationView(TemplateView):
+    template_name = 'matchmaker/receiver_confirmation.html'

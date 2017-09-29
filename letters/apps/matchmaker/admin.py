@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Sender, Receiver
+from .models import Sender, Receiver, SenderReceiverPairing
 
 
 @admin.register(Sender)
@@ -37,3 +37,11 @@ class ReceiverAdmin(admin.ModelAdmin):
         )
 
     choose_senders.allow_tags = True
+
+
+@admin.register(SenderReceiverPairing)
+class SenderReceiverPairingAdmin(admin.ModelAdmin):
+    list_display = (
+        'receiver',
+        'sender',
+    )
