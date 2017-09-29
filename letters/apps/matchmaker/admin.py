@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import Sender, Receiver
 
+
 @admin.register(Sender)
 class SenderAdmin(admin.ModelAdmin):
     list_display = (
@@ -22,8 +23,17 @@ class SenderAdmin(admin.ModelAdmin):
 
     edit_url.allow_tags = True
 
+
 @admin.register(Receiver)
-class SenderAdmin(admin.ModelAdmin):
+class ReceiverAdmin(admin.ModelAdmin):
     list_display = (
         'uuid',
+        'choose_senders',
     )
+
+    def choose_senders(self, instance):
+        return '<a href="{}">[Link to choose senders]</a>'.format(
+            instance.make_authenticated_choose_senders_url()
+        )
+
+    choose_senders.allow_tags = True
