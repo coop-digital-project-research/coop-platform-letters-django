@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
+
+<section>
+  <h1>Who would you like to get a letter from?</h1>
+
+  <ul>
+  {% for sender in senders %}
+    <li>{{ sender.first_name }}</li>
+  {% endfor %}
+  </ul>
+
+
+
+</section>
+
+{% endblock %}

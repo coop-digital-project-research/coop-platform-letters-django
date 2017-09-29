@@ -55,6 +55,7 @@ class Sender(models.Model):
             kwargs={'json_web_token': self.make_json_web_token()}
         )
 
+
 class Receiver(models.Model):
 
     uuid = models.UUIDField(
@@ -70,3 +71,9 @@ class Receiver(models.Model):
 
         result = jwt.encode(data, settings.SECRET_KEY)
         return result
+
+    def make_authenticated_choose_senders_url(self):
+        return reverse(
+            'receiver-choose-senders',
+            kwargs={'json_web_token': self.make_json_web_token()}
+        )
