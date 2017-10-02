@@ -32,4 +32,10 @@ urlpatterns = [
         name='receiver-confirmation'
     ),
 
+    url(
+        r'^sender/guide/$',
+        SenderGuideView.as_view(),
+        name='sender-guide'
+    ),
+
 ]
