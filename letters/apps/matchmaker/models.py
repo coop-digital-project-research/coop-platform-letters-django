@@ -40,6 +40,10 @@ class Sender(models.Model):
         help_text="This will help people who want to receive a letter make a decision about who writes to them."
     )
 
+    training_complete = models.BooleanField(
+        default=False,
+    )
+
     def __str__(self):
         return '{} {}'.format(self.first_name, self.uuid)
 

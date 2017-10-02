@@ -9,6 +9,7 @@ class SenderAdmin(admin.ModelAdmin):
         'first_name',
         'age',
         'uuid',
+        'training_complete',
         'edit_url',
         'training_url',
     )
