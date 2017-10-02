@@ -1,6 +1,6 @@
 from django.forms import ModelForm, HiddenInput
 
-from .models import Sender
+from .models import Writer
 
 
 class ExtraAttrsMixin(object):
@@ -28,9 +28,9 @@ class OverrideRequiredMixin(object):
                 self.fields[key].required = True
 
 
-class SenderForm(ExtraAttrsMixin, OverrideRequiredMixin, ModelForm):
+class WriterForm(ExtraAttrsMixin, OverrideRequiredMixin, ModelForm):
     class Meta:
-        model = Sender
+        model = Writer
         fields = (
             'first_name',
             'age',

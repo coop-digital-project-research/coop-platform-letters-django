@@ -1,9 +1,9 @@
 from django.conf.urls import url
 
 from .views import (
-    UpdateSenderProfileView, SenderProfileDetailView,
-    ReceiverChooseSendersView, ReceiverConfirmationView, SenderGuideView,
-    SenderTrainingView
+    UpdateWriterProfileView, WriterProfileDetailView,
+    ReaderChooseWritersView, ReaderConfirmationView, WriterGuideView,
+    WriterTrainingView
 )
 
 JWT_PATTERN = "[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*"
@@ -11,37 +11,37 @@ JWT_PATTERN = "[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*"
 urlpatterns = [
     url(
         r'^sender/profile/update/(?P<json_web_token>' + JWT_PATTERN + ')/$',
-        UpdateSenderProfileView.as_view(),
-        name='update-sender-profile'
+        UpdateWriterProfileView.as_view(),
+        name='update-writer-profile'
     ),
 
     url(
         r'^sender/profile/(?P<json_web_token>' + JWT_PATTERN + ')/$',
-        SenderProfileDetailView.as_view(),
-        name='sender-profile-detail'
+        WriterProfileDetailView.as_view(),
+        name='writer-profile-detail'
     ),
 
     url(
         r'^sender/training/(?P<json_web_token>' + JWT_PATTERN + ')/$',
-        SenderTrainingView.as_view(),
-        name='sender-training'
+        WriterTrainingView.as_view(),
+        name='writer-training'
     ),
 
     url(
-        r'^receiver/choose-senders/(?P<json_web_token>' + JWT_PATTERN + ')/$',
-        ReceiverChooseSendersView.as_view(),
-        name='receiver-choose-senders'
+        r'^reader/choose-writers/(?P<json_web_token>' + JWT_PATTERN + ')/$',
+        ReaderChooseWritersView.as_view(),
+        name='reader-choose-writers'
     ),
 
     url(
-        r'^receiver/confirmation/$',
-        ReceiverConfirmationView.as_view(),
-        name='receiver-confirmation'
+        r'^reader/confirmation/$',
+        ReaderConfirmationView.as_view(),
+        name='reader-confirmation'
     ),
 
     url(
         r'^sender/guide/$',
-        SenderGuideView.as_view(),
+        WriterGuideView.as_view(),
         name='sender-guide'
     ),
 

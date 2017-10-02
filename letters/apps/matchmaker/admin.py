@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import Sender, Receiver, SenderReceiverPairing
+from .models import Writer, Reader, WriterReaderPairing
 
 
-@admin.register(Sender)
-class SenderAdmin(admin.ModelAdmin):
+@admin.register(Writer)
+class WriterAdmin(admin.ModelAdmin):
     list_display = (
         'first_name',
         'age',
@@ -20,7 +20,7 @@ class SenderAdmin(admin.ModelAdmin):
 
     def edit_url(self, instance):
         return '<a href="{}">[Link to update page]</a>'.format(
-            instance.make_authenticated_sender_profile_url()
+            instance.make_authenticated_writer_profile_url()
         )
 
     edit_url.allow_tags = True
@@ -33,24 +33,24 @@ class SenderAdmin(admin.ModelAdmin):
     training_url.allow_tags = True
 
 
-@admin.register(Receiver)
-class ReceiverAdmin(admin.ModelAdmin):
+@admin.register(Reader)
+class ReaderAdmin(admin.ModelAdmin):
     list_display = (
         'uuid',
-        'choose_senders',
+        'choose_writers',
     )
 
-    def choose_senders(self, instance):
-        return '<a href="{}">[Link to choose senders]</a>'.format(
-            instance.make_authenticated_choose_senders_url()
+    def choose_writers(self, instance):
+        return '<a href="{}">[Link to choose writers]</a>'.format(
+            instance.make_authenticated_choose_writers_url()
         )
 
-    choose_senders.allow_tags = True
+    choose_writers.allow_tags = True
 
 
-@admin.register(SenderReceiverPairing)
-class SenderReceiverPairingAdmin(admin.ModelAdmin):
+@admin.register(WriterReaderPairing)
+class WriterReaderPairingAdmin(admin.ModelAdmin):
     list_display = (
-        'receiver',
-        'sender',
+        'reader',
+        'writer',
     )

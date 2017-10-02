@@ -8,7 +8,7 @@ from django.db import models
 from django.urls import reverse
 
 
-class Sender(models.Model):
+class Writer(models.Model):
 
     uuid = models.UUIDField(
         primary_key=True,
@@ -50,26 +50,26 @@ class Sender(models.Model):
     def make_json_web_token(self):
         data = {
             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30),
-            'sender_uuid': str(self.uuid),
+            'writer_uuid': str(self.uuid),
         }
 
         result = jwt.encode(data, settings.SECRET_KEY)
         return result
 
-    def make_authenticated_sender_profile_url(self):
+    def make_authenticated_writer_profile_url(self):
         return reverse(
-            'update-sender-profile',
+            'update-writer-profile',
             kwargs={'json_web_token': self.make_json_web_token()}
         )
 
     def make_authenticated_training_url(self):
         return reverse(
-            'sender-training',
+            'writer-training',
             kwargs={'json_web_token': self.make_json_web_token()}
         )
 
 
-class Receiver(models.Model):
+class Reader(models.Model):
 
     uuid = models.UUIDField(
         primary_key=True,
@@ -82,26 +82,26 @@ class Receiver(models.Model):
     def make_json_web_token(self):
         data = {
             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30),
-            'receiver_uuid': str(self.uuid),
+            'reader_uuid': str(self.uuid),
         }
 
         result = jwt.encode(data, settings.SECRET_KEY)
         return result
 
-    def make_authenticated_choose_senders_url(self):
+    def make_authenticated_choose_writers_url(self):
         return reverse(
-            'receiver-choose-senders',
+            'reader-choose-writers',
             kwargs={'json_web_token': self.make_json_web_token()}
         )
 
 
-class SenderReceiverPairing(models.Model):
+class WriterReaderPairing(models.Model):
 
     class Meta:
-        unique_together = (('sender', 'receiver'))
+        unique_together = (('writer', 'reader'))
 
-    sender = models.ForeignKey(Sender)
-    receiver = models.ForeignKey(Receiver)
+    writer = models.ForeignKey(Writer)
+    reader = models.ForeignKey(Reader)
 
     def __str__(self):
-        return '{} --> {}'.format(self.receiver, self.sender)
+        return '{} --> {}'.format(self.reader, self.writer)
