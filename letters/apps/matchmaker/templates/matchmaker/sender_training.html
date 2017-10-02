@@ -3,7 +3,7 @@
 {% block body_inner %}
 
 <section>
-  <h1>Training</h1>
+  <h1>Getting ready to write</h1>
 
   <form action="" method="post">{% csrf_token %}
 
@@ -14,26 +14,103 @@
       <div class="form-row">
         <label for="question-1-choice-1" class="block-label">
           <input type="radio" id="question-1-choice-1" name="question-1" data-correct="0">
-          You should cut up your credit cards so you can’t use them.
+          "Cut up your credit cards so you can’t use them."
         </label>
 
         <label for="question-1-choice-2" class="block-label">
           <input type="radio" id="question-1-choice-2" name="question-1" data-correct="1">
-          I cut up my credit cards so I couldn’t use them.
+          "I cut up my credit cards so I couldn’t use them."
         </label>
 
         <div class="message message-error hidden" data-question="question-1" data-label-type="error">
           <p>
             What works for you doesn’t necessarily work for someone else.
             It’s good to share your personal experience, but avoid advising
-            that someone else does the same.
+            them to do the same.
           </p>
         </div>
 
         <div class="message message-success hidden" data-question="question-1" data-label-type="success">
           <p>
             Sharing your personal experience without giving advice can be
-            helpful for people.
+            helpful.
+          </p>
+        </div>
+
+      </div>
+
+      <legend>Which of these sentences would be best for a letter like this?</legend>
+
+      <div class="form-row">
+        <label for="question-2-choice-1" class="block-label">
+          <input type="radio" id="question-2-choice-1" name="question-2" data-correct="1">
+          "There’s an organisation called the Money Advice Service."
+        </label>
+
+        <label for="question-2-choice-2" class="block-label">
+          <input type="radio" id="question-2-choice-2" name="question-2" data-correct="0">
+          "You should phone the Money Advice Service."
+        </label>
+
+        <div class="message message-success hidden" data-question="question-2" data-label-type="success">
+          <p>
+            It can be helpful to make someone aware of professional support services without advising them to use them.
+          </p>
+        </div>
+
+        <div class="message message-error hidden" data-question="question-2" data-label-type="error">
+          <p>
+            It’s good to make someone aware of professional support, but it’s better to do it without advising them what they should do.
+          </p>
+        </div>
+
+      </div>
+
+      <legend>Will Co-op be able to read your letter?</legend>
+
+      <div class="form-row">
+        <label for="question-3-choice-1" class="block-label">
+          <input type="radio" id="question-3-choice-1" name="question-3" data-correct="0">
+          Yes.
+        </label>
+
+        <label for="question-3-choice-2" class="block-label">
+          <input type="radio" id="question-3-choice-2" name="question-3" data-correct="1">
+          No.
+        </label>
+
+        <div class="message message-success hidden" data-question="question-3" data-label-type="success">
+          <h2>Your letter is private</h2>
+          <p>
+            You’ll either send a letter directly to the reader, or they’ll request it to be forwarded through Co-op. We don’t open forwarded letters because it should be a private message, and we believe you can support the other person without our involvement.
+          </p>
+        </div>
+
+        <div class="message message-error hidden" data-question="question-3" data-label-type="error">
+          <h2>Your letter is private</h2>
+          <p>
+            You’ll either send a letter directly to the reader, or they’ll request it to be forwarded through Co-op. We don’t open forwarded letters because it should be a private message, and we believe you can support the other person without our involvement.
+          </p>
+        </div>
+
+      </div>
+
+      <legend>Can I include a return address?</legend>
+
+      <div class="form-row">
+        <label for="question-4-choice-1" class="block-label">
+          <input type="radio" id="question-4-choice-1" name="question-4" data-correct="1">
+          Yes.
+        </label>
+
+        <label for="question-4-choice-2" class="block-label">
+          <input type="radio" id="question-4-choice-2" name="question-4" data-correct="1">
+          No.
+        </label>
+
+        <div class="message message-success hidden" data-question="question-4" data-label-type="success">
+          <p>
+            It’s up to you whether to include a return postal or email address. Doing so gives the reader an option to reply. Without a return address they have no way of contacting you.
           </p>
         </div>
 
@@ -101,11 +178,15 @@ function showErrorMessageFor(radio) {
 }
 
 function hide(element) {
-  addClass("hidden", element);
+  if(element) {
+    addClass("hidden", element);
+  }
 }
 
 function show(element) {
-  removeClass("hidden", element);
+  if(element) {
+    removeClass("hidden", element);
+  }
 }
 
 function addClass(className, el) {
