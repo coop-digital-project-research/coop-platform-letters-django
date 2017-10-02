@@ -22,7 +22,7 @@ urlpatterns = [
     ),
 
     url(
-        r'^sender/training/$',
+        r'^sender/training/(?P<json_web_token>' + JWT_PATTERN + ')/$',
         SenderTrainingView.as_view(),
         name='sender-training'
     ),

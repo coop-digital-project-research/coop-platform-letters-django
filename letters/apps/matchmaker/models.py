@@ -58,6 +58,12 @@ class Sender(models.Model):
             kwargs={'json_web_token': self.make_json_web_token()}
         )
 
+    def make_authenticated_training_url(self):
+        return reverse(
+            'sender-training',
+            kwargs={'json_web_token': self.make_json_web_token()}
+        )
+
 
 class Receiver(models.Model):
 

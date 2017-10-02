@@ -10,6 +10,7 @@ class SenderAdmin(admin.ModelAdmin):
         'age',
         'uuid',
         'edit_url',
+        'training_url',
     )
 
     readonly_fields = (
@@ -22,6 +23,13 @@ class SenderAdmin(admin.ModelAdmin):
         )
 
     edit_url.allow_tags = True
+
+    def training_url(self, instance):
+        return '<a href="{}">[Link to training]</a>'.format(
+            instance.make_authenticated_training_url()
+        )
+
+    training_url.allow_tags = True
 
 
 @admin.register(Receiver)
