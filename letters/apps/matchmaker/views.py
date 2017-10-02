@@ -109,3 +109,7 @@ class ReceiverConfirmationView(TemplateView):
 
 class SenderGuideView(TemplateView):
     template_name = 'matchmaker/sender_guide.html'
+
+
+class SenderTrainingView(TemplateView):
+    template_name = 'matchmaker/sender_training.html'
