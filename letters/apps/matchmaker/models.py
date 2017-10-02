@@ -40,6 +40,10 @@ class Sender(models.Model):
         help_text="This will help people who want to receive a letter make a decision about who writes to them."
     )
 
+    training_complete = models.BooleanField(
+        default=False,
+    )
+
     def __str__(self):
         return '{} {}'.format(self.first_name, self.uuid)
 
@@ -55,6 +59,12 @@ class Sender(models.Model):
     def make_authenticated_sender_profile_url(self):
         return reverse(
             'update-sender-profile',
+            kwargs={'json_web_token': self.make_json_web_token()}
+        )
+
+    def make_authenticated_training_url(self):
+        return reverse(
+            'sender-training',
             kwargs={'json_web_token': self.make_json_web_token()}
         )
 

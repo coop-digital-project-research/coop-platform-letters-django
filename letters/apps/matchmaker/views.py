@@ -71,6 +71,22 @@ class SenderProfileDetailView(GetSenderObjectFromJWTMixin, DetailView):
         return existing_context
 
 
+class SenderTrainingView(GetSenderObjectFromJWTMixin, TemplateView):
+    template_name = 'matchmaker/sender_training.html'
+
+    def post(self, request, **kwargs):
+        sender = self.get_object()
+        sender.training_complete = True
+        sender.save()
+
+        return redirect(
+            reverse(
+                'update-sender-profile',
+                kwargs={'json_web_token': self.kwargs['json_web_token']}
+            )
+        )
+
+
 class ReceiverChooseSendersView(GetReceiverObjectFromJWTMixin, ListView):
     template_name = 'matchmaker/receiver_choose_senders.html'
     model = Sender
