@@ -4,6 +4,142 @@
 
 <section>
   <h1>Training</h1>
+
+  <form action="" method="post">{% csrf_token %}
+
+    <fieldset>
+
+      <legend>Which of these would be helpful to write?</legend>
+
+      <div class="form-row">
+        <label for="question-1-choice-1" class="block-label">
+          <input type="radio" id="question-1-choice-1" name="question-1" data-correct="0">
+          You should cut up your credit cards so you can’t use them.
+        </label>
+
+        <label for="question-1-choice-2" class="block-label">
+          <input type="radio" id="question-1-choice-2" name="question-1" data-correct="1">
+          I cut up my credit cards so I couldn’t use them.
+        </label>
+
+        <div class="message message-error hidden" data-question="question-1" data-label-type="error">
+          <p>
+            What works for you doesn’t necessarily work for someone else.
+            It’s good to share your personal experience, but avoid advising
+            that someone else does the same.
+          </p>
+        </div>
+
+        <div class="message message-success hidden" data-question="question-1" data-label-type="success">
+          <p>
+            Sharing your personal experience without giving advice can be
+            helpful for people.
+          </p>
+        </div>
+
+      </div>
+
+    </fieldset>
+
+  </form>
+
 </section>
+
+<script>
+  function ready(fn) {
+  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
+
+function handleInputClick(event) {
+
+
+  if(isCorrectAnswer(event.target)) {
+    showSuccessMessageFor(event.target);
+
+  } else {
+    showErrorMessageFor(event.target);
+  }
+
+}
+
+function isCorrectAnswer(radio) {
+  var correct = radio.getAttribute('data-correct') == "1" ? true : false;
+
+  return correct;
+}
+
+function getSuccessAndErrorMessage(radio) {
+  var questionName = radio.getAttribute('name'),
+      messageElements = document.querySelectorAll("*[data-question='" + questionName + "']");
+      messages = Array.prototype.slice.call(messageElements),
+      successMessage = messages.filter(function(e) { return e.getAttribute('data-label-type') == 'success' } )[0],
+      errorMessage = messages.filter(function(e) { return e.getAttribute('data-label-type') == 'error' } )[0];
+
+  console.log("successMessage: ", successMessage, "errorMessage: ", errorMessage);
+
+  return { 'successMessage': successMessage, 'errorMessage': errorMessage };
+
+
+}
+
+function showSuccessMessageFor(radio) {
+  var messages = getSuccessAndErrorMessage(radio);
+
+  hide(messages.errorMessage);
+  show(messages.successMessage);
+}
+
+function showErrorMessageFor(radio) {
+  var messages = getSuccessAndErrorMessage(radio);
+
+  hide(messages.successMessage);
+  show(messages.errorMessage);
+}
+
+function hide(element) {
+  addClass("hidden", element);
+}
+
+function show(element) {
+  removeClass("hidden", element);
+}
+
+function addClass(className, el) {
+  if (el.classList) {
+    el.classList.add(className);
+  }
+  else {
+    el.className += ' ' + className;
+  }
+}
+
+function removeClass(className, el) {
+  if (el.classList) {
+    el.classList.remove(className);
+  }
+  else {
+    el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+  }
+}
+
+
+
+function setUpForm() {
+  var radioButtons = document.getElementsByTagName('input');
+
+  for(var i = 0 ; i < radioButtons.length ; ++i) {
+    radioButtons[i].addEventListener('click', handleInputClick)
+
+  }
+
+}
+
+ready(setUpForm);
+
+</script>
 
 {% endblock %}
