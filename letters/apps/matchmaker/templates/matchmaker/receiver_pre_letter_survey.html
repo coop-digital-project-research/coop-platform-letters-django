@@ -5,6 +5,111 @@
 <section>
   <h1>How do you feel right now?</h1>
   <p>Fill in this survey and let us know how you are feeling today.</p>
+  <form id="<%= form_id %>" action="https://docs.google.com/a/coopdigital.co.uk/forms/d/e/1FAIpQLSf9IUoclpWCK7SNoMrN7ZiJ5SKTSkIb8fzyvHsTZMrsYf14-g/formResponse" method="post">
+    <fieldset class="survey">
+        <h2>How you feel about your debt situation today?</h2>
+        <div class="form-scale">
+          <h3>In control</h3>
+          <h3>Out of control</h3>
+          <div class="flexbox">
+            <label>
+              1
+              <input type="radio" name="entry.1760829279" value="1">
+            </label>
+            <label>
+              2
+              <input type="radio" name="entry.1760829279" value="2">
+            </label>
+            <label>
+              3
+              <input type="radio" name="entry.1760829279" value="3">
+            </label>
+            <label>
+              4
+              <input type="radio" name="entry.1760829279" value="4">
+            </label>
+            <label>
+              5
+              <input type="radio" name="entry.1760829279" value="5">
+            </label>
+            <label>
+              6
+              <input type="radio" name="entry.1760829279" value="6">
+            </label>
+          </div>
+        </div>
+
+        <div class="form-scale">
+          <h3>Supported</h3>
+          <h3>Alone</h3>
+          <div class="flexbox">
+            <label>
+              1
+              <input type="radio" name="entry.456306914" value="1">
+            </label>
+            <label>
+              2
+              <input type="radio" name="entry.456306914" value="2">
+            </label>
+            <label>
+              3
+              <input type="radio" name="entry.456306914" value="3">
+            </label>
+            <label>
+              4
+              <input type="radio" name="entry.456306914" value="4">
+            </label>
+            <label>
+              5
+              <input type="radio" name="entry.456306914" value="5">
+            </label>
+            <label>
+              6
+              <input type="radio" name="entry.456306914" value="6">
+            </label>
+          </div>
+        </div>
+
+        <div class="form-scale">
+          <h3>Optimistic</h3>
+          <h3>Pessimistic</h3>
+          <div class="flexbox">
+            <label>
+              1
+              <input type="radio" name="entry.524379046" value="1">
+            </label>
+            <label>
+              2
+              <input type="radio" name="entry.524379046" value="2">
+            </label>
+            <label>
+              3
+              <input type="radio" name="entry.524379046" value="3">
+            </label>
+            <label>
+              4
+              <input type="radio" name="entry.524379046" value="4">
+            </label>
+            <label>
+              5
+              <input type="radio" name="entry.524379046" value="5">
+            </label>
+            <label>
+              6
+              <input type="radio" name="entry.524379046" value="6">
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="anything-else">Is there anything else you'd like to&nbsp;tell&nbsp;us?</label>
+          <input id="anything-else" type="textarea" row="4" name="entry.2118625241" value="" required><br />
+        </div>
+
+      <hr/>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </fieldset>
+  </form>
 </section>
 
 {% endblock %}
