@@ -1,0 +1,60 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{% block title_inner %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/site.css" %}" />
+    {% block head_inner %}
+    {% endblock %}
+
+  </head>
+
+  <body class="{% block body_class %}{% endblock %} info-page">
+    <nav class="skip-nav">
+      <ul>
+        <li><a href="#main" title="Skip to main content">Skip to content</a></li>
+      </ul>
+    </nav>
+
+    <div class="app-content">
+      <div class="content-wrapper">
+
+        <header class="wrap header-main header-design-manual">
+          <a class="coop-logo" aria-label="Homepage" href="index.html">
+            <img src="/static/images/logos/coop-logo.svg" alt="Co-op">
+          </a>
+        </header>
+
+        <main id="main" class="main">
+          <article class="wrap">
+
+            <div class="row">
+              <div class="column large-12 ">
+
+                {% block body_inner %}
+                {% endblock %}
+
+              </div>
+            </div>
+          </article>
+
+          <footer>
+            <div class="wrap">
+              <div class="row">
+                <div class="column">
+                  <p class="copyright">© Co-operative Group Limited. All rights reserved.</p>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
