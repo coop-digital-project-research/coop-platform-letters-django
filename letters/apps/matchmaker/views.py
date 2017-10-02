@@ -7,8 +7,8 @@ from django.views.generic import DetailView, ListView, TemplateView
 from django.urls import reverse
 
 
-from .models import Sender, Receiver, SenderReceiverPairing
-from .forms import SenderForm
+from .models import Writer, Reader, WriterReaderPairing
+from .forms import WriterForm
 
 
 class GetObjectFromJWT:
@@ -31,117 +31,116 @@ class GetObjectFromJWT:
         return self.object_class.objects.get(uuid=result[self.uuid_key])
 
 
-class GetSenderObjectFromJWTMixin(GetObjectFromJWT):
-    object_class = Sender
-    uuid_key = 'sender_uuid'
+class GetWriterObjectFromJWTMixin(GetObjectFromJWT):
+    object_class = Writer
+    uuid_key = 'writer_uuid'
 
 
-class GetReceiverObjectFromJWTMixin(GetObjectFromJWT):
-    object_class = Receiver
-    uuid_key = 'receiver_uuid'
+class GetReaderObjectFromJWTMixin(GetObjectFromJWT):
+    object_class = Reader
+    uuid_key = 'reader_uuid'
 
 
-class UpdateSenderProfileView(GetSenderObjectFromJWTMixin, UpdateView):
-    form_class = SenderForm
-    template_name = 'matchmaker/update_sender_profile.html'
-    model = Sender
-    context_object_name = 'sender'
+class UpdateWriterProfileView(GetWriterObjectFromJWTMixin, UpdateView):
+    form_class = WriterForm
+    template_name = 'matchmaker/update_writer_profile.html'
+    model = Writer
+    context_object_name = 'writer'
 
     def get(self, *args, **kwargs):
-        sender = self.get_object()
-        if sender.training_complete:
+        writer = self.get_object()
+        if writer.training_complete:
             return super(
-                UpdateSenderProfileView, self
+                UpdateWriterProfileView, self
             ).get(*args, **kwargs)
         else:
             return redirect(
                 reverse(
-                    'sender-training',
+                    'writer-training',
                     kwargs={'json_web_token': self.kwargs['json_web_token']}
                 )
             )
 
     def get_success_url(self, **kwargs):
         return reverse(
-            'sender-profile-detail',
+            'writer-profile-detail',
             kwargs={'json_web_token': self.kwargs['json_web_token']}
         )
 
 
-class SenderProfileDetailView(GetSenderObjectFromJWTMixin, DetailView):
-    template_name = 'matchmaker/sender_profile.html'
-    model = Sender
-    context_object_name = 'sender'
+class WriterProfileDetailView(GetWriterObjectFromJWTMixin, DetailView):
+    template_name = 'matchmaker/writer_profile.html'
+    model = Writer
+    context_object_name = 'writer'
 
     def get_context_data(self, **kwargs):
         existing_context = super(
-            SenderProfileDetailView, self
+            WriterProfileDetailView, self
         ).get_context_data(**kwargs)
 
         existing_context.update(
             {'json_web_token': self.kwargs['json_web_token']}
         )
-        # raise RuntimeError('{} {}'.format(self.kwargs, kwargs))
         return existing_context
 
 
-class SenderTrainingView(GetSenderObjectFromJWTMixin, TemplateView):
-    template_name = 'matchmaker/sender_training.html'
+class WriterTrainingView(GetWriterObjectFromJWTMixin, TemplateView):
+    template_name = 'matchmaker/writer_training.html'
 
     def post(self, request, **kwargs):
-        sender = self.get_object()
-        sender.training_complete = True
-        sender.save()
+        writer = self.get_object()
+        writer.training_complete = True
+        writer.save()
 
         return redirect(
             reverse(
-                'update-sender-profile',
+                'update-writer-profile',
                 kwargs={'json_web_token': self.kwargs['json_web_token']}
             )
         )
 
 
-class ReceiverChooseSendersView(GetReceiverObjectFromJWTMixin, ListView):
-    template_name = 'matchmaker/receiver_choose_senders.html'
-    model = Sender
-    context_object_name = 'senders'
+class ReaderChooseWritersView(GetReaderObjectFromJWTMixin, ListView):
+    template_name = 'matchmaker/reader_choose_writers.html'
+    model = Writer
+    context_object_name = 'writers'
 
     def post(self, request, **kwargs):
-        receiver = self.get_object()
-        sender_uuids = request.POST.getlist('senders')
+        reader = self.get_object()
+        writer_uuids = request.POST.getlist('writers')
 
-        self._clear_existing_senders(receiver)
+        self._clear_existing_writers(reader)
         self._create_pairings(
-            receiver,
-            (Sender.objects.get(uuid=u) for u in sender_uuids)
+            reader,
+            (Writer.objects.get(uuid=u) for u in writer_uuids)
         )
 
         return redirect(
-            reverse('receiver-confirmation')
+            reverse('reader-confirmation')
         )
 
     @staticmethod
-    def _clear_existing_senders(for_receiver):
-        SenderReceiverPairing.objects.filter(receiver=for_receiver).delete()
+    def _clear_existing_writers(for_reader):
+        WriterReaderPairing.objects.filter(reader=for_reader).delete()
 
     @staticmethod
-    def _create_pairings(receiver, senders):
-        for sender in senders:
-            (pairing, created) = SenderReceiverPairing.objects.get_or_create(
-                sender=sender,
-                receiver=receiver
+    def _create_pairings(reader, writers):
+        for writer in writers:
+            (pairing, created) = WriterReaderPairing.objects.get_or_create(
+                writer=writer,
+                reader=reader
             )
 
 
-class ReceiverConfirmationView(TemplateView):
-    template_name = 'matchmaker/receiver_confirmation.html'
+class ReaderConfirmationView(TemplateView):
+    template_name = 'matchmaker/reader_confirmation.html'
 
 
-class SenderGuideView(TemplateView):
-    template_name = 'matchmaker/sender_guide.html'
+class WriterGuideView(TemplateView):
+    template_name = 'matchmaker/writer_guide.html'
 
-class ReceiverPreLetterSurveyView(GetReceiverObjectFromJWTMixin, DetailView):
-    template_name = 'matchmaker/receiver_pre_letter_survey.html'
-    model = Receiver
-    context_object_name = 'receiver'
 
+class ReaderPreLetterSurveyView(GetReaderObjectFromJWTMixin, DetailView):
+    template_name = 'matchmaker/reader_pre_letter_survey.html'
+    model = Reader
+    context_object_name = 'reader'

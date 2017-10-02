@@ -10,17 +10,17 @@
     <fieldset>
       <legend>Pick up to three people you’d like to hear from:</legend>
 
-      {% for sender in senders %}
+      {% for writer in writers %}
         <label class="block-label">
-          <input type="checkbox" value="{{ sender.uuid }}" name="senders">
+          <input type="checkbox" value="{{ writer.uuid }}" name="writers">
           <span class="writer-name">
-            {{ sender.first_name }}
+            {{ writer.first_name }}
           </span>,
           <span class="writer-age">
-            {{ sender.age }}
+            {{ writer.age }}
           </span>
           <p class="writer-story">
-            {{ sender.profile_story }}
+            {{ writer.profile_story }}
           </p>
         </label>
       {% endfor %}

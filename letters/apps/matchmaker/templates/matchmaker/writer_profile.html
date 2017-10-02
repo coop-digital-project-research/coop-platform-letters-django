@@ -8,11 +8,11 @@
   <p>Your profile is now live. This is how it looks to others:</p>
 
   <div class="writer-profile-preview">
-    <h2>{{ sender.first_name }}, {{ sender.age }}</h2>
-    <p>{{ sender.profile_story }}</p>
+    <h2>{{ writer.first_name }}, {{ writer.age }}</h2>
+    <p>{{ writer.profile_story }}</p>
   </div>
 
-  <a href="{% url 'update-sender-profile' json_web_token=json_web_token %}" >Update your profile</a>
+  <a href="{% url 'update-writer-profile' json_web_token=json_web_token %}" >Update your profile</a>
 </section>
 
 {% endblock %}
