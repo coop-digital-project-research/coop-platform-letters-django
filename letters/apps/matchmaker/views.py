@@ -105,3 +105,7 @@ class ReceiverChooseSendersView(GetReceiverObjectFromJWTMixin, ListView):
 
 class ReceiverConfirmationView(TemplateView):
     template_name = 'matchmaker/receiver_confirmation.html'
+
+
+class SenderGuideView(TemplateView):
+    template_name = 'matchmaker/sender_guide.html'
