@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 from .views import (
     UpdateSenderProfileView, SenderProfileDetailView,
-    ReceiverChooseSendersView, ReceiverConfirmationView
+    ReceiverChooseSendersView, ReceiverConfirmationView, SenderGuideView
 )
 
 JWT_PATTERN = "[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*"
