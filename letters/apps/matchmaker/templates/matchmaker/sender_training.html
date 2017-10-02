@@ -118,6 +118,8 @@
 
     </fieldset>
 
+    <button class="btn btn-primary hidden">Complete</button>
+
   </form>
 
 </section>
@@ -141,6 +143,7 @@ function handleInputClick(event) {
     showErrorMessageFor(event.target);
   }
 
+  showOrHideCompleteButton();
 }
 
 function isCorrectAnswer(radio) {
@@ -177,6 +180,22 @@ function showErrorMessageFor(radio) {
   show(messages.errorMessage);
 }
 
+function showOrHideCompleteButton() {
+  var allSuccessMessages = Array.prototype.slice.call(document.querySelectorAll("*[data-label-type='success']")),
+      numberOfVisibleSuccessMessages = allSuccessMessages.filter(function(e) { return !hasClass('hidden', e); }).length,
+      numberOfQuestions = document.getElementsByTagName('legend').length,
+      completeButton = document.querySelector('button');
+
+  console.log("numberOfQuestions: ", numberOfQuestions, "numberOfVisibleSuccessMessages: ", numberOfVisibleSuccessMessages);
+
+  if(numberOfVisibleSuccessMessages == numberOfQuestions) {
+    show(completeButton);
+  } else {
+    hide(completeButton);
+  }
+
+}
+
 function hide(element) {
   if(element) {
     addClass("hidden", element);
@@ -186,6 +205,15 @@ function hide(element) {
 function show(element) {
   if(element) {
     removeClass("hidden", element);
+  }
+}
+
+function hasClass(className, el) {
+  if (el.classList) {
+    return el.classList.contains(className);
+  }
+  else {
+    return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
   }
 }
 
