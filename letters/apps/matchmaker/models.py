@@ -51,6 +51,7 @@ class Writer(models.Model):
         data = {
             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30),
             'writer_uuid': str(self.uuid),
+            'sender_uuid': str(self.uuid),
         }
 
         result = jwt.encode(data, settings.SECRET_KEY)
