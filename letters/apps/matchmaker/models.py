@@ -94,6 +94,12 @@ class Receiver(models.Model):
             kwargs={'json_web_token': self.make_json_web_token()}
         )
 
+    def make_authenticated_pre_letter_survey_url(self):
+        return reverse(
+            'receiver-pre-letter-survey',
+            kwargs={'json_web_token': self.make_json_web_token()}
+        )
+
 
 class SenderReceiverPairing(models.Model):
 

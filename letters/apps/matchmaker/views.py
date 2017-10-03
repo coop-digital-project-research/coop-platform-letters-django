@@ -125,3 +125,9 @@ class ReceiverConfirmationView(TemplateView):
 
 class SenderGuideView(TemplateView):
     template_name = 'matchmaker/sender_guide.html'
+
+class ReceiverPreLetterSurveyView(GetReceiverObjectFromJWTMixin, DetailView):
+    template_name = 'matchmaker/receiver_pre_letter_survey.html'
+    model = Receiver
+    context_object_name = 'receiver'
+
