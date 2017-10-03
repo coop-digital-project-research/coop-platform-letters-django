@@ -54,7 +54,7 @@ test_that_no_models_need_migrations() {
 }
 
 nuke_pyc_files
-# run_pep8_style_checks
+run_pep8_style_checks
 run_python_unit_tests
-# run_more_pep8_checks
+run_more_pep8_checks
 test_that_no_models_need_migrations
