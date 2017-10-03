@@ -1,5 +1,7 @@
 # How to run this repo locally
 
+[![Build Status](https://travis-ci.org/coopdigital/coop-platform-letters-django.svg?branch=master)](https://travis-ci.org/coopdigital/coop-platform-letters-django)
+
 To get up and running you will first need to:
 * Get Vagrant installed
 * Get VirtualBox installed

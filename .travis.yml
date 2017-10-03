@@ -1,0 +1,18 @@
+language: python
+python:
+  - 3.5
+branches:
+  except:
+   - release
+   - /^release_\d+$/
+addons:
+  postgresql: "9.6"
+env:
+  matrix:
+    - DJANGO_SETTINGS_MODULE=letters.settings.production DATABASE_URL=postgres://postgres:@localhost:5432/mydatabase SECRET_KEY=abcdefghijklmnopqrstuvwxyz
+before_script:
+  - psql -c 'create database mydatabase;' -U postgres
+script:
+  - make test
+notifications:
+  email: false
