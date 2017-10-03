@@ -38,7 +38,6 @@ INSTALLED_APPS = [
 
     'letters.apps.matchmaker',
 
-    'rest_framework',
     'django_extensions',
 ]
 
