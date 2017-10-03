@@ -47,6 +47,20 @@ class UpdateSenderProfileView(GetSenderObjectFromJWTMixin, UpdateView):
     model = Sender
     context_object_name = 'sender'
 
+    def get(self, *args, **kwargs):
+        sender = self.get_object()
+        if sender.training_complete:
+            return super(
+                UpdateSenderProfileView, self
+            ).get(*args, **kwargs)
+        else:
+            return redirect(
+                reverse(
+                    'sender-training',
+                    kwargs={'json_web_token': self.kwargs['json_web_token']}
+                )
+            )
+
     def get_success_url(self, **kwargs):
         return reverse(
             'sender-profile-detail',
