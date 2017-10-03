@@ -121,6 +121,13 @@
 
     </fieldset>
 
+    <div id="prompt-to-answer-all-questions">
+      <hr />
+      <p>
+        You must get all answers correct before continuing to complete your profile.
+      </p>
+    </div>
+
     <button class="btn btn-primary hidden">Complete</button>
 
   </form>
@@ -187,14 +194,17 @@ function showOrHideCompleteButton() {
   var allSuccessMessages = Array.prototype.slice.call(document.querySelectorAll("*[data-label-type='success']")),
       numberOfVisibleSuccessMessages = allSuccessMessages.filter(function(e) { return !hasClass('hidden', e); }).length,
       numberOfQuestions = document.getElementsByTagName('legend').length,
-      completeButton = document.querySelector('button');
+      completeButton = document.querySelector('button'),
+      questionPrompt = document.getElementById('prompt-to-answer-all-questions');
 
   console.log("numberOfQuestions: ", numberOfQuestions, "numberOfVisibleSuccessMessages: ", numberOfVisibleSuccessMessages);
 
   if(numberOfVisibleSuccessMessages == numberOfQuestions) {
+    hide(questionPrompt);
     show(completeButton);
   } else {
     hide(completeButton);
+    show(questionPrompt);
   }
 
 }
