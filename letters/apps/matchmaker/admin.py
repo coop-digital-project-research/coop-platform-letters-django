@@ -38,6 +38,7 @@ class ReceiverAdmin(admin.ModelAdmin):
     list_display = (
         'uuid',
         'choose_senders',
+        'pre_letter_survey'
     )
 
     def choose_senders(self, instance):
@@ -46,6 +47,13 @@ class ReceiverAdmin(admin.ModelAdmin):
         )
 
     choose_senders.allow_tags = True
+
+    def pre_letter_survey(self, instance):
+        return '<a href="{}">[Link to pre-survey]</a>'.format(
+            instance.make_authenticated_pre_letter_survey_url()
+        )
+
+    pre_letter_survey.allow_tags = True
 
 
 @admin.register(SenderReceiverPairing)

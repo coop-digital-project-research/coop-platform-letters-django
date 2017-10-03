@@ -46,7 +46,7 @@ urlpatterns = [
     ),
 
     url(
-        r'^receiver/pre-letter-survey/$',
+        r'^receiver/pre-letter-survey/(?P<json_web_token>' + JWT_PATTERN + ')/$',
         ReceiverPreLetterSurveyView.as_view(),
         name='receiver-pre-letter-survey'
     ),
