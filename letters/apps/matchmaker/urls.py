@@ -1,9 +1,9 @@
 from django.conf.urls import url
 
 from .views import (
-    UpdateSenderProfileView, SenderProfileDetailView,
-    ReceiverChooseSendersView, ReceiverConfirmationView, SenderGuideView,
-    SenderTrainingView, ReceiverPreLetterSurveyView
+    UpdateWriterProfileView, WriterProfileDetailView,
+    ReaderChooseWritersView, ReaderConfirmationView, WriterGuideView,
+    WriterTrainingView, ReaderPreLetterSurveyView
 )
 
 JWT_PATTERN = "[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*"
@@ -11,44 +11,45 @@ JWT_PATTERN = "[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*"
 urlpatterns = [
     url(
         r'^sender/profile/update/(?P<json_web_token>' + JWT_PATTERN + ')/$',
-        UpdateSenderProfileView.as_view(),
-        name='update-sender-profile'
+        UpdateWriterProfileView.as_view(),
+        name='update-writer-profile'
     ),
 
     url(
         r'^sender/profile/(?P<json_web_token>' + JWT_PATTERN + ')/$',
-        SenderProfileDetailView.as_view(),
-        name='sender-profile-detail'
+        WriterProfileDetailView.as_view(),
+        name='writer-profile-detail'
     ),
 
     url(
         r'^sender/training/(?P<json_web_token>' + JWT_PATTERN + ')/$',
-        SenderTrainingView.as_view(),
-        name='sender-training'
-    ),
-
-    url(
-        r'^receiver/choose-senders/(?P<json_web_token>' + JWT_PATTERN + ')/$',
-        ReceiverChooseSendersView.as_view(),
-        name='receiver-choose-senders'
-    ),
-
-    url(
-        r'^receiver/confirmation/$',
-        ReceiverConfirmationView.as_view(),
-        name='receiver-confirmation'
+        WriterTrainingView.as_view(),
+        name='writer-training'
     ),
 
     url(
         r'^sender/guide/$',
-        SenderGuideView.as_view(),
-        name='sender-guide'
+        WriterGuideView.as_view(),
+        name='writer-guide'
     ),
 
     url(
-        r'^receiver/pre-letter-survey/(?P<json_web_token>' + JWT_PATTERN + ')/$',
-        ReceiverPreLetterSurveyView.as_view(),
-        name='receiver-pre-letter-survey'
+        r'^reader/choose-writers/(?P<json_web_token>' + JWT_PATTERN + ')/$',
+        ReaderChooseWritersView.as_view(),
+        name='reader-choose-writers'
     ),
+
+    url(
+        r'^reader/confirmation/$',
+        ReaderConfirmationView.as_view(),
+        name='reader-confirmation'
+    ),
+
+    url(
+        r'^reader/pre-letter-survey/(?P<json_web_token>' + JWT_PATTERN + ')/$',
+        ReaderPreLetterSurveyView.as_view(),
+        name='reader-pre-letter-survey'
+    ),
+
 
 ]
