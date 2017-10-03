@@ -33,7 +33,7 @@ class GetObjectFromJWT:
 
 class GetWriterObjectFromJWTMixin(GetObjectFromJWT):
     object_class = Writer
-    uuid_key = 'writer_uuid'
+    uuid_key = 'sender_uuid'  # TODO: rename to writer_uuid
 
 
 class GetReaderObjectFromJWTMixin(GetObjectFromJWT):
