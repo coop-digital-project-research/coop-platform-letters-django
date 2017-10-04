@@ -104,6 +104,9 @@ class ReaderChooseWritersView(GetReaderObjectFromJWTMixin, ListView):
     template_name = 'matchmaker/reader_choose_writers.html'
     model = Writer
     context_object_name = 'writers'
+    queryset = Writer.objects.filter(
+        available_to_pick=True,
+    )
 
     def post(self, request, **kwargs):
         reader = self.get_object()
