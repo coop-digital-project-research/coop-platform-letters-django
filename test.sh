@@ -34,7 +34,7 @@ run_more_pep8_checks() {
     # F401: don't allow `imported but unused` except in __init__.py, settings
     flake8 \
         --select=F401 \
-        --exclude='*/__init__.py,letters/settings/*.py' \
+        --exclude='*/__init__.py,letters/settings/*.py,manage.py' \
     .
 }
 
