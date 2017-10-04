@@ -15,6 +15,11 @@ class WriterAdmin(admin.ModelAdmin):
         'available_to_pick',
     )
 
+    list_filter = (
+        'training_complete',
+        'available_to_pick',
+    )
+
     readonly_fields = (
         'uuid',
     )
