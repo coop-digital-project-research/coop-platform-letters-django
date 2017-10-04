@@ -12,6 +12,7 @@ class WriterAdmin(admin.ModelAdmin):
         'training_complete',
         'edit_url',
         'training_url',
+        'available_to_pick',
     )
 
     readonly_fields = (

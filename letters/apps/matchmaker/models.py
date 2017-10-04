@@ -53,6 +53,14 @@ class Writer(models.Model):
         default=False,
     )
 
+    available_to_pick = models.BooleanField(
+        default=False,
+        help_text=(
+            "This controls whether this writer will be visible for readers to "
+            "to pick."
+        )
+    )
+
     def __str__(self):
         return '{} {}'.format(self.first_name, self.uuid)
 
