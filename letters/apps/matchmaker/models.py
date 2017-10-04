@@ -17,7 +17,10 @@ class Writer(models.Model):
 
     first_name = models.CharField(
         max_length=128,
-        help_text="We only ask for your first name so that your identity is protected."
+        help_text=(
+            "We only ask for your first name so that your identity is "
+            "protected."
+        )
     )
 
     private_story = models.TextField(
@@ -31,13 +34,19 @@ class Writer(models.Model):
 
     profile_story = models.TextField(
         blank=True,
-        help_text="A short summary will help people who need support find a letter writer they can relate to."
+        help_text=(
+            "A short summary will help people who need support find a letter "
+            "writer they can relate to."
+        )
     )
 
     age = models.IntegerField(
         blank=True,
         null=True,
-        help_text="This will help people who want to receive a letter make a decision about who writes to them."
+        help_text=(
+            "This will help people who want to receive a letter make a "
+            "decision about who writes to them."
+        )
     )
 
     training_complete = models.BooleanField(

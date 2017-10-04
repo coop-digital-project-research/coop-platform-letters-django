@@ -10,6 +10,9 @@ addons:
 env:
   matrix:
     - DJANGO_SETTINGS_MODULE=letters.settings.production DATABASE_URL=postgres://postgres:@localhost:5432/mydatabase SECRET_KEY=abcdefghijklmnopqrstuvwxyz
+install:
+    - pip install -r requirements.txt
+    - pip install -r requirements_for_testing.txt
 before_script:
   - psql -c 'create database mydatabase;' -U postgres
 script:

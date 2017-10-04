@@ -34,7 +34,7 @@ run_more_pep8_checks() {
     # F401: don't allow `imported but unused` except in __init__.py, settings
     flake8 \
         --select=F401 \
-        --exclude='*/__init__.py,letters/settings/*.py' \
+        --exclude='*/__init__.py,letters/settings/*.py,manage.py' \
     .
 }
 
@@ -54,7 +54,7 @@ test_that_no_models_need_migrations() {
 }
 
 nuke_pyc_files
-# run_pep8_style_checks
+run_pep8_style_checks
 run_python_unit_tests
-# run_more_pep8_checks
+run_more_pep8_checks
 test_that_no_models_need_migrations
