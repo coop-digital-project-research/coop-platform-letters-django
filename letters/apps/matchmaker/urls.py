@@ -2,12 +2,19 @@ from django.conf.urls import url
 from django.contrib.admin.views.decorators import staff_member_required
 
 from .views import (
-    AdminTaskListView, UpdateWriterProfileView, WriterProfileDetailView,
-    ReaderChooseWritersView, ReaderConfirmationView, WriterGuideView,
-    WriterTrainingView, ReaderPreLetterSurveyView
+    AdminTaskListView, AdminTaskListWriterEmailView, UpdateWriterProfileView,
+    WriterProfileDetailView, ReaderChooseWritersView, ReaderConfirmationView,
+    WriterGuideView, WriterTrainingView, ReaderPreLetterSurveyView
 )
 
 JWT_PATTERN = "[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*"
+UUID_PATTERN = (
+    '[0-9a-fA-F]{8}-'
+    '[0-9a-fA-F]{4}-'
+    '[0-9a-fA-F]{4}-'
+    '[0-9a-fA-F]{4}-'
+    '[0-9a-fA-F]{12}'
+)
 
 urlpatterns = [
     url(
@@ -57,5 +64,13 @@ urlpatterns = [
         staff_member_required(AdminTaskListView.as_view()),
         name='admin-task-list'
     ),
+
+    url(
+        r'^admin/tasks/emails/writer/(?P<email_slug>.+)'
+        '/(?P<pk>{uuid})/$'.format(uuid=UUID_PATTERN),
+        staff_member_required(AdminTaskListWriterEmailView.as_view()),
+        name='admin-task-list-writer-email',
+    )
+
 
 ]

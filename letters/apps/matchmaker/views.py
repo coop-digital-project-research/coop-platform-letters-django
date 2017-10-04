@@ -151,3 +151,26 @@ class ReaderPreLetterSurveyView(GetReaderObjectFromJWTMixin, DetailView):
 
 class AdminTaskListView(TemplateView):
     template_name = 'matchmaker/admin_task_list.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = {
+            'writers_awaiting_get_started_email':
+            self._writers_awaiting_get_started_email(),
+        }
+        return context
+
+    def _writers_awaiting_get_started_email(self):
+        return Writer.objects.filter(
+            get_started_email_sent=None
+        )
+
+
+class AdminTaskListWriterEmailView(DetailView):
+    model = Writer
+    context_object_name = 'writer'
+
+    def get_template_names(self, *args, **kwargs):
+        email_slug = self.kwargs['email_slug']
+        return 'matchmaker/writer_emails/{}.html'.format(
+            email_slug.replace('-', '_')
+        )

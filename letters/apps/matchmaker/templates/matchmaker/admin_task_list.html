@@ -16,7 +16,29 @@
   </ul>
 
   <h2>Send 'get started' emails</h2>
-  <p>TODO</p>
+  {% if writers_awaiting_get_started_email %}
+
+    <p>
+      These writers don't have a `get_started_email_sent` date.
+    </p>
+
+    <ul>
+      {% for writer in writers_awaiting_get_started_email %}
+      <li>
+        {{ writer.first_name }}:
+        <a href="{% url 'admin-task-list-writer-email' 'get-started' writer.uuid %}">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writer_change' writer.uuid %}">[edit]</a></li>
+      {% endfor %}
+    </ul>
+
+    <p>Tasks:</p>
+    <ul>
+      <li>Send the get started email by copying and pasting the template</li>
+      <li>Set the `get_started_email_sent` field to today's date.</li>
+    </ul>
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
 
   <h2>Send 'chase' emails</h2>
   <p>TODO</p>
