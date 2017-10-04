@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Co-op Letters Admin</a></h1>
+{% endblock %}
+
+{% block nav-global %}
+<a href="{% url 'admin-task-list' %}">Tasks</a>
+{% endblock %}

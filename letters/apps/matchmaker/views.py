@@ -147,3 +147,7 @@ class ReaderPreLetterSurveyView(GetReaderObjectFromJWTMixin, DetailView):
     template_name = 'matchmaker/reader_pre_letter_survey.html'
     model = Reader
     context_object_name = 'reader'
+
+
+class AdminTaskListView(TemplateView):
+    template_name = 'matchmaker/admin_task_list.html'

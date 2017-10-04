@@ -1,7 +1,8 @@
 from django.conf.urls import url
+from django.contrib.admin.views.decorators import staff_member_required
 
 from .views import (
-    UpdateWriterProfileView, WriterProfileDetailView,
+    AdminTaskListView, UpdateWriterProfileView, WriterProfileDetailView,
     ReaderChooseWritersView, ReaderConfirmationView, WriterGuideView,
     WriterTrainingView, ReaderPreLetterSurveyView
 )
@@ -51,5 +52,10 @@ urlpatterns = [
         name='reader-pre-letter-survey'
     ),
 
+    url(
+        r'^admin/tasks/$',
+        staff_member_required(AdminTaskListView.as_view()),
+        name='admin-task-list'
+    ),
 
 ]
