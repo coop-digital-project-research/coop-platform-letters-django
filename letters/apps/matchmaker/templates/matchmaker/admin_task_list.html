@@ -3,7 +3,91 @@
 {% block body_inner %}
 
 <section>
-  <h1>Admin tasks</h1>
+  <h1>Writer tasks</h1>
+
+  <h2>Add new writers from spreadsheet</h2>
+  <p>
+    In the <a href="https://docs.google.com/spreadsheets/d/1tQJAxAjMT3t74y-W9BNTDsqQuQ5NoMBgN9ZhtS9a__A/">Google Sheet</a>, are there any new entries, without a UUID?
+  </p>
+
+  <ul>
+    <li><a href="{% url 'admin:matchmaker_writer_add' %}">Create a Writer</a> with their first name and `private_story`</li>
+    <li>Copy the UUID back into the spreadsheet</li>
+  </ul>
+
+  <h2>Send 'get started' emails</h2>
+  {% if writers_awaiting_get_started_email %}
+
+    <p>
+      These writers don't have a `get_started_email_sent` date.
+    </p>
+
+    <ul>
+      {% for writer in writers_awaiting_get_started_email %}
+      <li>
+        {{ writer.first_name }}:
+        <a href="{% url 'admin-task-list-writer-email' 'get-started' writer.uuid %}">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writer_change' writer.uuid %}">[edit]</a></li>
+      {% endfor %}
+    </ul>
+
+    <p>Tasks:</p>
+    <ul>
+      <li>Send the get started email by copying and pasting the template</li>
+      <li>Set the `get_started_email_sent` field to today's date.</li>
+    </ul>
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
+
+  <h2>Send 'chase' emails</h2>
+  <p>TODO</p>
+
+  <h2>Send 'final chase' emails</h2>
+  <p>TODO</p>
+
+  <h2>Send 'profile reminder' emails</h2>
+  <p>TODO</p>
+
+  <h2>Send 'training reminder' emails</h2>
+  <p>TODO</p>
+
+  <h2>Send 'priming' emails</h2>
+  <p>TODO</p>
+
+  <h2>Send 'follow up' emails</h2>
+  <p>TODO</p>
+
 </section>
+<section>
+
+  <h1>Reader tasks</h1>
+
+  <h2>Add new readers from spreadsheet</h2>
+    <p>
+      In the <a href="https://docs.google.com/spreadsheets/d/1_qy3PIv8N1-p0eV7vUxASl1kLqXkbNQeBKwuUqbu_0I/">Google Sheet</a>, are there any new entries, without a UUID?
+    </p>
+
+    <ul>
+      <li><a href="{% url 'admin:matchmaker_reader_add' %}">Create a Reader</a></li>
+      <li>Copy the UUID back into the spreadsheet</li>
+    </ul>
+
+  <h2>Record postal addresses from emails</h2>
+  <p>TODO</p>
+
+  <h2>Send 'get started' emails</h2>
+  <p>TODO</p>
+
+  <h2>Send 'chase' emails</h2>
+  <p>TODO</p>
+
+  <h2>Send 'priming' emails</h2>
+  <p>TODO</p>
+
+  <h2>Send 'follow up' emails</h2>
+  <p>TODO</p>
+</section>
+
 
 {% endblock %}

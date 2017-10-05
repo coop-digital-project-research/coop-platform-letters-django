@@ -61,6 +61,11 @@ class Writer(models.Model):
         )
     )
 
+    get_started_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
     def __str__(self):
         return '{} {}'.format(self.first_name, self.uuid)
 
