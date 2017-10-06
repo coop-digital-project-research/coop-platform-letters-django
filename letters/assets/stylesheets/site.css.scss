@@ -324,6 +324,23 @@ a.card {
   display: none;
 }
 
+.email-template {
+  padding: 1em;
+  border: 1px solid $darker-grey;
+  p, li, ul {
+    font-family: sans-serif;
+    font-size: 13px;
+    line-height: normal;
+    margin-top: 0;
+  }
+  a {
+    color: #15c;
+  }
+  ul, li {
+    margin-bottom: 1em;
+  }
+}
+
 footer {
   .row {
     padding: 0;
