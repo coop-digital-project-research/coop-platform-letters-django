@@ -99,6 +99,11 @@ class Reader(models.Model):
         default=uuid.uuid4
     )
 
+    first_name = models.CharField(
+        max_length=128,
+        default=""
+    )
+
     def __str__(self):
         return str(self.uuid)
 
