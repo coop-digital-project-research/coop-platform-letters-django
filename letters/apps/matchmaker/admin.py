@@ -42,6 +42,7 @@ class WriterAdmin(admin.ModelAdmin):
 @admin.register(Reader)
 class ReaderAdmin(admin.ModelAdmin):
     list_display = (
+        'first_name',
         'uuid',
         'choose_writers',
         'pre_letter_survey'
