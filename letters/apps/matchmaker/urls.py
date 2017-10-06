@@ -2,7 +2,8 @@ from django.conf.urls import url
 from django.contrib.admin.views.decorators import staff_member_required
 
 from .views import (
-    AdminTaskListView, AdminTaskListWriterEmailView, UpdateWriterProfileView,
+    AdminTaskListView, AdminTaskListWriterEmailView,
+    AdminTaskListReaderEmailView, UpdateWriterProfileView,
     WriterProfileDetailView, ReaderChooseWritersView, ReaderConfirmationView,
     WriterGuideView, WriterTrainingView, ReaderPreLetterSurveyView
 )
@@ -70,7 +71,13 @@ urlpatterns = [
         '/(?P<pk>{uuid})/$'.format(uuid=UUID_PATTERN),
         staff_member_required(AdminTaskListWriterEmailView.as_view()),
         name='admin-task-list-writer-email',
-    )
+    ),
 
+    url(
+        r'^admin/tasks/emails/reader/(?P<email_slug>.+)'
+        '/(?P<pk>{uuid})/$'.format(uuid=UUID_PATTERN),
+        staff_member_required(AdminTaskListReaderEmailView.as_view()),
+        name='admin-task-list-reader-email',
+    ),
 
 ]

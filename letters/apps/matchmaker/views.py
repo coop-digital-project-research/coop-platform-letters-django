@@ -156,11 +156,19 @@ class AdminTaskListView(TemplateView):
         context = {
             'writers_awaiting_get_started_email':
             self._writers_awaiting_get_started_email(),
+
+            'readers_awaiting_get_started_email':
+            self._readers_awaiting_get_started_email(),
         }
         return context
 
     def _writers_awaiting_get_started_email(self):
         return Writer.objects.filter(
+            get_started_email_sent=None
+        )
+
+    def _readers_awaiting_get_started_email(self):
+        return Reader.objects.filter(
             get_started_email_sent=None
         )
 
@@ -172,5 +180,16 @@ class AdminTaskListWriterEmailView(DetailView):
     def get_template_names(self, *args, **kwargs):
         email_slug = self.kwargs['email_slug']
         return 'matchmaker/writer_emails/{}.html'.format(
+            email_slug.replace('-', '_')
+        )
+
+
+class AdminTaskListReaderEmailView(DetailView):
+    model = Reader
+    context_object_name = 'reader'
+
+    def get_template_names(self, *args, **kwargs):
+        email_slug = self.kwargs['email_slug']
+        return 'matchmaker/reader_emails/{}.html'.format(
             email_slug.replace('-', '_')
         )
