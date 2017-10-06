@@ -114,6 +114,11 @@ class Reader(models.Model):
         default=None
     )
 
+    baseline_wellbeing_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
     def __str__(self):
         return str(self.uuid)
 
