@@ -104,6 +104,11 @@ class Reader(models.Model):
         default=""
     )
 
+    get_started_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
     def __str__(self):
         return str(self.uuid)
 
