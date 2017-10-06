@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
+
+<section>
+
+  <h2>From:</h2><p>Co-op Letters</p>
+
+  <h2>To:</h2><p>[email from Google Sheet for UUID <code>{{ reader.uuid }}</code>]</p>
+
+  <h2>Subject</h2>
+  <p>Address needed - get a letter from someone who has been in debt</p>
+
+  <h2>Message:</h2>
+
+<div class="message">Ctrl-A, Ctrl-C the message below</div>
+
+<div class='email-template' contenteditable="true">
+
+<p>Dear {{ reader.first_name }},</p>
+
+<p>You’ve told us you’d like to receive a letter from someone who has been in debt and got out of it.</p>
+
+<p>Please reply to this email and let us know:</p>
+<ul>
+  <li>the address of where you want your letter to be sent to</li>
+  <li>whether you want the sender to know this address and post it to you direct, or for them to send it to us and for us to pass it on to you</li>
+</ul>
+
+<p>If you don’t want to share your address, you can ask for your letter to be sent to Co-op, and we’ll forward it on to you. It’s up to you.</p>
+
+<p>You will then be able to look at the profiles and stories of the people who want to write letters and pick up to three people you’d like to hear from.</p>
+
+<p>If you have any questions, reply to this message or email <a href="mailto:letters@coopdigital.co.uk">letters@coopdigital.co.uk</a></p>
+</div>
+
+</section>
+
+{% endblock %}
