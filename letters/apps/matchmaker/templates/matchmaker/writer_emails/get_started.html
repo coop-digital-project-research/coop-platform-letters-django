@@ -13,21 +13,23 @@
 
   <h2>Message:</h2>
 
+<div class="message">Ctrl-A, Ctrl-C the message below</div>
 
-<pre>
-Dear {{ writer.first_name }},
+<div class='email-template' contenteditable="true">
+  <p>Dear {{ writer.first_name }},
 
-You’ve told us you’d like to write a letter to someone in debt, and we’ve got a list of people who would like to get a letter from someone like you.
+  <p>You’ve told us you’d like to write a letter to someone in debt, and we’ve got a list of people who would like to get a letter from someone like you.</p>
 
-Now we would like to match you to someone.
+  <p>Now we would like to match you to someone.</p>
 
-The next step is for you to answer four short questions to show you understand how this will work. You’ll then be asked to create your profile - which will be visible to anyone who visits the website.
+  <p>The next step is for you to answer four short questions to show you understand how this will work. You’ll then be asked to create your profile - which will be visible to anyone who visits the website.</p>
 
-<a href="{{ writer.make_authenticated_training_url }}">Get started here</a>
+  <p><a href="{{ writer.make_authenticated_training_url }}">Get started here</a></p>
 
-When you’ve completed this step, your profile will be visible to the people who need support. If one of them reads your profile and would like to hear from you, you’ll get an email to let you know.
+  <p>When you’ve completed this step, your profile will be visible to the people who need support. If one of them reads your profile and would like to hear from you, you’ll get an email to let you know.</p>
 
-If you have any questions, reply to this message or email letters@coopdigital.co.uk
+  <p>If you have any questions, reply to this message or email <a href="mailto:letters@coopdigital.co.uk">letters@coopdigital.co.uk</a></p>
+</div>
 
 </section>
 </pre>
