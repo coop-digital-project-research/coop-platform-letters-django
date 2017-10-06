@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
+
+<section>
+
+  <h2>From:</h2><p>Co-op Letters</p>
+
+  <h2>To:</h2><p>[email from Google Sheet for UUID <code>{{ reader.uuid }}</code>]</p>
+
+  <h2>Subject</h2>
+  <p>Checking in, how do you feel?</p>
+
+  <h2>Message:</h2>
+
+<div class="message">Ctrl-A, Ctrl-C the message below</div>
+
+<div class='email-template' contenteditable="true">
+  <p>Dear {{ reader.first_name }},</p>
+
+  <p>We want to check in with you and see how you feel about your situation at the moment.</p>
+
+  <p>Please <a href="{{ reader.make_authenticated_pre_letter_survey_url }}">complete this short (four question) survey</a>.</p>
+
+  <p>We’ll ask you to do this again after you get a letter. We do this because we want to know if getting a letter has helped you.</p>
+
+  <p>If you have any questions, reply to this message or email <a href="mailto:letters@coopdigital.co.uk">letters@coopdigital.co.uk</a></p>
+</div>
+
+</section>
+
+{% endblock %}
