@@ -110,11 +110,6 @@ class Reader(models.Model):
         default=""
     )
 
-    postal_address_email_sent = models.DateField(
-        blank=True, null=True,
-        default=None
-    )
-
     get_started_email_sent = models.DateField(
         blank=True, null=True,
         default=None
