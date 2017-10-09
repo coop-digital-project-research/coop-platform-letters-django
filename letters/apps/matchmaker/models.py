@@ -15,8 +15,8 @@ class Writer(models.Model):
         default=uuid.uuid4
     )
 
-    created_at = models.DateTimeField(default=None, null=True, blank=True)
-    updated_at = models.DateTimeField(default=None, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
 
     first_name = models.CharField(
         max_length=128,
@@ -102,8 +102,8 @@ class Reader(models.Model):
         default=uuid.uuid4
     )
 
-    created_at = models.DateTimeField(default=None, null=True, blank=True)
-    updated_at = models.DateTimeField(default=None, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
 
     first_name = models.CharField(
         max_length=128,
