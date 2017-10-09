@@ -160,8 +160,8 @@ class AdminTaskListView(TemplateView):
             'writers_awaiting_get_started_email':
             self._writers_awaiting_get_started_email(),
 
-            'readers_awaiting_baseline_wellbeing_email':
-            self._readers_awaiting_baseline_wellbeing_email(),
+            'readers_awaiting_baseline_survey_email':
+            self._readers_awaiting_baseline_survey_email(),
 
             'readers_awaiting_get_started_email':
             self._readers_awaiting_get_started_email(),
@@ -176,9 +176,11 @@ class AdminTaskListView(TemplateView):
             get_started_email_sent=None
         )
 
-    def _readers_awaiting_baseline_wellbeing_email(self):
+    def _readers_awaiting_baseline_survey_email(self):
         return Reader.objects.filter(
-            baseline_wellbeing_email_sent=None
+            baseline_survey_email_sent=None,
+            got_postal_address=True,
+            prefer_forward_via_co_op__isnull=False,
         )
 
     def _readers_awaiting_get_started_email(self):

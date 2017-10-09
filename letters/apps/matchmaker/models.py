@@ -153,7 +153,7 @@ class Reader(models.Model):
         default=None
     )
 
-    baseline_wellbeing_email_sent = models.DateField(
+    baseline_survey_email_sent = models.DateField(
         blank=True, null=True,
         default=None
     )
