@@ -32,6 +32,8 @@ class WriterAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
         'available_to_pick',
     )
 
+    readonly_fields = ('updated_at',)
+
     readonly_fields_on_change = ['uuid']
 
     def edit_url(self, instance):
@@ -57,6 +59,8 @@ class ReaderAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
         'choose_writers',
         'pre_letter_survey'
     )
+
+    readonly_fields = ('updated_at',)
 
     readonly_fields_on_change = ['uuid']
 
