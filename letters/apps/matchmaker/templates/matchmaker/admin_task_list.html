@@ -41,15 +41,23 @@
   {% endif %}
 
   <h2>Send 'chase' emails</h2>
-  <p>TODO</p>
+  <ul>
+    <li>Send 3 days after 'get started' email</li>
+    <li><b>IF</b> they don't have profile and training completed</li>
+  </ul>
 
   <h2>Send 'final chase' emails</h2>
-  <p>TODO</p>
+  <ul>
+    <li>Send 3 days after 'final chase' email</li>
+    <li><b>IF</b> they don't have profile and training completed</li>
+  </ul>
 
   <h2>Send 'profile reminder' emails</h2>
-  <p>TODO</p>
+  <ul>
+    <li>Anyone who has done `training` but not completed a `profile`</li>
+  </ul>
 
-  <h2>Send 'training reminder' emails</h2>
+  <h2>Allocate writers to readers</h2>
   <p>TODO</p>
 
   <h2>Send 'priming' emails</h2>
@@ -57,6 +65,16 @@
 
   <h2>Send 'follow up' emails</h2>
   <p>TODO</p>
+
+  <h2>Delete unresponsive writers</h2>
+  <p>
+  </p>
+
+  <ul>
+    <li>7 days after 'final chase' email</li>
+    <li><b>IF</b> they don't have profile completed</li>
+    <li>Delete the Writer model the database</li>
+  </ul>
 
 </section>
 <section>
@@ -72,9 +90,6 @@
       <li><a href="{% url 'admin:matchmaker_reader_add' %}">Create a Reader</a></li>
       <li>Copy the UUID back into the spreadsheet</li>
     </ul>
-
-  <h2>Record postal addresses from emails</h2>
-  TODO
 
   <h2>Send 'get started' emails</h2>
   {% if readers_awaiting_get_started_email %}
@@ -101,7 +116,26 @@
     <p>Nothing to do here.</p>
   {% endif %}
 
-  <h2>Send 'baseline wellbeing' emails</h2>
+  <h2>Record postal addresses from emails</h2>
+  TODO
+
+  <h2>Send 'chase' emails</h2>
+  <ul>
+    <li>Send 2 days after 'get started' email</li>
+    <li><b>IF</b> they haven't replied with their address and letter preference</li>
+  </ul>
+
+  <h2>Record postal addresses from emails</h2>
+  <ul>
+    <li>Check the letters@coopdigital.co.uk mailbox</li>
+  </ul>
+
+  <h2>Reply with 'baseline survey' emails</h2>
+
+  <ul>
+    <li>If `got_postal_address` and `got_postal_preference`</li>
+  </ul>
+
   {% if readers_awaiting_baseline_wellbeing_email %}
 
     <p>
@@ -126,14 +160,29 @@
     <p>Nothing to do here.</p>
   {% endif %}
 
-  <h2>Send 'chase' emails</h2>
-  <p>TODO</p>
+  <h2>Update 'got_baseline_survey_results</h2>
+  <ul>
+    <li>Go to the Google Form</li>
+    <li>Tick the 'got_baseline_survey_results' checkbox for any UUIDs in Django</li>
+  </ul>
+
+  <h2>Send 'invite to pick' emails</h2>
+  <ul>
+    <li>If got_baseline_survey_results</li>
+  </ul>
 
   <h2>Send 'priming' emails</h2>
-  <p>TODO</p>
+  <ul>
+    <li>If we've matched them with a Writer</li>
+    <li>Send them the 'priming' email</li>
+    <li>Update 'priming_email_sent' date</li>
+  </ul>
 
   <h2>Send 'follow up' emails</h2>
-  <p>TODO</p>
+  <ul>
+    <li>10 days after 'priming_email_sent'</li>
+    <li>Send them the 'follow up' email</li>
+  </ul>
 </section>
 
 
