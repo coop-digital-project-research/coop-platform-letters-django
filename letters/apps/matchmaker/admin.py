@@ -25,14 +25,19 @@ class WriterAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
         'edit_url',
         'training_url',
         'available_to_pick',
+        'updated_at',
     )
 
     list_filter = (
         'training_complete',
         'available_to_pick',
+        'updated_at',
     )
 
-    readonly_fields = ('updated_at',)
+    readonly_fields = (
+        'created_at',
+        'updated_at',
+    )
 
     readonly_fields_on_change = ['uuid']
 
@@ -60,7 +65,10 @@ class ReaderAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
         'pre_letter_survey'
     )
 
-    readonly_fields = ('updated_at',)
+    readonly_fields = (
+        'created_at',
+        'updated_at',
+    )
 
     readonly_fields_on_change = ['uuid']
 
