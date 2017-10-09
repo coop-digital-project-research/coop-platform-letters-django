@@ -74,29 +74,7 @@
     </ul>
 
   <h2>Record postal addresses from emails</h2>
-  {% if readers_awaiting_get_started_email %}
-
-    <p>
-      These readers don't have a `postal_address_email_sent` date.
-    </p>
-
-    <ul>
-      {% for reader in readers_awaiting_postal_address_email %}
-      <li>
-        {{ reader.first_name }}:
-        <a href="{% url 'admin-task-list-reader-email' 'postal-address' reader.uuid %}">[email template]</a>
-        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">[edit Reader]</a></li>
-      {% endfor %}
-    </ul>
-
-    <p>Tasks:</p>
-    <ul>
-      <li>Send the get started email by copying and pasting the template</li>
-      <li>Set the `get_started_email_sent` field to today's date.</li>
-    </ul>
-  {% else %}
-    <p>Nothing to do here.</p>
-  {% endif %}
+  TODO
 
   <h2>Send 'get started' emails</h2>
   {% if readers_awaiting_get_started_email %}
