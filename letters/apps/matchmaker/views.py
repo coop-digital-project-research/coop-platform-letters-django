@@ -1,3 +1,5 @@
+import datetime
+
 import jwt
 
 from django.conf import settings
@@ -5,6 +7,7 @@ from django.shortcuts import redirect
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView, ListView, TemplateView
 from django.urls import reverse
+from django.utils import timezone
 
 
 from .models import Writer, Reader, WriterReaderPairing
@@ -162,6 +165,9 @@ class AdminTaskListView(TemplateView):
 
             'readers_awaiting_get_started_email':
             self._readers_awaiting_get_started_email(),
+
+            'readers_awaiting_chase_email':
+            self._readers_awaiting_chase_email(),
         }
         return context
 
@@ -178,6 +184,16 @@ class AdminTaskListView(TemplateView):
     def _readers_awaiting_get_started_email(self):
         return Reader.objects.filter(
             get_started_email_sent=None
+        )
+
+    def _readers_awaiting_chase_email(self):
+        two_days_ago = timezone.now() - datetime.timedelta(days=2)
+
+        return Reader.objects.filter(
+            chase_email_sent=None,
+            got_postal_address=False,
+            prefer_forward_via_co_op=None,
+            get_started_email_sent__lt=two_days_ago,
         )
 
 
