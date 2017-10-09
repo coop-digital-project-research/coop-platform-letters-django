@@ -42,14 +42,14 @@ class WriterAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
     readonly_fields_on_change = ['uuid']
 
     def edit_url(self, instance):
-        return '<a href="{}">[Link to update page]</a>'.format(
+        return '<a href="{}">[update]</a>'.format(
             instance.make_authenticated_writer_profile_url()
         )
 
     edit_url.allow_tags = True
 
     def training_url(self, instance):
-        return '<a href="{}">[Link to training]</a>'.format(
+        return '<a href="{}">[training]</a>'.format(
             instance.make_authenticated_training_url()
         )
 
@@ -73,14 +73,14 @@ class ReaderAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
     readonly_fields_on_change = ['uuid']
 
     def choose_writers(self, instance):
-        return '<a href="{}">[Link to choose writers]</a>'.format(
+        return '<a href="{}">[choose writers]</a>'.format(
             instance.make_authenticated_choose_writers_url()
         )
 
     choose_writers.allow_tags = True
 
     def pre_letter_survey(self, instance):
-        return '<a href="{}">[Link to pre-survey]</a>'.format(
+        return '<a href="{}">[pre-survey]</a>'.format(
             instance.make_authenticated_pre_letter_survey_url()
         )
 
