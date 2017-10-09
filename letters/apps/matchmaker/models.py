@@ -69,6 +69,31 @@ class Writer(models.Model):
         default=None
     )
 
+    chase_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    final_chase_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    profile_reminder_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    priming_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    follow_up_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
     def __str__(self):
         return '{} {}'.format(self.first_name, self.uuid)
 
@@ -110,12 +135,40 @@ class Reader(models.Model):
         default=""
     )
 
+    got_postal_address = models.BooleanField(
+        default=False
+    )
+
+    prefer_forward_via_co_op = models.NullBooleanField(
+        default=None
+    )
+
     get_started_email_sent = models.DateField(
         blank=True, null=True,
         default=None
     )
 
+    chase_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
     baseline_wellbeing_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    invite_to_pick_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    priming_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    follow_up_email_sent = models.DateField(
         blank=True, null=True,
         default=None
     )
