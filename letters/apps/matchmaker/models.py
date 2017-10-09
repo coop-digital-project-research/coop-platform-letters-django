@@ -15,6 +15,9 @@ class Writer(models.Model):
         default=uuid.uuid4
     )
 
+    created_at = models.DateTimeField(default=None, null=True, blank=True)
+    updated_at = models.DateTimeField(default=None, null=True, blank=True)
+
     first_name = models.CharField(
         max_length=128,
         help_text=(
@@ -98,6 +101,9 @@ class Reader(models.Model):
         primary_key=True,
         default=uuid.uuid4
     )
+
+    created_at = models.DateTimeField(default=None, null=True, blank=True)
+    updated_at = models.DateTimeField(default=None, null=True, blank=True)
 
     first_name = models.CharField(
         max_length=128,
