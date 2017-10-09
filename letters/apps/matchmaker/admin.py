@@ -3,8 +3,20 @@ from django.contrib import admin
 from .models import Writer, Reader, WriterReaderPairing
 
 
+class ReadonlyFieldsOnChangeMixin():
+    def get_readonly_fields(self, request, obj):
+        readonly_fields = list(super(
+            ReadonlyFieldsOnChangeMixin, self
+        ).get_readonly_fields(request, obj))
+
+        if obj:  # make uuid readonly if the model is already in DB
+            readonly_fields.extend(self.readonly_fields_on_change)
+
+        return tuple(readonly_fields)
+
+
 @admin.register(Writer)
-class WriterAdmin(admin.ModelAdmin):
+class WriterAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
     list_display = (
         'first_name',
         'age',
@@ -20,9 +32,7 @@ class WriterAdmin(admin.ModelAdmin):
         'available_to_pick',
     )
 
-    readonly_fields = (
-        'uuid',
-    )
+    readonly_fields_on_change = ['uuid']
 
     def edit_url(self, instance):
         return '<a href="{}">[Link to update page]</a>'.format(
@@ -40,13 +50,15 @@ class WriterAdmin(admin.ModelAdmin):
 
 
 @admin.register(Reader)
-class ReaderAdmin(admin.ModelAdmin):
+class ReaderAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
     list_display = (
         'first_name',
         'uuid',
         'choose_writers',
         'pre_letter_survey'
     )
+
+    readonly_fields_on_change = ['uuid']
 
     def choose_writers(self, instance):
         return '<a href="{}">[Link to choose writers]</a>'.format(
