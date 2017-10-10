@@ -168,6 +168,9 @@ class AdminTaskListView(TemplateView):
 
             'readers_awaiting_chase_email':
             self._readers_awaiting_chase_email(),
+
+            'readers_awaiting_invite_to_pick_email':
+            self._readers_awaiting_invite_to_pick_email(),
         }
         return context
 
@@ -196,6 +199,16 @@ class AdminTaskListView(TemplateView):
             got_postal_address=False,
             prefer_forward_via_co_op=None,
             get_started_email_sent__lt=two_days_ago,
+        )
+
+    def _readers_awaiting_invite_to_pick_email(self):
+        one_day_ago = timezone.now() - datetime.timedelta(days=1)
+
+        return Reader.objects.filter(
+            invite_to_pick_email_sent=None,
+            got_postal_address=True,
+            prefer_forward_via_co_op__isnull=False,
+            baseline_survey_email_sent__lt=one_day_ago,
         )
 
 
