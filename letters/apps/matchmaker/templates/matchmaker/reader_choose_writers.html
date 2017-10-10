@@ -3,12 +3,13 @@
 {% block body_inner %}
 
 <section>
-  <h1>Who would you like to get a letter from?</h1>
+  <h1>Letter writer profiles</h1>
 
   <form class="pick-writer" action="" method="post">{% csrf_token %}
 
     <fieldset>
-      <legend>Pick who you'd like to hear from:</legend>
+      <legend>Who do you want to get a letter&nbsp;from?</legend>
+      <p class="hint">You can pick more than one</p>
 
       {% for writer in writers %}
         <label class="block-label">
