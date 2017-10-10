@@ -337,6 +337,14 @@ a.card {
   }
 }
 
+p.writer-story {
+  margin-top: 1rem;
+  font-size: 1rem;
+  @media (min-width: 750px) {
+    font-size: 1.2rem;
+  }
+}
+
 .hidden {
   display: none;
 }
