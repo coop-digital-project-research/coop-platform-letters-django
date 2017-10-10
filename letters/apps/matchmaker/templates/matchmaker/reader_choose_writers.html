@@ -8,8 +8,12 @@
   <form class="pick-writer" action="" method="post">{% csrf_token %}
 
     <fieldset>
-      <legend>Who do you want to get a letter&nbsp;from?</legend>
-      <p class="hint">You can pick more than one</p>
+      <legend>Choose a shortlist of letter writers</legend>
+      {% if reader.prefer_forward_via_co_op == True %}
+        <p class="hint">One of the people you choose will then be matched with you and asked to write to you via Co-op.</p>
+      {% elif reader.prefer_forward_via_co_op == False %}
+        <p class="hint">One of the people you choose will then be matched with you and asked to write to you at the address you gave us.</p>
+      {% endif %}
 
       {% for writer in writers %}
         <label class="block-label">
@@ -29,12 +33,16 @@
     </fieldset>
 
     <footer>
-      <button type="submit" class="btn btn-primary">Confirm your choice</button>
+      <button type="submit" class="btn btn-primary">I'm done</button>
     </footer>
 
   </form>
 
-  <p class="privacy-statement">Your letter writers will only see your name — they won’t know anything else about your or your situation.</p>
+  {% if reader.prefer_forward_via_co_op == True %}
+    <p class="privacy-statement">Your letter writer will only see your first name and that you want your letter to be sent to Co-op. They won’t know anything else about your or you situation.</p>
+  {% elif reader.prefer_forward_via_co_op == False %}
+    <p class="privacy-statement">Your letter writer will only see your first name and your address. They won’t know anything else about your or you situation.</p>
+  {% endif %}
 </section>
 
 {% endblock %}
