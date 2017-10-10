@@ -97,7 +97,7 @@ class Writer(models.Model):
     )
 
     def __str__(self):
-        return '{} {}'.format(self.first_name, self.uuid)
+        return '{} ({})'.format(self.uuid, self.first_name)
 
     def make_json_web_token(self):
         data = {
@@ -182,7 +182,7 @@ class Reader(models.Model):
     )
 
     def __str__(self):
-        return str(self.uuid)
+        return '{} ({})'.format(self.uuid, self.first_name)
 
     def make_json_web_token(self):
         data = {
