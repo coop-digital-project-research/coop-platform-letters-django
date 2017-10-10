@@ -217,6 +217,7 @@ class WriterReaderSelection(models.Model):
     class Meta:
         unique_together = (('writer', 'reader'))
 
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     writer = models.ForeignKey(Writer)
     reader = models.ForeignKey(Reader)
 
