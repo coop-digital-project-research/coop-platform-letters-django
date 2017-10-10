@@ -206,11 +206,18 @@ class Reader(models.Model):
         )
 
 
-class WriterReaderPairing(models.Model):
+class WriterReaderSelection(models.Model):
+    """
+    Indicates that the given reader is happy to receive a letter from the given
+    writer.
+
+    This doesn't mean that writer will necessarily be allocated to that reader.
+    """
 
     class Meta:
         unique_together = (('writer', 'reader'))
 
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     writer = models.ForeignKey(Writer)
     reader = models.ForeignKey(Reader)
 

@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 
-from .models import Writer, Reader, WriterReaderPairing
+from .models import Writer, Reader, WriterReaderSelection
 from .forms import WriterForm
 
 
@@ -127,12 +127,12 @@ class ReaderChooseWritersView(GetReaderObjectFromJWTMixin, ListView):
 
     @staticmethod
     def _clear_existing_writers(for_reader):
-        WriterReaderPairing.objects.filter(reader=for_reader).delete()
+        WriterReaderSelection.objects.filter(reader=for_reader).delete()
 
     @staticmethod
     def _create_pairings(reader, writers):
         for writer in writers:
-            (pairing, created) = WriterReaderPairing.objects.get_or_create(
+            (pairing, created) = WriterReaderSelection.objects.get_or_create(
                 writer=writer,
                 reader=reader
             )
