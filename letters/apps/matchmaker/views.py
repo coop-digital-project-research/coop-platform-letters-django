@@ -125,6 +125,16 @@ class ReaderChooseWritersView(GetReaderObjectFromJWTMixin, ListView):
             reverse('reader-confirmation')
         )
 
+    def get_context_data(self, **kwargs):
+        existing_context = super(
+            ReaderChooseWritersView, self
+        ).get_context_data(**kwargs)
+
+        existing_context.update(
+            {'reader': self.get_object()}
+        )
+        return existing_context
+
     @staticmethod
     def _clear_existing_writers(for_reader):
         WriterReaderSelection.objects.filter(reader=for_reader).delete()
