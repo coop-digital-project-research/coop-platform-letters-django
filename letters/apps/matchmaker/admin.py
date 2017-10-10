@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Writer, Reader, WriterReaderPairing
+from .models import Writer, Reader, WriterReaderSelection
 
 
 class ReadonlyFieldsOnChangeMixin():
@@ -94,8 +94,8 @@ class ReaderAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
     pre_letter_survey.allow_tags = True
 
 
-@admin.register(WriterReaderPairing)
-class WriterReaderPairingAdmin(admin.ModelAdmin):
+@admin.register(WriterReaderSelection)
+class WriterReaderSelectionAdmin(admin.ModelAdmin):
     list_display = (
         'reader',
         'writer',
