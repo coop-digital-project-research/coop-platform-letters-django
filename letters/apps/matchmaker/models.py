@@ -147,6 +147,10 @@ class Reader(models.Model):
         default=None
     )
 
+    baseline_survey_complete = models.BooleanField(
+        default=False
+    )
+
     get_started_email_sent = models.DateField(
         blank=True, null=True,
         default=None
