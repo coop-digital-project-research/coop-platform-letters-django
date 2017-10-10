@@ -106,15 +106,14 @@ label {
   }
 }
 
+.hint {
+  font-size: 16px;
+  color: #6e6e6e;
+  margin-bottom: 0.4rem;
+}
+
 div.form-row {
   margin-top: 1.8rem;
-  p {
-    &.hint {
-      font-size: 16px;
-      color: #6e6e6e;
-      margin-bottom: 0.4rem;
-    }
-  }
   input#id_age {
       width: 25%;
   }
