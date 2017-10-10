@@ -152,7 +152,16 @@ input {
   }
 }
 
-form.pick-writer footer {
+form.pick-writer {
+  label {
+    &.block-label {
+      padding: calc(16px + .1em) calc(1.2rem) calc(16px + .1em) calc(32px + 1.4em);
+      @media (min-width: 750px) {
+        padding: calc(16px + .1em) calc(1.8rem) calc(16px + .1em) calc(32px + 1.4em);
+      }
+    }
+  }
+  footer {
     position: -webkit-sticky;
     position: -moz-sticky;
     position: -ms-sticky;
@@ -168,6 +177,7 @@ form.pick-writer footer {
       margin-left: -4rem;
       width: calc(100% + 8rem);
     }
+  }
 }
 
 .cta-area {
