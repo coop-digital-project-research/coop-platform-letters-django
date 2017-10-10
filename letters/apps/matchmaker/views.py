@@ -109,6 +109,19 @@ class ReaderChooseWritersView(GetReaderObjectFromJWTMixin, ListView):
     model = Writer
     context_object_name = 'writers'
 
+    def get(self, *args, **kwargs):
+        reader = self.get_object()
+
+        if reader.selections.count() > 0:
+            return redirect(
+                reverse(
+                    'reader-confirmation',
+                    kwargs={'json_web_token': self.kwargs['json_web_token']}
+                )
+            )
+        else:
+            return super(ReaderChooseWritersView, self).get(*args, **kwargs)
+
     def post(self, request, **kwargs):
         reader = self.get_object()
         writer_uuids = request.POST.getlist('writers')
