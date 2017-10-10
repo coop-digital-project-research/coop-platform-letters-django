@@ -122,7 +122,10 @@ class ReaderChooseWritersView(GetReaderObjectFromJWTMixin, ListView):
         )
 
         return redirect(
-            reverse('reader-confirmation')
+            reverse(
+                'reader-confirmation',
+                kwargs={'json_web_token': self.kwargs['json_web_token']}
+            )
         )
 
     def get_context_data(self, **kwargs):
@@ -148,8 +151,10 @@ class ReaderChooseWritersView(GetReaderObjectFromJWTMixin, ListView):
             )
 
 
-class ReaderConfirmationView(TemplateView):
+class ReaderConfirmationView(GetReaderObjectFromJWTMixin, DetailView):
     template_name = 'matchmaker/reader_confirmation.html'
+    model = Reader
+    context_object_name = 'reader'
 
 
 class WriterGuideView(TemplateView):
