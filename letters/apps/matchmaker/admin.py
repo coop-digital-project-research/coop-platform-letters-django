@@ -61,8 +61,15 @@ class ReaderAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
     list_display = (
         'first_name',
         'uuid',
+        'got_postal_address',
+        'prefer_forward_via_co_op',
         'choose_writers',
-        'pre_letter_survey'
+        'pre_letter_survey',
+    )
+
+    list_filter = (
+        'got_postal_address',
+        'prefer_forward_via_co_op',
     )
 
     readonly_fields = (
