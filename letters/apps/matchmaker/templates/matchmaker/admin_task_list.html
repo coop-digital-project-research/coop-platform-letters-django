@@ -149,25 +149,22 @@
   <h2>Record postal addresses from emails</h2>
   <ul>
     <li>Check the letters@coopdigital.co.uk mailbox</li>
+    <li>Record the postal address in the Google Sheet</li>
+    <li>Set `got_postal_address` and record their forwarding preference.</li>
   </ul>
 
   <h2>Reply with 'baseline survey' emails</h2>
 
-  <ul>
-    <li>If `got_postal_address` and `got_postal_preference`</li>
-  </ul>
 
-  {% if readers_awaiting_baseline_wellbeing_email %}
+  {% if readers_awaiting_baseline_survey_email %}
 
-    <p>
-      These readers don't have a `baseline_wellebeing_email_sent` date.
-    </p>
+    <p>These readers have given us their postal preferences, now we need to reply with their first survey.</p>
 
     <ul>
-      {% for reader in readers_awaiting_baseline_wellbeing_email %}
+      {% for reader in readers_awaiting_baseline_survey_email %}
       <li>
         {{ reader.first_name }}:
-        <a href="{% url 'admin-task-list-reader-email' 'baseline_wellbeing' reader.uuid %}">[email template]</a>
+        <a href="{% url 'admin-task-list-reader-email' 'baseline_survey' reader.uuid %}">[email template]</a>
         <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">[edit Reader]</a></li>
       {% endfor %}
     </ul>
@@ -175,7 +172,7 @@
     <p>Tasks:</p>
     <ul>
       <li>Send the baseline wellbeing email by copying and pasting the template</li>
-      <li>Set the `baseline_wellbeing_sent` field to today's date.</li>
+      <li>Set the `baseline_survey_sent` field to today's date.</li>
     </ul>
   {% else %}
     <p>Nothing to do here.</p>
