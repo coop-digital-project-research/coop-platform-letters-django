@@ -49,7 +49,7 @@ urlpatterns = [
     ),
 
     url(
-        r'^reader/confirmation/$',
+        r'^reader/confirmation/(?P<json_web_token>' + JWT_PATTERN + ')/$',
         ReaderConfirmationView.as_view(),
         name='reader-confirmation'
     ),
