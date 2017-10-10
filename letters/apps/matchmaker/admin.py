@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from .models import Writer, Reader, WriterReaderSelection
+from .models import (
+    Writer, Reader, WriterReaderSelection, WriterReaderAllocation
+)
 
 
 class ReadonlyFieldsOnChangeMixin():
@@ -99,4 +101,31 @@ class WriterReaderSelectionAdmin(admin.ModelAdmin):
     list_display = (
         'reader',
         'writer',
+    )
+
+
+@admin.register(WriterReaderAllocation)
+class WriterReaderAllocationAdmin(ReadonlyFieldsOnChangeMixin,
+                                  admin.ModelAdmin):
+    list_display = (
+        'reference',
+        'allocated_at',
+        'allocated_by',
+        'writer',
+        'reader',
+        'letter_sent',
+        'letter_received',
+    )
+
+    list_filter = (
+        'allocated_at',
+        'letter_sent',
+        'letter_received',
+    )
+
+    readonly_fields_on_change = (
+        'reference',
+        'allocated_by',
+        'writer',
+        'reader',
     )
