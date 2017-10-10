@@ -9,6 +9,8 @@ from django.urls import reverse
 
 
 class Writer(models.Model):
+    class Meta:
+        ordering = ('-created_at',)
 
     uuid = models.UUIDField(
         primary_key=True,
@@ -121,6 +123,8 @@ class Writer(models.Model):
 
 
 class Reader(models.Model):
+    class Meta:
+        ordering = ('-created_at',)
 
     uuid = models.UUIDField(
         primary_key=True,
