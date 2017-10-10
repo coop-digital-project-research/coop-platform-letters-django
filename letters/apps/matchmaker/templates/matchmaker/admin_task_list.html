@@ -185,9 +185,27 @@
   </ul>
 
   <h2>Send 'invite to pick' emails</h2>
-  <ul>
-    <li>If got_baseline_survey_results</li>
-  </ul>
+  {% if readers_awaiting_invite_to_pick_email %}
+
+    <p>These readers have given us their postal preferences, been invited to complete a baseline survey. Now we need to invite them to pick the writers they're happy to hear from.</p>
+
+    <ul>
+      {% for reader in readers_awaiting_invite_to_pick_email %}
+      <li>
+        {{ reader.first_name }}:
+        <a href="{% url 'admin-task-list-reader-email' 'invite-to-pick' reader.uuid %}">[email template]</a>
+        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">[edit Reader]</a></li>
+      {% endfor %}
+    </ul>
+
+    <p>Tasks:</p>
+    <ul>
+      <li>Send the invite to pick email by copying and pasting the template</li>
+      <li>Set the `invite_to_pick_email_sent` field to today's date.</li>
+    </ul>
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
 
   <h2>Send 'priming' emails</h2>
   <ul>
