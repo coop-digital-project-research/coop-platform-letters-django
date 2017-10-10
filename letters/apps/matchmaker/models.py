@@ -208,6 +208,10 @@ class Reader(models.Model):
             kwargs={'json_web_token': self.make_json_web_token()}
         )
 
+    @property
+    def selected_writers(self):
+        return (s.writer for s in self.selections.all())
+
 
 class WriterReaderSelection(models.Model):
     """
@@ -222,7 +226,7 @@ class WriterReaderSelection(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     writer = models.ForeignKey(Writer)
-    reader = models.ForeignKey(Reader)
+    reader = models.ForeignKey(Reader, related_name='selections')
 
     def __str__(self):
         return '{} --> {}'.format(self.reader, self.writer)
