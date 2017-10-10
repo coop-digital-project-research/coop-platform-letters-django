@@ -4,7 +4,22 @@
 
 <section>
   <h1>You've made a shortlist of letter writers</h1>
-  <p>We'll choose one of the people you've picked and ask them to write you a letter.</p>
+  <p>Here are the people you've chosen:</p>
+  {% for writer in reader.selected_writers %}
+    <div class="playback-card">
+      <h2>{{ writer.first_name }}, {{ writer.age }}</h2>
+      <p class="writer-story">
+        {{ writer.profile_story }}
+      </p>
+    </div>
+  {% endfor %}
+
+  {% if reader.prefer_forward_via_co_op == True %}
+    <p>One of these people will be matched with you and asked to write to you via Co-op.</p>
+  {% elif reader.prefer_forward_via_co_op == False %}
+    <p>One of these people will be matched with you and asked to write to you at the address you gave us.</p>
+  {% endif %}
+
   <p>You should get a letter in the post in the next few weeks.</p>
 </section>
 
