@@ -1,4 +1,5 @@
 import datetime
+import random
 
 import jwt
 
@@ -107,9 +108,6 @@ class ReaderChooseWritersView(GetReaderObjectFromJWTMixin, ListView):
     template_name = 'matchmaker/reader_choose_writers.html'
     model = Writer
     context_object_name = 'writers'
-    queryset = Writer.objects.filter(
-        available_to_pick=True,
-    )
 
     def post(self, request, **kwargs):
         reader = self.get_object()
@@ -127,6 +125,15 @@ class ReaderChooseWritersView(GetReaderObjectFromJWTMixin, ListView):
                 kwargs={'json_web_token': self.kwargs['json_web_token']}
             )
         )
+
+    def get_queryset(self):
+        reader = self.get_object()
+        random.seed(reader.uuid)
+
+        writers = [ob for ob in Writer.objects.filter(available_to_pick=True)]
+
+        random.shuffle(writers)
+        return writers
 
     def get_context_data(self, **kwargs):
         existing_context = super(
