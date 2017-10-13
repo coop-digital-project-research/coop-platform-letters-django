@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
+
+<section>
+
+  <h2>From:</h2><p>Co-op Letters</p>
+
+  <h2>To:</h2><p>[email from Google Sheet for UUID <code>{{ writer.uuid }}</code>]</p>
+
+  <h2>Subject</h2>
+  <p>Our trial letter writing service has ended</p>
+
+  <h2>Message:</h2>
+
+<div class="message">Ctrl-A, Ctrl-C the message below</div>
+
+<div class='email-template' contenteditable="true">
+  <p>Dear {{ writer.first_name }},
+
+  <p>We’re writing to let you know that our trial letter writing service has ended, and that we’ll remove your details from our list. This will not affect your Co-op membership.</p>
+
+  <p>If you have any questions, reply to this message or email <a href="mailto:letters@coopdigital.co.uk">letters@coopdigital.co.uk</a></p>
+</div>
+
+</section>
+</pre>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
+
+<section>
+
+  <h2>From:</h2><p>Co-op Letters</p>
+
+  <h2>To:</h2><p>[email from Google Sheet for UUID <code>{{ writer.uuid }}</code>]</p>
+
+  <h2>Subject</h2>
+  <p>Writing a letter - how did it go?</p>
+
+  <h2>Message:</h2>
+
+<div class="message">Ctrl-A, Ctrl-C the message below</div>
+
+<div class='email-template' contenteditable="true">
+  <p>Dear {{ writer.first_name }},
+
+  {% if allocation.reader.prefer_forward_via_co_op is True %}
+
+  <p>We’re checking in to see how you are after sending your letter.</p>
+
+  {% elif allocation.reader.prefer_forward_via_co_op is False %}
+
+  <p>We’re just checking in to see how you are and if you’ve written a letter or not?</p>
+
+  {% endif %}
+
+  <p>As this is a trial, it’d be really helpful if you could fill out a short survey to give us an idea of how it went.</p>
+
+  <p><a href="#">Complete the survey</a></p>
+
+  <p>If you have any questions, reply to this message or email <a href="mailto:letters@coopdigital.co.uk">letters@coopdigital.co.uk</a></p>
+</div>
+
+</section>
+</pre>
+
+{% endblock %}
