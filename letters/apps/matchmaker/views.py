@@ -11,7 +11,9 @@ from django.urls import reverse
 from django.utils import timezone
 
 
-from .models import Writer, Reader, WriterReaderSelection
+from .models import (
+    Writer, Reader, WriterReaderSelection, WriterReaderAllocation
+)
 from .forms import WriterForm
 
 
@@ -265,5 +267,17 @@ class AdminTaskListReaderEmailView(DetailView):
     def get_template_names(self, *args, **kwargs):
         email_slug = self.kwargs['email_slug']
         return 'matchmaker/reader_emails/{}.html'.format(
+            email_slug.replace('-', '_')
+        )
+
+
+class AdminTaskListAllocationEmailView(DetailView):
+    model = WriterReaderAllocation
+    context_object_name = 'allocation'
+
+    def get_template_names(self, *args, **kwargs):
+        email_slug = self.kwargs['email_slug']
+
+        return 'matchmaker/allocation_emails/{}.html'.format(
             email_slug.replace('-', '_')
         )

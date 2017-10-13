@@ -3,9 +3,10 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 from .views import (
     AdminTaskListView, AdminTaskListWriterEmailView,
-    AdminTaskListReaderEmailView, UpdateWriterProfileView,
-    WriterProfileDetailView, ReaderChooseWritersView, ReaderConfirmationView,
-    WriterGuideView, WriterTrainingView, ReaderPreLetterSurveyView
+    AdminTaskListReaderEmailView, AdminTaskListAllocationEmailView,
+    UpdateWriterProfileView, WriterProfileDetailView, ReaderChooseWritersView,
+    ReaderConfirmationView, WriterGuideView, WriterTrainingView,
+    ReaderPreLetterSurveyView
 )
 
 JWT_PATTERN = "[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*"
@@ -78,6 +79,13 @@ urlpatterns = [
         '/(?P<pk>{uuid})/$'.format(uuid=UUID_PATTERN),
         staff_member_required(AdminTaskListReaderEmailView.as_view()),
         name='admin-task-list-reader-email',
+    ),
+
+    url(
+        r'^admin/tasks/emails/allocation/(?P<email_slug>.+)'
+        '/(?P<pk>\d\d\d-\d\d\d)/$',
+        staff_member_required(AdminTaskListAllocationEmailView.as_view()),
+        name='admin-task-list-allocation-email',
     ),
 
 ]
