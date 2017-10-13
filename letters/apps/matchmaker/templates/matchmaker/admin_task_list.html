@@ -221,5 +221,29 @@
   </ul>
 </section>
 
+<section>
+  <h1>Allocations</h1>
+
+  {% for allocation in allocations %}
+  <h2>{{ allocation.reference }}</h2>
+
+    <p>{{ allocation.reader }} to {{ allocation.writer }}</p>
+    <ul>
+      <li><a href="{% url 'admin-task-list-allocation-email' 'reader-priming' allocation.reference %}">[reader-priming]</a></li>
+      <li><a href="{% url 'admin-task-list-allocation-email' 'reader-follow-up' allocation.reference %}">[reader follow up]</a></li>
+      <li><a href="{% url 'admin-task-list-allocation-email' 'reader-got-letter-closure' allocation.reference %}">[reader got letter closure]</a></li>
+      <li><a href="{% url 'admin-task-list-allocation-email' 'reader-no-letter-closure' allocation.reference %}">[reader no letter closure]</a></li>
+      <li><a href="{% url 'admin-task-list-allocation-email' 'writer-priming' allocation.reference %}">[writer-priming]</a></li>
+      <li><a href="{% url 'admin-task-list-allocation-email' 'writer-follow-up' allocation.reference %}">[writer follow up]</a></li>
+      <li><a href="{% url 'admin-task-list-allocation-email' 'writer-midway' allocation.reference %}">[writer midway]</a></li>
+      <li><a href="{% url 'admin-task-list-allocation-email' 'writer-sent-letter-closure' allocation.reference %}">[writer sent letter closure]</a></li>
+      <li><a href="{% url 'admin-task-list-allocation-email' 'writer-no-sent-letter-closure' allocation.reference %}">[writer no sent letter closure]</a></li>
+    </ul>
+  {% endfor %}
+
+
+
+</section>
+
 
 {% endblock %}

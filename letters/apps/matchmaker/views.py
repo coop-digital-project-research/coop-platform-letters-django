@@ -194,6 +194,9 @@ class AdminTaskListView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = {
+            'allocations':
+            self._writer_reader_allocations(),
+
             'writers_awaiting_get_started_email':
             self._writers_awaiting_get_started_email(),
 
@@ -210,6 +213,9 @@ class AdminTaskListView(TemplateView):
             self._readers_awaiting_invite_to_pick_email(),
         }
         return context
+
+    def _writer_reader_allocations(self):
+        return WriterReaderAllocation.objects.all()
 
     def _writers_awaiting_get_started_email(self):
         return Writer.objects.filter(
