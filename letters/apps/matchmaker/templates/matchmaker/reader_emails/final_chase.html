@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
+
+<section>
+
+  <h2>From:</h2><p>Co-op Letters</p>
+
+  <h2>To:</h2><p>[email from Google Sheet for UUID <code>{{ reader.uuid }}</code>]</p>
+
+  <h2>Subject</h2>
+  <p>Last chance to get a letter from someone who was in debt</p>
+
+  <h2>Message:</h2>
+
+  <div class="message">Ctrl-A, Ctrl-C the message below</div>
+
+  <div class='email-template' contenteditable="true">
+
+    <p>Dear {{ reader.first_name }},</p>
+
+    <p>We’ve not heard anything from you since writing to ask you for your address. We think this means you’ve changed your mind about getting a letter - is this correct?</p>
+
+    <p>If you’re no longer interested, there’s no need to do anything. We’ll wait until [date + 7 days] and then take your details off our list. This is because we don’t want to store people’s information if we don’t need to. This won’t affect your Co-op membership.</p> TODO
+
+    <p>Still want to be involved? Reply to this message or email <a href="mailto:letters@coopdigital.co.uk">letters@coopdigital.co.uk</a></p>
+
+  </div>
+
+</section>
+
+{% endblock %}

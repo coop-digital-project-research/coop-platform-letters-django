@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
+
+<section>
+
+  <h2>From:</h2><p>Co-op Letters</p>
+
+  <h2>To:</h2><p>[email from Google Sheet for UUID <code>{{ writer.uuid }}</code>]</p>
+
+  <h2>Subject</h2>
+  <p>Nearly there - finish your profile to get started</p>
+
+  <h2>Message:</h2>
+
+<div class="message">Ctrl-A, Ctrl-C the message below</div>
+
+<div class='email-template' contenteditable="true">
+  <p>Dear {{ writer.first_name }},
+
+  <p>You got part of the way through creating a profile - is there anything we can do to help?</p>
+
+  <p>If you still want to be involved, we need your profile so that someone who wants to get a letter from you can be matched with you.</p>
+
+  <p><a href="{{ writer.make_authenticated_training_url }}">Finish your profile</a></p>
+
+  <p>If you have any questions, reply to this message or email <a href="mailto:letters@coopdigital.co.uk">letters@coopdigital.co.uk</a></p>
+</div>
+
+</section>
+</pre>
+
+{% endblock %}
