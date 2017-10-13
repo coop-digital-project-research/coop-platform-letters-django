@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
+
+<section>
+
+  <h2>From:</h2><p>Co-op Letters</p>
+
+  <h2>To:</h2><p>[email from 'Writers' sheet for UUID <code>{{ allocation.writer.uuid }}</code>]</p>
+
+  <h2>Subject</h2>
+  <p>We hope you enjoyed writing a letter</p>
+
+  <h2>Message:</h2>
+
+<div class="message">Ctrl-A, Ctrl-C the message below</div>
+
+<div class='email-template' contenteditable="true">
+  <p>Dear {{ allocation.writer.first_name }},
+
+  <p>We hope you enjoyed writing a letter to {{ allocation.reader.first_name }}.</p>
+
+  [IF MESSAGE FOR WRITER]TODO
+  <p>We asked {{ allocation.reader.first_name }} if they wanted us to pass a message on to you. Here’s what they wanted to say to you:</p>
+
+  [INSERT TEXT FROM READER SURVEY]TODO
+
+  [THEN]TODO
+  <p>We hope that you’ve found taking part in this letter writing service to be a positive experience.</p>
+
+  <p>We set this service up to be a short-term trial to see what support Co-op members would be willing to offer one another. We’ve been amazed at how generous people like you have been with your time and support, and it’s inspired us to do more work like this to help us support each other.</p>
+
+  <p>As this trial is at an end, we’ll remove your details from our list. This will not affect your Co-op membership.</p>
+
+  <p>If you have any questions, reply to this message or email <a href="mailto:letters@coopdigital.co.uk">letters@coopdigital.co.uk</a></p>
+</div>
+
+</section>
+</pre>
+
+{% endblock %}

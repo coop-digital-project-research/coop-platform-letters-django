@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
+
+<section>
+
+  <h2>From:</h2><p>Co-op Letters</p>
+
+  <h2>To:</h2><p>[email from 'Readers' Sheet for UUID <code>{{ allocation.reader.uuid }}</code>]</p>
+
+  <h2>Subject</h2>
+  <p>You should get your letter of support soon</p>
+
+  <h2>Message:</h2>
+
+<div class="message">Ctrl-A, Ctrl-C the message below</div>
+
+<div class='email-template' contenteditable="true">
+  <p>Dear {{ allocation.reader.first_name }},</p>
+
+  <p>We’ve been in touch with {{ allocation.writer.first_name }} to let them know you’ve picked them to write to you.</p>
+
+  <p>You should receive a letter of support from {{ allocation.writer.first_name }} in the next couple of weeks.</p>
+
+  <p>Something in the letter you didn&rsquo;t like? Didn&rsquo;t receive a letter? Let us know &mdash; reply to this message or email <a href="mailto:letters@coopdigital.co.uk">letters@coopdigital.co.uk</a></p>
+</div>
+
+</section>
+
+{% endblock %}
