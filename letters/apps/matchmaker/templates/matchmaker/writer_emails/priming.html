@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block body_inner %}
+
+<section>
+
+  <h2>From:</h2><p>Co-op Letters</p>
+
+  <h2>To:</h2><p>[email from Google Sheet for UUID <code>{{ writer.uuid }}</code>]</p>
+
+  <h2>Subject</h2>
+  <p>You’ve been picked - get ready to write a letter</p>
+
+  <h2>Message:</h2>
+
+<div class="message">Ctrl-A, Ctrl-C the message below</div>
+
+<div class='email-template' contenteditable="true">
+  <p>Dear {{ writer.first_name }},
+
+  <p>Your profile has been picked by someone who would like to get a letter from you.</p>
+
+  [EITHER]TODO
+  <p>Their name is [name] and you can write to them at:</p>TODO
+  <p>[Co-op Letters 123-456]</p>TODO
+  <p>[address]</p>TODO
+  <p>[address]</p>TODO
+  <p>[postcode]</p>TODO
+
+  [OR]TODO
+  <p>We&rsquo;ll forward it on to [name].</p>TODO
+
+  [THEN]TODO
+  <p>[Name] is expecting a letter from you by [date + 14 days].</p>TODO
+
+  <p>Been ages since you wrote a letter? Read our <a href="#">Advice for letter writers</a>.</p>TODO
+
+  <p>If you have any questions, reply to this message or email <a href="mailto:letters@coopdigital.co.uk">letters@coopdigital.co.uk</a></p>
+</div>
+
+</section>
+</pre>
+
+{% endblock %}
