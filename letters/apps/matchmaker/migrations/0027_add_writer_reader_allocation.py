@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-import letters.apps.matchmaker.utils
+import letters.apps.matchmaker.models.utils
 
 
 class Migration(migrations.Migration):
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='WriterReaderAllocation',
             fields=[
-                ('reference', models.CharField(default=letters.apps.matchmaker.utils.generate_reference, editable=False, max_length=7, primary_key=True, serialize=False)),
+                ('reference', models.CharField(default=letters.apps.matchmaker.models.utils.generate_reference, editable=False, max_length=7, primary_key=True, serialize=False)),
                 ('allocated_at', models.DateTimeField(auto_now_add=True, null=True)),
                 ('letter_sent', models.NullBooleanField(default=None)),
                 ('letter_received', models.NullBooleanField(default=None)),
