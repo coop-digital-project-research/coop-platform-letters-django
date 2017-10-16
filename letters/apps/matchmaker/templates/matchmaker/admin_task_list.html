@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "info-page.html" %}
 
 {% block body_inner %}
 
@@ -42,35 +42,57 @@
 
   <h2>Send 'chase' emails</h2>
   <ul>
+    <li>TODO</li>
     <li>Send 3 days after 'get started' email</li>
     <li><b>IF</b> they don't have profile and training completed</li>
   </ul>
 
   <h2>Send 'final chase' emails</h2>
   <ul>
+    <li>TODO</li>
     <li>Send 3 days after 'final chase' email</li>
     <li><b>IF</b> they don't have profile and training completed</li>
   </ul>
 
   <h2>Send 'profile reminder' emails</h2>
   <ul>
+    <li>TODO</li>
     <li>Anyone who has done `training` but not completed a `profile`</li>
   </ul>
 
   <h2>Allocate writers to readers</h2>
   <p>TODO</p>
 
-  <h2>Send 'priming' emails</h2>
-  <p>TODO</p>
+  <h2>Send 'writer priming' emails</h2>
+  {% if allocations_awaiting_writer_priming_email %}
+
+    <p>These writers have been allocated to a reader. Now we need to send them the reader's details.</p>
+    <ul>
+      {% for allocation in allocations_awaiting_writer_priming_email %}
+      <li>
+        {{ allocation.reference }}:
+        <a href="{% url 'admin-task-list-allocation-email' 'writer-priming' allocation.reference %}">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}">[edit WriterReaderAllocation]</a></li>
+      {% endfor %}
+    </ul>
+
+    <p>Tasks</p>
+    <ul>
+      <li>Send the 'writer priming' email</li>
+      <li>Update 'writer_priming_email_sent' date for the WriterReaderAllocation</li>
+    </ul>
+
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
 
   <h2>Send 'follow up' emails</h2>
   <p>TODO</p>
 
   <h2>Delete unresponsive writers</h2>
-  <p>
-  </p>
 
   <ul>
+    <li>TODO</li>
     <li>7 days after 'final chase' email</li>
     <li><b>IF</b> they don't have profile completed</li>
     <li>Delete the Writer model the database</li>
@@ -207,15 +229,33 @@
     <p>Nothing to do here.</p>
   {% endif %}
 
-  <h2>Send 'priming' emails</h2>
+  <h2>Send 'reader priming' emails</h2>
+  {% if allocations_awaiting_reader_priming_email %}
+
+    <p>These readers have been allocated a writer. Now we need to notify them to expect a letter.</p>
+
+    <ul>
+      {% for allocation in allocations_awaiting_reader_priming_email %}
+      <li>
+        {{ allocation.reference }}:
+        <a href="{% url 'admin-task-list-allocation-email' 'reader-priming' allocation.reference %}">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}">[edit WriterReaderAllocation]</a></li>
+      {% endfor %}
+    </ul>
+
+  <p>Tasks:</p>
   <ul>
-    <li>If we've matched them with a Writer</li>
-    <li>Send them the 'priming' email</li>
-    <li>Update 'priming_email_sent' date</li>
+    <li>Send the 'reader priming' email</li>
+    <li>Update 'reader_priming_email_sent' date for the WriterReaderAllocation</li>
   </ul>
+
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
 
   <h2>Send 'follow up' emails</h2>
   <ul>
+    <li>TODO</li>
     <li>10 days after 'priming_email_sent'</li>
     <li>Send them the 'follow up' email</li>
   </ul>
@@ -223,22 +263,63 @@
 
 <section>
   <h1>Allocations</h1>
+  <p>This is a temporary place to access any email for a given WriterReaderAllocation</p>
 
   {% for allocation in allocations %}
   <h2>{{ allocation.reference }}</h2>
 
-    <p>{{ allocation.reader }} to {{ allocation.writer }}</p>
-    <ul>
-      <li><a href="{% url 'admin-task-list-allocation-email' 'reader-priming' allocation.reference %}">[reader-priming]</a></li>
-      <li><a href="{% url 'admin-task-list-allocation-email' 'reader-follow-up' allocation.reference %}">[reader follow up]</a></li>
-      <li><a href="{% url 'admin-task-list-allocation-email' 'reader-got-letter-closure' allocation.reference %}">[reader got letter closure]</a></li>
-      <li><a href="{% url 'admin-task-list-allocation-email' 'reader-no-letter-closure' allocation.reference %}">[reader no letter closure]</a></li>
-      <li><a href="{% url 'admin-task-list-allocation-email' 'writer-priming' allocation.reference %}">[writer-priming]</a></li>
-      <li><a href="{% url 'admin-task-list-allocation-email' 'writer-follow-up' allocation.reference %}">[writer follow up]</a></li>
-      <li><a href="{% url 'admin-task-list-allocation-email' 'writer-midway' allocation.reference %}">[writer midway]</a></li>
-      <li><a href="{% url 'admin-task-list-allocation-email' 'writer-sent-letter-closure' allocation.reference %}">[writer sent letter closure]</a></li>
-      <li><a href="{% url 'admin-task-list-allocation-email' 'writer-no-sent-letter-closure' allocation.reference %}">[writer no sent letter closure]</a></li>
-    </ul>
+  <p>From {{ allocation.reader }}</p>
+  <p>to {{ allocation.writer }}</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Writer</th>
+        <th>Date sent</th>
+        <th>Reader</th>
+        <th>Date sent</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-priming' allocation.reference %}">[priming]</a></td>
+        <td>{{ allocation.writer_priming_email_sent }}</td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-priming' allocation.reference %}">[priming]</a></td>
+        <td>{{ allocation.reader_priming_email_sent }}</td>
+      </tr>
+
+      <tr>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-follow-up' allocation.reference %}">[follow up]</a></td>
+        <td>{{ allocation.writer_follow_up_email_sent }}</td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-follow-up' allocation.reference %}">[follow up]</a></td>
+        <td>{{ allocation.reader_follow_up_email_sent }}</td>
+      </tr>
+
+      <tr>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-sent-letter-closure' allocation.reference %}">[sent letter closure]</a></td>
+        <td>TODO</td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-got-letter-closure' allocation.reference %}">[got letter closure]</a></td>
+        <td>TODO</td>
+      </tr>
+
+      <tr>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-midway' allocation.reference %}">[midway]</a></td>
+        <td>TODO</td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-no-sent-letter-closure' allocation.reference %}">[no sent letter closure]</a></td>
+        <td>TODO</td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-no-letter-closure' allocation.reference %}">[no letter closure]</a></td>
+        <td>TODO</td>
+      </tr>
+
+    </tbody>
+  </table>
+
   {% endfor %}
 
 

@@ -22,21 +22,29 @@
   <p>Your profile has been picked by someone who would like to get a letter from you.</p>
 
   {% if allocation.reader.prefer_forward_via_co_op is True %}
+    <p>Their name is {{ allocation.reader.first_name }} and they have asked that we forward your letter to them. We do this without opening your letter.</p>
+    <p>Please send it to the following address:</p>
 
-  <p>Their name is {{ allocation.reader.first_name }} and you can write to them at:</p>
-    <p>Co-op Letters {{ allocation.reference }}</p>
-    <p>c/o Helen Murray</p>
-    <p>[address]</p>
-    <p>[address]</p>
-    <p>[postcode]</p>
+    <p><b>Co-op Letters {{ allocation.reference }}</b></p>
+    <p>Suite  157</p>
+    <p>19, Lever Street</p>
+    <p>Manchester</p>
+    <p>M1 1AN</p>
+
+    <p>Please include the unique reference <b>{{ allocation.reference }}</b> so we know where to forward the letter to.</p>
 
   {% elif allocation.reader.prefer_forward_via_co_op is False %}
+    <p>Their name is {{ allocation.reader.first_name }} and you can write to them at:</p>
 
-    <p>We&rsquo;ll forward it on to {{ allocation.reader.first_name}}.</p>
+    <p>[ADDRESS for {{ allocation.reader.uuid}}]</p>
+    <p>[ADDRESS]</p>
+    <p>[ADDRESS]</p>
+    <p>[ADDRESS]</p>
+    <p>[ADDRESS]</p>
 
   {% endif %}
 
-  <p>{{ allocation.reader.first_name }} is expecting a letter from you by {% today [date + 14 days].</p>TODO
+  <p>{{ allocation.reader.first_name }} is expecting a letter from you by [TODO date + 14 days].</p>
 
   <p>Been ages since you wrote a letter? Read our <a href="{% url 'writer-guide' %}">Advice for letter writers</a>.</p>
 
