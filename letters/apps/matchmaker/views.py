@@ -200,6 +200,9 @@ class AdminTaskListView(TemplateView):
             'writers_awaiting_get_started_email':
             self._writers_awaiting_get_started_email(),
 
+            'writers_awaiting_chase_email':
+            self._writers_awaiting_chase_email(),
+
             'readers_awaiting_baseline_survey_email':
             self._readers_awaiting_baseline_survey_email(),
 
@@ -226,6 +229,15 @@ class AdminTaskListView(TemplateView):
     def _writers_awaiting_get_started_email(self):
         return Writer.objects.filter(
             get_started_email_sent=None
+        )
+
+    def _writers_awaiting_chase_email(self):
+        two_days_ago = timezone.now() - datetime.timedelta(days=2)
+
+        return Writer.objects.filter(
+            chase_email_sent=None,
+            age=None,
+            get_started_email_sent__lt=two_days_ago,
         )
 
     def _readers_awaiting_baseline_survey_email(self):
