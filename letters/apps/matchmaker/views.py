@@ -238,7 +238,7 @@ class AdminTaskListView(TemplateView):
             chase_email_sent=None,
             age=None,
             get_started_email_sent__lt=two_days_ago,
-        )
+        ).order_by('get_started_email_sent')
 
     def _readers_awaiting_baseline_survey_email(self):
         return Reader.objects.filter(
@@ -260,7 +260,7 @@ class AdminTaskListView(TemplateView):
             got_postal_address=False,
             prefer_forward_via_co_op=None,
             get_started_email_sent__lt=two_days_ago,
-        )
+        ).order_by('get_started_email_sent')
 
     def _readers_awaiting_invite_to_pick_email(self):
         one_day_ago = timezone.now() - datetime.timedelta(days=1)
