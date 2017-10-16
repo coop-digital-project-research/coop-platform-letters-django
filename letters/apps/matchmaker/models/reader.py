@@ -57,16 +57,6 @@ class Reader(models.Model):
         default=None
     )
 
-    priming_email_sent = models.DateField(
-        blank=True, null=True,
-        default=None
-    )
-
-    follow_up_email_sent = models.DateField(
-        blank=True, null=True,
-        default=None
-    )
-
     def __str__(self):
         return '{} ({})'.format(self.uuid, self.first_name)
 
