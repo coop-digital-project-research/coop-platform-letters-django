@@ -41,11 +41,29 @@
   {% endif %}
 
   <h2>Send 'chase' emails</h2>
-  <ul>
-    <li>TODO</li>
-    <li>Send 3 days after 'get started' email</li>
-    <li><b>IF</b> they don't have profile and training completed</li>
-  </ul>
+
+  {% if writers_awaiting_chase_email %}
+    <p>
+      We don't have an age for these Writers. We sent their get-started email over 2 days ago.
+    </p>
+
+    <ul>
+      {% for writer in writers_awaiting_chase_email %}
+      <li>
+        {{ writer.first_name }}:
+        <a href="{% url 'admin-task-list-writer-email' 'chase' writer.uuid %}">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writer_change' writer.uuid %}">[edit Writer]</a></li>
+      {% endfor %}
+    </ul>
+
+    <p>Tasks:</p>
+    <ul>
+      <li>Send the chase email by copying and pasting the template</li>
+      <li>Set the `chase_email_sent` field in the Write rto today's date.</li>
+    </ul>
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
 
   <h2>Send 'final chase' emails</h2>
   <ul>
