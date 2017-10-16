@@ -186,7 +186,7 @@
       {% for reader in readers_awaiting_baseline_survey_email %}
       <li>
         {{ reader.first_name }}:
-        <a href="{% url 'admin-task-list-reader-email' 'baseline_survey' reader.uuid %}">[email template]</a>
+        <a href="{% url 'admin-task-list-reader-email' 'baseline-survey' reader.uuid %}">[email template]</a>
         <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">[edit Reader]</a></li>
       {% endfor %}
     </ul>
