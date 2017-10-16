@@ -211,6 +211,12 @@ class AdminTaskListView(TemplateView):
 
             'readers_awaiting_invite_to_pick_email':
             self._readers_awaiting_invite_to_pick_email(),
+
+            'allocations_awaiting_writer_priming_email':
+            self.allocations_awaiting_writer_priming_email(),
+
+            'allocations_awaiting_reader_priming_email':
+            self.allocations_awaiting_reader_priming_email(),
         }
         return context
 
@@ -252,6 +258,16 @@ class AdminTaskListView(TemplateView):
             got_postal_address=True,
             prefer_forward_via_co_op__isnull=False,
             baseline_survey_email_sent__lt=one_day_ago,
+        )
+
+    def allocations_awaiting_reader_priming_email(self):
+        return WriterReaderAllocation.objects.filter(
+            reader_priming_email_sent=None,
+        )
+
+    def allocations_awaiting_writer_priming_email(self):
+        return WriterReaderAllocation.objects.filter(
+            writer_priming_email_sent=None,
         )
 
 

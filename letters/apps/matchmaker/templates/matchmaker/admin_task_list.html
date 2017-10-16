@@ -60,8 +60,28 @@
   <h2>Allocate writers to readers</h2>
   <p>TODO</p>
 
-  <h2>Send 'priming' emails</h2>
-  <p>TODO</p>
+  <h2>Send 'writer priming' emails</h2>
+  {% if allocations_awaiting_writer_priming_email %}
+
+    <p>These writers have been allocated to a reader. Now we need to send them the reader's details.</p>
+    <ul>
+      {% for allocation in allocations_awaiting_writer_priming_email %}
+      <li>
+        {{ allocation.reference }}:
+        <a href="{% url 'admin-task-list-allocation-email' 'writer-priming' allocation.reference %}">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}">[edit WriterReaderAllocation]</a></li>
+      {% endfor %}
+    </ul>
+
+    <p>Tasks</p>
+    <ul>
+      <li>Send the 'writer priming' email</li>
+      <li>Update 'writer_priming_email_sent' date for the WriterReaderAllocation</li>
+    </ul>
+
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
 
   <h2>Send 'follow up' emails</h2>
   <p>TODO</p>
@@ -207,12 +227,29 @@
     <p>Nothing to do here.</p>
   {% endif %}
 
-  <h2>Send 'priming' emails</h2>
+  <h2>Send 'reader priming' emails</h2>
+  {% if allocations_awaiting_reader_priming_email %}
+
+    <p>These readers have been allocated a writer. Now we need to notify them to expect a letter.</p>
+
+    <ul>
+      {% for allocation in allocations_awaiting_reader_priming_email %}
+      <li>
+        {{ allocation.reference }}:
+        <a href="{% url 'admin-task-list-allocation-email' 'reader-priming' allocation.reference %}">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}">[edit WriterReaderAllocation]</a></li>
+      {% endfor %}
+    </ul>
+
+  <p>Tasks:</p>
   <ul>
-    <li>If we've matched them with a Writer</li>
-    <li>Send them the 'priming' email</li>
-    <li>Update 'priming_email_sent' date</li>
+    <li>Send the 'reader priming' email</li>
+    <li>Update 'reader_priming_email_sent' date for the WriterReaderAllocation</li>
   </ul>
+
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
 
   <h2>Send 'follow up' emails</h2>
   <ul>
