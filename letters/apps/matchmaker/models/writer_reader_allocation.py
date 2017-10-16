@@ -34,3 +34,23 @@ class WriterReaderAllocation(models.Model):
     letter_sent = models.NullBooleanField(default=None)
 
     letter_received = models.NullBooleanField(default=None)
+
+    writer_priming_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    writer_follow_up_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    reader_priming_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    reader_follow_up_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
