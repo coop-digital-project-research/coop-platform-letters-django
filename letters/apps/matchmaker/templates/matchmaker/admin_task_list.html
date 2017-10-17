@@ -147,12 +147,28 @@
 
   <h2>Delete unresponsive writers</h2>
 
-  <ul>
-    <li>TODO</li>
-    <li>7 days after 'final chase' email</li>
-    <li><b>IF</b> they don't have profile completed</li>
-    <li>Delete the Writer model the database</li>
-  </ul>
+  {% if writers_unresponsive %}
+    <p>
+      We still don't have an age for these Writers. We sent their final chase email over 7 days ago.
+    </p>
+
+    <ul>
+      {% for writer in writers_unresponsive %}
+      <li>
+        {{ writer }}:
+        <a href="{% url 'admin:matchmaker_writer_change' writer.uuid %}" target="admin">[edit]</a>
+        <a href="{% url 'admin:matchmaker_writer_delete' writer.uuid %}" target="admin">[delete]</a></li>
+      {% endfor %}
+    </ul>
+
+    <p>Tasks:</p>
+    <ul>
+      <li>Delete the Writer model the database</li>
+      <li>Erase their personal information columns from the {% include 'matchmaker/_writers_google_sheet.html' %}</li>
+    </ul>
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
 
 </section>
 <section>
