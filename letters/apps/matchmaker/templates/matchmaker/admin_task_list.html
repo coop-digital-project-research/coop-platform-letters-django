@@ -7,11 +7,11 @@
 
   <h2>Add new writers from spreadsheet</h2>
   <p>
-    In the <a href="https://docs.google.com/spreadsheets/d/1tQJAxAjMT3t74y-W9BNTDsqQuQ5NoMBgN9ZhtS9a__A/">Google Sheet</a>, are there any new entries, without a UUID?
+    In the {% include 'matchmaker/_writers_google_sheet.html' %}, are there any new entries, without a UUID?
   </p>
 
   <ul>
-    <li><a href="{% url 'admin:matchmaker_writer_add' %}">Create a Writer</a> with their first name and `private_story`</li>
+    <li><a href="{% url 'admin:matchmaker_writer_add' %} target="admin"">Create a Writer</a> with their first name and `private_story`</li>
     <li>Copy the UUID back into the spreadsheet</li>
   </ul>
 
@@ -26,8 +26,8 @@
       {% for writer in writers_awaiting_get_started_email %}
       <li>
         {{ writer.first_name }}:
-        <a href="{% url 'admin-task-list-writer-email' 'get-started' writer.uuid %}">[email template]</a>
-        <a href="{% url 'admin:matchmaker_writer_change' writer.uuid %}">[edit]</a></li>
+        <a href="{% url 'admin-task-list-writer-email' 'get-started' writer.uuid %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writer_change' writer.uuid %}" target="admin" target="admin">[edit]</a></li>
       {% endfor %}
     </ul>
 
@@ -51,15 +51,15 @@
       {% for writer in writers_awaiting_chase_email %}
       <li>
         {{ writer.first_name }}:
-        <a href="{% url 'admin-task-list-writer-email' 'chase' writer.uuid %}">[email template]</a>
-        <a href="{% url 'admin:matchmaker_writer_change' writer.uuid %}">[edit Writer]</a></li>
+        <a href="{% url 'admin-task-list-writer-email' 'chase' writer.uuid %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writer_change' writer.uuid %}" target="admin">[edit Writer]</a></li>
       {% endfor %}
     </ul>
 
     <p>Tasks:</p>
     <ul>
       <li>Send the chase email by copying and pasting the template</li>
-      <li>Set the `chase_email_sent` field in the Write rto today's date.</li>
+      <li>Set the `chase_email_sent` field in the Writer to today's date.</li>
     </ul>
   {% else %}
     <p>Nothing to do here.</p>
@@ -89,8 +89,8 @@
       {% for allocation in allocations_awaiting_writer_priming_email %}
       <li>
         {{ allocation.reference }}:
-        <a href="{% url 'admin-task-list-allocation-email' 'writer-priming' allocation.reference %}">[email template]</a>
-        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}">[edit WriterReaderAllocation]</a></li>
+        <a href="{% url 'admin-task-list-allocation-email' 'writer-priming' allocation.reference %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}" target="admin">[edit WriterReaderAllocation]</a></li>
       {% endfor %}
     </ul>
 
@@ -123,11 +123,11 @@
 
   <h2>Add new readers from spreadsheet</h2>
     <p>
-      In the <a href="https://docs.google.com/spreadsheets/d/1_qy3PIv8N1-p0eV7vUxASl1kLqXkbNQeBKwuUqbu_0I/">Google Sheet</a>, are there any new entries, without a UUID?
+      In the {% include 'matchmaker/_readers_google_sheet.html' %}, are there any new entries, without a UUID?
     </p>
 
     <ul>
-      <li><a href="{% url 'admin:matchmaker_reader_add' %}">Create a Reader</a></li>
+      <li><a href="{% url 'admin:matchmaker_reader_add' %}" target="admin">Create a Reader</a></li>
       <li>Copy the UUID back into the spreadsheet</li>
     </ul>
 
@@ -142,8 +142,8 @@
       {% for reader in readers_awaiting_get_started_email %}
       <li>
         {{ reader.first_name }}:
-        <a href="{% url 'admin-task-list-reader-email' 'get-started' reader.uuid %}">[email template]</a>
-        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">[edit Reader]</a></li>
+        <a href="{% url 'admin-task-list-reader-email' 'get-started' reader.uuid %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}" target="admin">[edit Reader]</a></li>
       {% endfor %}
     </ul>
 
@@ -169,8 +169,8 @@
       {% for reader in readers_awaiting_chase_email %}
       <li>
         {{ reader.first_name }}:
-        <a href="{% url 'admin-task-list-reader-email' 'chase' reader.uuid %}">[email template]</a>
-        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">[edit Reader]</a></li>
+        <a href="{% url 'admin-task-list-reader-email' 'chase' reader.uuid %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}" target="admin">[edit Reader]</a></li>
       {% endfor %}
     </ul>
 
@@ -192,14 +192,14 @@
     <ul>
       {% for reader in readers_without_postal_options %}
       <li>
-        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">{{ reader }}</a></li>
+        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}" target="admin">{{ reader }}</a></li>
       {% endfor %}
     </ul>
 
     <p>Tasks:</p>
     <ul>
       <li>Check the letters@coopdigital.co.uk mailbox</li>
-      <li>Record the postal address in the Google Sheet</li>
+    <li>Record the postal address in the {% include 'matchmaker/_readers_google_sheet.html' %}</li>
       <li>Set `got_postal_address` and record their forwarding preference.</li>
     </ul>
 
@@ -219,8 +219,8 @@
       {% for reader in readers_awaiting_baseline_survey_email %}
       <li>
         {{ reader.first_name }}:
-        <a href="{% url 'admin-task-list-reader-email' 'baseline-survey' reader.uuid %}">[email template]</a>
-        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">[edit Reader]</a></li>
+        <a href="{% url 'admin-task-list-reader-email' 'baseline-survey' reader.uuid %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}" target="admin">[edit Reader]</a></li>
       {% endfor %}
     </ul>
 
@@ -248,8 +248,8 @@
       {% for reader in readers_awaiting_invite_to_pick_email %}
       <li>
         {{ reader.first_name }}:
-        <a href="{% url 'admin-task-list-reader-email' 'invite-to-pick' reader.uuid %}">[email template]</a>
-        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">[edit Reader]</a></li>
+        <a href="{% url 'admin-task-list-reader-email' 'invite-to-pick' reader.uuid %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}" target="admin">[edit Reader]</a></li>
       {% endfor %}
     </ul>
 
@@ -271,8 +271,8 @@
       {% for allocation in allocations_awaiting_reader_priming_email %}
       <li>
         {{ allocation.reference }}:
-        <a href="{% url 'admin-task-list-allocation-email' 'reader-priming' allocation.reference %}">[email template]</a>
-        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}">[edit WriterReaderAllocation]</a></li>
+        <a href="{% url 'admin-task-list-allocation-email' 'reader-priming' allocation.reference %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}" target="admin">[edit WriterReaderAllocation]</a></li>
       {% endfor %}
     </ul>
 
@@ -316,37 +316,37 @@
     <tbody>
 
       <tr>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-priming' allocation.reference %}">[priming]</a></td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-priming' allocation.reference %}" target="email">[priming]</a></td>
         <td>{{ allocation.writer_priming_email_sent }}</td>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-priming' allocation.reference %}">[priming]</a></td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-priming' allocation.reference %}" target="email">[priming]</a></td>
         <td>{{ allocation.reader_priming_email_sent }}</td>
       </tr>
 
       <tr>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-follow-up' allocation.reference %}">[follow up]</a></td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-follow-up' allocation.reference %}" target="email">[follow up]</a></td>
         <td>{{ allocation.writer_follow_up_email_sent }}</td>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-follow-up' allocation.reference %}">[follow up]</a></td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-follow-up' allocation.reference %}" target="email">[follow up]</a></td>
         <td>{{ allocation.reader_follow_up_email_sent }}</td>
       </tr>
 
       <tr>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-sent-letter-closure' allocation.reference %}">[sent letter closure]</a></td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-sent-letter-closure' allocation.reference %}" target="email">[sent letter closure]</a></td>
         <td>TODO</td>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-got-letter-closure' allocation.reference %}">[got letter closure]</a></td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-got-letter-closure' allocation.reference %}" target="email">[got letter closure]</a></td>
         <td>TODO</td>
       </tr>
 
       <tr>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-midway' allocation.reference %}">[midway]</a></td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-midway' allocation.reference %}" target="email">[midway]</a></td>
         <td>TODO</td>
         <td></td>
         <td></td>
       </tr>
 
       <tr>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-no-sent-letter-closure' allocation.reference %}">[no sent letter closure]</a></td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-no-sent-letter-closure' allocation.reference %}" target="email">[no sent letter closure]</a></td>
         <td>TODO</td>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-no-letter-closure' allocation.reference %}">[no letter closure]</a></td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-no-letter-closure' allocation.reference %}" target="email">[no letter closure]</a></td>
         <td>TODO</td>
       </tr>
 
