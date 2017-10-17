@@ -156,9 +156,6 @@
     <p>Nothing to do here.</p>
   {% endif %}
 
-  <h2>Record postal addresses from emails</h2>
-  TODO
-
   <h2>Send 'chase' emails</h2>
 
   {% if readers_awaiting_chase_email %}
@@ -187,11 +184,29 @@
   {% endif %}
 
   <h2>Record postal addresses from emails</h2>
-  <ul>
-    <li>Check the letters@coopdigital.co.uk mailbox</li>
-    <li>Record the postal address in the Google Sheet</li>
-    <li>Set `got_postal_address` and record their forwarding preference.</li>
-  </ul>
+  {% if readers_without_postal_options %}
+    <p>
+      We're missing postal addresses or forwarding preference for the following readers:
+    </p>
+
+    <ul>
+      {% for reader in readers_without_postal_options %}
+      <li>
+        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">{{ reader }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <p>Tasks:</p>
+    <ul>
+      <li>Check the letters@coopdigital.co.uk mailbox</li>
+      <li>Record the postal address in the Google Sheet</li>
+      <li>Set `got_postal_address` and record their forwarding preference.</li>
+    </ul>
+
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
+
 
   <h2>Reply with 'baseline survey' emails</h2>
 
