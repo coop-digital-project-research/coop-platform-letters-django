@@ -104,8 +104,29 @@
     <p>Nothing to do here.</p>
   {% endif %}
 
-  <h2>Send 'follow up' emails</h2>
-  <p>TODO</p>
+  <h2>Send writer 'follow up' emails</h2>
+  {% if allocations_awaiting_writer_follow_up_email %}
+
+    <p>These writers were emailed 10 days ago to expect a letter. Now we need to send them a follow up email.</p>
+
+    <ul>
+      {% for allocation in allocations_awaiting_writer_follow_up_email %}
+      <li>
+        {{ allocation.reference }}:
+        <a href="{% url 'admin-task-list-allocation-email' 'writer-follow-up' allocation.reference %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}" target="admin">[edit WriterReaderAllocation]</a></li>
+      {% endfor %}
+    </ul>
+
+  <p>Tasks:</p>
+  <ul>
+    <li>Send the 'writer follow up' email</li>
+    <li>Update 'writer_follow_up_email_sent' date for the WriterReaderAllocation</li>
+  </ul>
+
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
 
   <h2>Delete unresponsive writers</h2>
 
@@ -286,12 +307,29 @@
     <p>Nothing to do here.</p>
   {% endif %}
 
-  <h2>Send 'follow up' emails</h2>
+  <h2>Send reader 'follow up' emails</h2>
+  {% if allocations_awaiting_reader_follow_up_email %}
+
+    <p>These readers were emailed 10 days ago to expect a letter. Now we need to send them a follow up email.</p>
+
+    <ul>
+      {% for allocation in allocations_awaiting_reader_follow_up_email %}
+      <li>
+        {{ allocation.reference }}:
+        <a href="{% url 'admin-task-list-allocation-email' 'reader-follow-up' allocation.reference %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}" target="admin">[edit WriterReaderAllocation]</a></li>
+      {% endfor %}
+    </ul>
+
+  <p>Tasks:</p>
   <ul>
-    <li>TODO</li>
-    <li>10 days after 'priming_email_sent'</li>
-    <li>Send them the 'follow up' email</li>
+    <li>Send the 'reader follow up' email</li>
+    <li>Update 'reader_follow_up_email_sent' date for the WriterReaderAllocation</li>
   </ul>
+
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
 </section>
 
 <section>

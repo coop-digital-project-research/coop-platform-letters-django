@@ -224,6 +224,12 @@ class AdminTaskListView(TemplateView):
 
             'allocations_awaiting_reader_priming_email':
             self.allocations_awaiting_reader_priming_email(),
+
+            'allocations_awaiting_writer_follow_up_email':
+            self.allocations_awaiting_writer_follow_up_email(),
+
+            'allocations_awaiting_reader_follow_up_email':
+            self.allocations_awaiting_reader_follow_up_email(),
         }
         return context
 
@@ -290,6 +296,24 @@ class AdminTaskListView(TemplateView):
     def allocations_awaiting_writer_priming_email(self):
         return WriterReaderAllocation.objects.filter(
             writer_priming_email_sent=None,
+        )
+
+    def allocations_awaiting_reader_follow_up_email(self):
+        ten_days_ago = timezone.now() - datetime.timedelta(days=10)
+
+        return WriterReaderAllocation.objects.filter(
+            reader_follow_up_email_sent=None,
+            reader_priming_email_sent__isnull=False,
+            reader_priming_email_sent__lt=ten_days_ago,
+        )
+
+    def allocations_awaiting_writer_follow_up_email(self):
+        ten_days_ago = timezone.now() - datetime.timedelta(days=10)
+
+        return WriterReaderAllocation.objects.filter(
+            writer_follow_up_email_sent=None,
+            writer_priming_email_sent__isnull=False,
+            writer_priming_email_sent__lt=ten_days_ago,
         )
 
 
