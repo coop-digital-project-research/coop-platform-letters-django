@@ -7,7 +7,7 @@ def generate_reference():
     Return a luhn-valid 10-digit reference like:
     123-456  (where 6 is the check digit)
     """
-    from .models import WriterReaderAllocation
+    from . import WriterReaderAllocation
 
     characters = '0123456789'
 
