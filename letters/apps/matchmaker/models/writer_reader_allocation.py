@@ -45,12 +45,37 @@ class WriterReaderAllocation(models.Model):
         default=None
     )
 
+    writer_midway_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    writer_sent_letter_closure_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    writer_no_sent_letter_closure_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
     reader_priming_email_sent = models.DateField(
         blank=True, null=True,
         default=None
     )
 
     reader_follow_up_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    reader_got_letter_closure_email_sent = models.DateField(
+        blank=True, null=True,
+        default=None
+    )
+
+    reader_no_letter_closure_email_sent = models.DateField(
         blank=True, null=True,
         default=None
     )
