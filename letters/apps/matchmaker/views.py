@@ -3,6 +3,7 @@ import random
 
 import jwt
 
+from django.db.models import Q
 from django.conf import settings
 from django.shortcuts import redirect
 from django.views.generic.edit import UpdateView
@@ -212,6 +213,9 @@ class AdminTaskListView(TemplateView):
             'readers_awaiting_chase_email':
             self._readers_awaiting_chase_email(),
 
+            'readers_without_postal_options':
+            self._readers_without_postal_options(),
+
             'readers_awaiting_invite_to_pick_email':
             self._readers_awaiting_invite_to_pick_email(),
 
@@ -261,6 +265,12 @@ class AdminTaskListView(TemplateView):
             prefer_forward_via_co_op=None,
             get_started_email_sent__lt=two_days_ago,
         ).order_by('get_started_email_sent')
+
+    def _readers_without_postal_options(self):
+        return Reader.objects.filter(
+            Q(got_postal_address=False) | Q(prefer_forward_via_co_op=None),
+            get_started_email_sent__isnull=False,
+        )
 
     def _readers_awaiting_invite_to_pick_email(self):
         one_day_ago = timezone.now() - datetime.timedelta(days=1)
