@@ -331,23 +331,23 @@
 
       <tr>
         <td><a href="{% url 'admin-task-list-allocation-email' 'writer-sent-letter-closure' allocation.reference %}" target="email">[sent letter closure]</a></td>
-        <td>TODO</td>
+        <td>{{ allocation.writer_sent_letter_closure_email_sent }}</td>
         <td><a href="{% url 'admin-task-list-allocation-email' 'reader-got-letter-closure' allocation.reference %}" target="email">[got letter closure]</a></td>
-        <td>TODO</td>
+        <td>{{ allocation.reader_got_letter_closure_email_sent }}</td>
       </tr>
 
       <tr>
         <td><a href="{% url 'admin-task-list-allocation-email' 'writer-midway' allocation.reference %}" target="email">[midway]</a></td>
-        <td>TODO</td>
+        <td>{{ allocation.writer_midway_email_sent }}</td>
         <td></td>
         <td></td>
       </tr>
 
       <tr>
         <td><a href="{% url 'admin-task-list-allocation-email' 'writer-no-sent-letter-closure' allocation.reference %}" target="email">[no sent letter closure]</a></td>
-        <td>TODO</td>
+        <td>{{ allocation.writer_no_sent_letter_closure_email_sent }}</td>
         <td><a href="{% url 'admin-task-list-allocation-email' 'reader-no-letter-closure' allocation.reference %}" target="email">[no letter closure]</a></td>
-        <td>TODO</td>
+        <td>{{ allocation.reader_no_letter_closure_email_sent }}</td>
       </tr>
 
     </tbody>
