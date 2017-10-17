@@ -1,0 +1,46 @@
+{% extends "info-page.html" %}
+
+{% block body_inner %}
+
+<section>
+  <h1>Allocate writers</h1>
+  <p>Below are reader selections for who they would receive a letter from.</p>
+
+  {% for reader_data in readers_selections %}
+    <h2>{{ reader_data.reader }}</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Writer</th>
+          <th></th>
+        </tr>
+      <thead>
+
+      <tbody>
+        {% for selected_writer in reader_data.selected_writers %}
+        <tr>
+          <td>{{ selected_writer.writer }}</td>
+          <td>
+            {% if selected_writer.allocation %}
+            Allocated: <a href="{% url 'admin:matchmaker_writerreaderallocation_change' selected_writer.allocation.reference %}" target="admin">{{ selected_writer.allocation.reference }}</a>
+            {% else %}
+              <form action="#" method="post">{% csrf_token %}
+                <input type="hidden" name="reader_uuid" value="{{ reader_data.reader.uuid }}"></input>
+                <input type="hidden" name="writer_uuid" value="{{ selected_writer.writer.uuid }}"></input>
+                <button type="submit">Allocate</button>
+              </form>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+  {% endfor %}
+
+
+</section>
+
+
+{% endblock %}

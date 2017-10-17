@@ -27,9 +27,9 @@ class WriterReaderAllocation(models.Model):
 
     allocated_by = models.ForeignKey(User, null=True)
 
-    writer = models.ForeignKey(Writer)
+    writer = models.ForeignKey(Writer, related_name='allocations')
 
-    reader = models.ForeignKey(Reader)
+    reader = models.ForeignKey(Reader, related_name='allocations')
 
     letter_sent = models.NullBooleanField(default=None)
 
