@@ -6,7 +6,7 @@ from .views import (
     AdminTaskListReaderEmailView, AdminTaskListAllocationEmailView,
     UpdateWriterProfileView, WriterProfileDetailView, ReaderChooseWritersView,
     ReaderConfirmationView, WriterGuideView, WriterTrainingView,
-    ReaderPreLetterSurveyView
+    ReaderPreLetterSurveyView, WriterTrainingDemoView
 )
 
 JWT_PATTERN = "[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*"
@@ -35,6 +35,12 @@ urlpatterns = [
         r'^sender/training/(?P<json_web_token>' + JWT_PATTERN + ')/$',
         WriterTrainingView.as_view(),
         name='writer-training'
+    ),
+
+    url(
+        r'^sender/training-demo/$',
+        WriterTrainingDemoView.as_view(),
+        name='writer-training-demo'
     ),
 
     url(

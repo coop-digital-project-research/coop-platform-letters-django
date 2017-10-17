@@ -183,6 +183,10 @@ class WriterGuideView(TemplateView):
     template_name = 'matchmaker/writer_guide.html'
 
 
+class WriterTrainingDemoView(TemplateView):
+    template_name = 'matchmaker/writer_training_demo.html'
+
+
 class ReaderPreLetterSurveyView(GetReaderObjectFromJWTMixin, DetailView):
     template_name = 'matchmaker/reader_pre_letter_survey.html'
     model = Reader
