@@ -7,7 +7,7 @@
 
   <h2>Add new writers from spreadsheet</h2>
   <p>
-    In the <a href="https://docs.google.com/spreadsheets/d/1tQJAxAjMT3t74y-W9BNTDsqQuQ5NoMBgN9ZhtS9a__A/">Google Sheet</a>, are there any new entries, without a UUID?
+    In the {% include 'matchmaker/_writers_google_sheet.html' %}, are there any new entries, without a UUID?
   </p>
 
   <ul>
@@ -123,7 +123,7 @@
 
   <h2>Add new readers from spreadsheet</h2>
     <p>
-      In the <a href="https://docs.google.com/spreadsheets/d/1_qy3PIv8N1-p0eV7vUxASl1kLqXkbNQeBKwuUqbu_0I/">Google Sheet</a>, are there any new entries, without a UUID?
+      In the {% include 'matchmaker/_readers_google_sheet.html' %}, are there any new entries, without a UUID?
     </p>
 
     <ul>
@@ -192,14 +192,14 @@
     <ul>
       {% for reader in readers_without_postal_options %}
       <li>
-        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}">{{ reader }}</a></li>
+        <a href="{% url 'admin:matchmaker_reader_change' reader.uuid %}" target="admin">{{ reader }}</a></li>
       {% endfor %}
     </ul>
 
     <p>Tasks:</p>
     <ul>
       <li>Check the letters@coopdigital.co.uk mailbox</li>
-      <li>Record the postal address in the Google Sheet</li>
+    <li>Record the postal address in the {% include 'matchmaker/_readers_google_sheet.html' %}</li>
       <li>Set `got_postal_address` and record their forwarding preference.</li>
     </ul>
 
