@@ -106,6 +106,13 @@ class WriterTrainingView(GetWriterObjectFromJWTMixin, TemplateView):
         )
 
 
+class WriterTrainingDemoView(TemplateView):
+    template_name = 'matchmaker/writer_training.html'
+
+    def post(self, request, **kwargs):
+        return redirect(reverse('writer-training-demo'))
+
+
 class ReaderChooseWritersView(GetReaderObjectFromJWTMixin, ListView):
     template_name = 'matchmaker/reader_choose_writers.html'
     model = Writer
@@ -181,10 +188,6 @@ class ReaderConfirmationView(GetReaderObjectFromJWTMixin, DetailView):
 
 class WriterGuideView(TemplateView):
     template_name = 'matchmaker/writer_guide.html'
-
-
-class WriterTrainingDemoView(TemplateView):
-    template_name = 'matchmaker/writer_training_demo.html'
 
 
 class ReaderPreLetterSurveyView(GetReaderObjectFromJWTMixin, DetailView):
