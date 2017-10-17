@@ -379,3 +379,73 @@ class AdminTaskListAllocationEmailView(DetailView):
         return 'matchmaker/allocation_emails/{}.html'.format(
             email_slug.replace('-', '_')
         )
+
+
+class AdminAllocateWriters(ListView):
+    model = WriterReaderSelection
+    template_name = 'matchmaker/admin_allocate_writers.html'
+    context_object_name = 'selections'
+
+    def post(self, request, **kwargs):
+        writer = Writer.objects.get(uuid=request.POST.get('writer_uuid'))
+        reader = Reader.objects.get(uuid=request.POST.get('reader_uuid'))
+
+        WriterReaderAllocation.objects.create(
+            writer=writer,
+            reader=reader,
+            allocated_by=request.user
+        )
+
+        return redirect(reverse('admin-allocate-writers'))
+
+    def get_context_data(self, **kwargs):
+        """
+        readers_selections = [
+            {
+                'reader': Reader,
+                'selected_writers': [
+                    {
+                        'writer': Writer,
+                        'is_allocated': True
+                    }
+            }
+        ]
+        """
+
+        readers_with_selections = Reader.objects.filter(
+            selections__isnull=False
+        ).distinct()
+
+        readers_selections = []
+
+        for reader in readers_with_selections:
+            reader_context = {
+                'reader': reader,
+                'selected_writers': []
+            }
+
+            for writer in (s.writer for s in reader.selections.all()):
+                reader_context['selected_writers'].append({
+                    'writer': writer,
+                    'allocation': self._get_allocation(writer, reader),
+                })
+
+            readers_selections.append(reader_context)
+
+        existing_context = super(
+            AdminAllocateWriters, self
+        ).get_context_data(**kwargs)
+
+        existing_context.update({
+            'readers_selections': readers_selections
+        })
+
+        return existing_context
+
+    def _get_allocation(self, writer, reader):
+        try:
+            return WriterReaderAllocation.objects.get(
+                writer=writer, reader=reader
+            )
+        except WriterReaderAllocation.DoesNotExist:
+            return None

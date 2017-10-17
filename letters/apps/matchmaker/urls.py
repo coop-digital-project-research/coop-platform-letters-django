@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib.admin.views.decorators import staff_member_required
 
 from .views import (
-    AdminTaskListView, AdminTaskListWriterEmailView,
+    AdminAllocateWriters, AdminTaskListView, AdminTaskListWriterEmailView,
     AdminTaskListReaderEmailView, AdminTaskListAllocationEmailView,
     UpdateWriterProfileView, WriterProfileDetailView, ReaderChooseWritersView,
     ReaderConfirmationView, WriterGuideView, WriterTrainingView,
@@ -92,6 +92,12 @@ urlpatterns = [
         '/(?P<pk>\d\d\d-\d\d\d)/$',
         staff_member_required(AdminTaskListAllocationEmailView.as_view()),
         name='admin-task-list-allocation-email',
+    ),
+
+    url(
+        r'^admin/allocate-writers/$',
+        staff_member_required(AdminAllocateWriters.as_view()),
+        name='admin-allocate-writers'
     ),
 
 ]
