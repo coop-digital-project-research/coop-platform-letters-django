@@ -28,6 +28,7 @@ class WriterAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
         'training_url',
         'profile_approved',
         'available_to_pick',
+        'num_allocations',
         'updated_at',
     )
 
@@ -58,6 +59,9 @@ class WriterAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
         )
 
     training_url.allow_tags = True
+
+    def num_allocations(self, instance):
+        return instance.allocations.count()
 
 
 @admin.register(Reader)
