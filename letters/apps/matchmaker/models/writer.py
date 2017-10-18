@@ -58,11 +58,21 @@ class Writer(models.Model):
         default=False,
     )
 
+    profile_approved = models.BooleanField(
+        default=False,
+        help_text=(
+            "This indicates that we've approved the content of a profile. "
+            "See also `available_to_pick`"
+        )
+    )
+
     available_to_pick = models.BooleanField(
         default=False,
         help_text=(
-            "This controls whether this writer will be visible for readers to "
-            "to pick."
+            "This controls whether this writer is visible for readers to "
+            "to pick. We set it when we first approve a profile and unset it "
+            "when we allocate them to reader. If they want to write another "
+            "letter we could set it again."
         )
     )
 
