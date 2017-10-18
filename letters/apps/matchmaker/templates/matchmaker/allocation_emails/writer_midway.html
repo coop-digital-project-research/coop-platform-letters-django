@@ -20,7 +20,7 @@
 
   [IF READER PREFERENCE = DIRECT]TODO
 
-  <p>Don’t forget, {{ allocation.reader.first_name }} is expecting a letter from you by [date of last email + 14 days].</p>TODO
+  <p>Don’t forget, {{ allocation.reader.first_name }} is expecting a letter from you by {{ date_expecting_letter|date:"jS F" }}.</p>
 
   <p>If something’s changed and you don’t have time to write a letter to {{ allocation.reader.first_name }}, that’s fine, just let us know so we can ask someone else.</p>
 
