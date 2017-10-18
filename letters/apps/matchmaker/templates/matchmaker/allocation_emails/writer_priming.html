@@ -44,7 +44,7 @@
 
   {% endif %}
 
-  <p>{{ allocation.reader.first_name }} is expecting a letter from you by [TODO date + 14 days].</p>
+  <p>{{ allocation.reader.first_name }} is expecting a letter from you by {{ date_expecting_letter|date:"jS F" }}.</p>
 
   <p>Been ages since you wrote a letter? Read our <a href="{% url 'writer-guide' %}">Advice for letter writers</a>.</p>
 

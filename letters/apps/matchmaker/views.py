@@ -390,6 +390,26 @@ class AdminTaskListAllocationEmailView(DetailView):
             email_slug.replace('-', '_')
         )
 
+    def get_context_data(self, **kwargs):
+        existing_context = super(
+            AdminTaskListAllocationEmailView, self
+        ).get_context_data(**kwargs)
+
+        allocation = self.get_object()
+
+        existing_context.update(
+            {'date_expecting_letter': self._date_expecting_letter(allocation)}
+        )
+        return existing_context
+
+    def _date_expecting_letter(self, allocation):
+        delta = datetime.timedelta(days=14)
+
+        if allocation.writer_priming_email_sent:
+            return allocation.writer_priming_email_sent + delta
+        else:
+            return (timezone.now() + delta).date()
+
 
 class AdminAllocateWriters(ListView):
     model = WriterReaderSelection
