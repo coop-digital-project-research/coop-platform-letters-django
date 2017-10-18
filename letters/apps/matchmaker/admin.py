@@ -26,12 +26,14 @@ class WriterAdmin(ReadonlyFieldsOnChangeMixin, admin.ModelAdmin):
         'training_complete',
         'edit_url',
         'training_url',
+        'profile_approved',
         'available_to_pick',
         'updated_at',
     )
 
     list_filter = (
         'training_complete',
+        'profile_approved',
         'available_to_pick',
         'updated_at',
     )
