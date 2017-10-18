@@ -91,11 +91,6 @@ class Writer(models.Model):
         default=None
     )
 
-    profile_reminder_email_sent = models.DateField(
-        blank=True, null=True,
-        default=None
-    )
-
     def __str__(self):
         return '{} ({})'.format(self.uuid, self.first_name)
 
