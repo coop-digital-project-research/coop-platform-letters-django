@@ -3,6 +3,7 @@ import random
 
 import jwt
 
+from django.db import transaction
 from django.db.models import Q
 from django.conf import settings
 from django.shortcuts import redirect
@@ -390,11 +391,14 @@ class AdminAllocateWriters(ListView):
         writer = Writer.objects.get(uuid=request.POST.get('writer_uuid'))
         reader = Reader.objects.get(uuid=request.POST.get('reader_uuid'))
 
-        WriterReaderAllocation.objects.create(
-            writer=writer,
-            reader=reader,
-            allocated_by=request.user
-        )
+        with transaction.atomic():
+            WriterReaderAllocation.objects.create(
+                writer=writer,
+                reader=reader,
+                allocated_by=request.user
+            )
+            writer.available_to_pick = False
+            writer.save()
 
         return redirect(reverse('admin-allocate-writers'))
 
