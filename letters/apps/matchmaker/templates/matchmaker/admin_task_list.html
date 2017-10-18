@@ -95,6 +95,32 @@
     <li>Anyone who has done `training` but not completed a `profile`</li>
   </ul>
 
+  <h2>Approve and activate completed profiles</h2>
+
+  {% if writers_awaiting_approval %}
+    <p>
+      These writers have completed a profile, but we haven't approved them and
+      made them available to pick.
+    </p>
+
+    <ul>
+      {% for writer in writers_awaiting_approval %}
+      <li>
+        {{ writer.first_name }}:
+        <a href="{% url 'admin:matchmaker_writer_change' writer.uuid %}" target="admin">[edit Writer]</a></li>
+      {% endfor %}
+    </ul>
+
+    <p>Tasks:</p>
+    <ul>
+      <li>TODO: criteria for approval?</li>
+      <li>Set the `profile_approved` flag</li>
+      <li>Set the `available_to_pick` flag</li>
+    </ul>
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
+
   <h2>Allocate writers to readers</h2>
   <p><a href="{% url 'admin-allocate-writers' %}">Allocate writers based on reader selections</a></p>
 
