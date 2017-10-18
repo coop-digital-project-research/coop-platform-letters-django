@@ -417,8 +417,8 @@
   {% for allocation in allocations %}
   <h2>{{ allocation.reference }}</h2>
 
-  <p>From {{ allocation.reader }}</p>
-  <p>to {{ allocation.writer }}</p>
+  <p>Writer: {{ allocation.writer }}</p>
+  <p>Reader: {{ allocation.reader }}</p>
   <table>
     <thead>
       <tr>
