@@ -141,6 +141,31 @@
     <p>Nothing to do here.</p>
   {% endif %}
 
+  <h2>Send writer 'midway' emails</h2>
+
+  {% if allocations_awaiting_writer_midway_email %}
+
+    <p>We emailed these writers with who they'll be writing to seven days ago. The flag `letter_sent` is 'unknown' (perhaps because the letter is direct), so now we send a gentle reminder email.</p>
+
+    <ul>
+      {% for allocation in allocations_awaiting_writer_midway_email %}
+      <li>
+        {{ allocation.reference }}:
+        <a href="{% url 'admin-task-list-allocation-email' 'writer-midway' allocation.reference %}" target="email">[email template]</a>
+        <a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}" target="admin">[edit WriterReaderAllocation]</a></li>
+      {% endfor %}
+    </ul>
+
+  <p>Tasks:</p>
+  <ul>
+    <li>Send the 'writer midway' email</li>
+    <li>Update 'writer_midway_email_sent' date for the WriterReaderAllocation</li>
+  </ul>
+
+  {% else %}
+    <p>Nothing to do here.</p>
+  {% endif %}
+
   <h2>Send writer 'follow up' emails</h2>
   {% if allocations_awaiting_writer_follow_up_email %}
 

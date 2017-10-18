@@ -242,6 +242,9 @@ class AdminTaskListView(TemplateView):
             'allocations_awaiting_reader_priming_email':
             self.allocations_awaiting_reader_priming_email(),
 
+            'allocations_awaiting_writer_midway_email':
+            self.allocations_awaiting_writer_midway_email(),
+
             'allocations_awaiting_writer_follow_up_email':
             self.allocations_awaiting_writer_follow_up_email(),
 
@@ -345,6 +348,16 @@ class AdminTaskListView(TemplateView):
             reader_follow_up_email_sent=None,
             reader_priming_email_sent__isnull=False,
             reader_priming_email_sent__lt=ten_days_ago,
+        )
+
+    def allocations_awaiting_writer_midway_email(self):
+        seven_days_ago = timezone.now() - datetime.timedelta(days=7)
+
+        return WriterReaderAllocation.objects.filter(
+            writer_midway_email_sent=None,
+            letter_sent=None,  # unknown
+            writer_priming_email_sent__isnull=False,
+            writer_priming_email_sent__lt=seven_days_ago,
         )
 
     def allocations_awaiting_writer_follow_up_email(self):
