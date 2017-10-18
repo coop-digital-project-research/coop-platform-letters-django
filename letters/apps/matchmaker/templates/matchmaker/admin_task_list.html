@@ -15,6 +15,13 @@
     <li>Copy the UUID back into the spreadsheet</li>
   </ul>
 
+  <h2>Check the physical mailbox</h2>
+
+  <ul>
+    <li>TODO - can someone add instructions about the address and key?</li>
+    <li>For any received letters, open the <a href="{% url 'admin:matchmaker_writerreaderallocation_changelist' %}" target="admin">WriterReaderAllocation</a> and set `letter_sent`</li>
+  </ul>
+
   <h2>Send 'get started' emails</h2>
   {% if writers_awaiting_get_started_email %}
 
