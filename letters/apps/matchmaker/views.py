@@ -215,6 +215,9 @@ class AdminTaskListView(TemplateView):
             'writers_awaiting_final_chase_email':
             self._writers_awaiting_final_chase_email(),
 
+            'writers_awaiting_approval':
+            self._writers_awaiting_approval(),
+
             'writers_unresponsive':
             self._writers_unresponsive(),
 
@@ -272,6 +275,12 @@ class AdminTaskListView(TemplateView):
             age=None,
             chase_email_sent__lt=three_days_ago,
         ).order_by('chase_email_sent')
+
+    def _writers_awaiting_approval(self):
+        return Writer.objects.filter(
+            age__isnull=False,
+            profile_approved=False,
+        ).order_by('get_started_email_sent')
 
     def _writers_unresponsive(self):
         seven_days_ago = timezone.now() - datetime.timedelta(days=7)
