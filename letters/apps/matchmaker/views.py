@@ -9,8 +9,10 @@ from django.conf import settings
 from django.shortcuts import redirect
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView, ListView, TemplateView
+from django.views.decorators.clickjacking import xframe_options_exempt
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 
 
 from .models import (
@@ -108,6 +110,7 @@ class WriterTrainingView(GetWriterObjectFromJWTMixin, TemplateView):
         )
 
 
+@method_decorator(xframe_options_exempt, name='dispatch')
 class WriterTrainingDemoView(TemplateView):
     template_name = 'matchmaker/writer_training.html'
 
