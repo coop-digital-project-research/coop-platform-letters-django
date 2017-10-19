@@ -18,8 +18,10 @@
   <h2>Check the physical mailbox</h2>
 
   <ul>
-    <li>TODO - can someone add instructions about the address and key?</li>
+    <li>Call the mailbox company on 0161 236 7333 and ask if there is any mail to collect from mailbox 157</li>
+    <li>If there is mail to pick up, get the key from the team locker and go to 19 Lever Street</li>
     <li>For any received letters, open the <a href="{% url 'admin:matchmaker_writerreaderallocation_changelist' %}" target="admin">WriterReaderAllocation</a> and set `letter_sent`</li>
+    <li>Look up the address of the reader in the spreadsheet {% include 'matchmaker/_readers_google_sheet.html' %}, place the unopened letter in a new envelope, address it and post</li>
   </ul>
 
   <h2>Send 'get started' emails</h2>
