@@ -448,17 +448,17 @@
       </tr>
 
       <tr>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-follow-up' allocation.reference %}" target="email">[follow up]</a></td>
-        <td>{{ allocation.writer_follow_up_email_sent }}</td>
-        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-follow-up' allocation.reference %}" target="email">[follow up]</a></td>
-        <td>{{ allocation.reader_follow_up_email_sent }}</td>
-      </tr>
-
-      <tr>
         <td><a href="{% url 'admin-task-list-allocation-email' 'writer-midway' allocation.reference %}" target="email">[midway]</a></td>
         <td>{{ allocation.writer_midway_email_sent }}</td>
         <td></td>
         <td></td>
+      </tr>
+
+      <tr>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'writer-follow-up' allocation.reference %}" target="email">[follow up]</a></td>
+        <td>{{ allocation.writer_follow_up_email_sent }}</td>
+        <td><a href="{% url 'admin-task-list-allocation-email' 'reader-follow-up' allocation.reference %}" target="email">[follow up]</a></td>
+        <td>{{ allocation.reader_follow_up_email_sent }}</td>
       </tr>
 
       <tr>
