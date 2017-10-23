@@ -424,7 +424,7 @@
   <p>This is a temporary place to access any email for a given WriterReaderAllocation</p>
 
   {% for allocation in allocations %}
-  <h2>{{ allocation.reference }}</h2>
+  <h2><a href="{% url 'admin:matchmaker_writerreaderallocation_change' allocation.reference %}" target="admin">{{ allocation.reference }}</a></h2>
 
   <p>Writer: <a href="{% url 'admin:matchmaker_writer_change' allocation.writer.uuid %}" target="admin">{{ allocation.writer }}</a></p>
   <p>Reader: <a href="{% url 'admin:matchmaker_reader_change' allocation.reader.uuid %}" target="admin">{{ allocation.reader }}</a></p>
