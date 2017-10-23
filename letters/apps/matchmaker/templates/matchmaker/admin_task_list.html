@@ -426,8 +426,8 @@
   {% for allocation in allocations %}
   <h2>{{ allocation.reference }}</h2>
 
-  <p>Writer: {{ allocation.writer }}</p>
-  <p>Reader: {{ allocation.reader }}</p>
+  <p>Writer: <a href="{% url 'admin:matchmaker_writer_change' allocation.writer.uuid %}" target="admin">{{ allocation.writer }}</a></p>
+  <p>Reader: <a href="{% url 'admin:matchmaker_reader_change' allocation.reader.uuid %}" target="admin">{{ allocation.reader }}</a></p>
   <table>
     <thead>
       <tr>
